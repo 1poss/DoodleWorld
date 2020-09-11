@@ -6,7 +6,7 @@ using JackUtil;
 
 namespace DoodleWorldNS {
 
-    public class CloudPlatform : MonoBehaviour {
+    public class Platform : MonoBehaviour {
 
         protected virtual void OnCollisionEnter2D(Collision2D other) {
 

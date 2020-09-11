@@ -19,5 +19,10 @@ namespace DoodleWorldNS {
             EnterFSMStateEvent?.Invoke(sender, fsmStateType);
         }
 
+        public static event Action<object, EventArgs> RestorePauseEvent;
+        public static void OnRestorePauseEvent(object sender, EventArgs args) {
+            RestorePauseEvent?.Invoke(sender, args);
+        }
+
     }
 }

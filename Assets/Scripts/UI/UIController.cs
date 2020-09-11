@@ -26,6 +26,35 @@ namespace DoodleWorldNS {
         }
 
         // 菜单相关
+        public static event Action<object, EventArgs> PopupPauseEvent;
+        public static void OnPopupPauseEvent(object sender, EventArgs args) {
+            PopupPauseEvent?.Invoke(sender, args);
+        }
+
+        public static event Action<object, EventArgs> PopupGameOverEvent;
+        public static void OnPopupGameOverEvent(object sender, EventArgs args) {
+            PopupGameOverEvent?.Invoke(sender, args);
+        }
+
+        public static event Action<object, EventArgs> PopupFinishedGameEvent;
+        public static void OnPopupFinishedGameEvent(object sender, EventArgs args) {
+            PopupFinishedGameEvent?.Invoke(sender, args);
+        }
+
+        public static event Action<object, EventArgs> ReturnGameEvent;
+        public static void OnReturnGameEvent(object sender, EventArgs args) {
+            ReturnGameEvent?.Invoke(sender, args);
+        }
+
+        public static event Action<object, EventArgs> RetryEvent;
+        public static void OnRetryEvent(object sender, EventArgs args) {
+            RetryEvent?.Invoke(sender, args);
+        }
+
+        public static event Action<object, EventArgs> BackToTitleEvent;
+        public static void OnBackToTitleEvent(object sender, EventArgs args) {
+            BackToTitleEvent?.Invoke(sender, args);
+        }
 
     }
 

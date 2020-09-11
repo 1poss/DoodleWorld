@@ -23,6 +23,12 @@ namespace DoodleWorldNS {
 
         Camera cam;
 
+        #region Pause
+        Vector2 preVec;
+        FSMBase<Player> preFSM;
+        bool isPause;
+        #endregion
+
         void Awake() {
 
             ResetPhysics();
@@ -32,6 +38,7 @@ namespace DoodleWorldNS {
             PlayerController.DeadEvent += Dead;
             PlayerController.EatHeartEvent += EatHeart;
             PlayerController.EnterFSMStateEvent += EnterFSMState;
+            PlayerController.RestorePauseEvent += RestorePause;
 
             fsm = new FSMBase<Player>(this);
             fsm.RegisterState(new IdleState());
@@ -44,14 +51,15 @@ namespace DoodleWorldNS {
 
         public void InitValue() {
 
-            life = 2;
             lifeMax = 3;
+            life = lifeMax;
 
         }
 
         public void ResetPhysics() {
 
             // 重置控制
+            isPause = false;
             allowControlType = 0;
             // EnterFSMState(this, FSMStateType.Idle);
 
@@ -65,7 +73,32 @@ namespace DoodleWorldNS {
 
         }
 
+        protected virtual void Update() {
+
+            if (fsm != null) {
+
+                if (fsm.currentState.StateEnum != (int)FSMStateType.Dead) {
+
+                    bool escKey = Input.GetKeyUp(KeyCode.Escape);
+
+                    if (escKey) {
+
+                        Pause(this, EventArgs.Empty);
+                        UIController.OnPopupPauseEvent(this, EventArgs.Empty);
+
+                    }
+
+                }
+
+            }
+
+        }
+
         protected virtual void FixedUpdate() {
+
+            if (isPause) {
+                return;
+            }
 
             // 相机跟随
             Level currentLevel = App.Instance.currentLevel;
@@ -172,13 +205,33 @@ namespace DoodleWorldNS {
 
             if (life <= 0) {
 
+                ResetPhysics();
+
                 EnterFSMState(this, FSMStateType.Dead);
+
+                UIController.OnPopupGameOverEvent(this, EventArgs.Empty);
 
             } else {
 
                 LevelController.OnReloadLevelEvent(this, this);
 
             }
+
+        }
+
+        public void Pause(object sender, EventArgs args) {
+
+            isPause = true;
+            preVec = rig.velocity;
+
+            rig.velocity = Vector2.zero;
+
+        }
+
+        public void RestorePause(object sender, EventArgs args) {
+
+            isPause = false;
+            rig.velocity = preVec;
 
         }
         #endregion

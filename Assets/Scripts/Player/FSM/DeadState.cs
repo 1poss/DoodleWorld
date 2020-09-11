@@ -18,8 +18,6 @@ namespace DoodleWorldNS {
                                     // | ControlType.MOVE
                                     | ControlType.FALLING;
 
-            actor.ResetPhysics();
-
             // throw new NotImplementedException();
 
         }

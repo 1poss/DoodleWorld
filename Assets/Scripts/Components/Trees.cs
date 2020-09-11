@@ -12,9 +12,29 @@ namespace DoodleWorldNS {
 
         public float bounceForce;
 
+        Vector2 defaultPos;
+        public float moveSpeed;
+        public float waitTime;
+        public Vector2 moveOff;
+        Sequence action;
+
         protected virtual void Awake() {
 
             col = GetComponent<Collider2D>();
+
+            defaultPos = transform.position;
+
+            if (moveSpeed == 0) {
+                moveSpeed = 1;
+            }
+            moveSpeed = Mathf.Abs(moveSpeed);
+
+            action = DOTween.Sequence();
+            action.Append(transform.DOMove(defaultPos + moveOff, moveOff.magnitude / moveSpeed).SetEase(Ease.Linear));
+            action.AppendInterval(waitTime);
+            action.Append(transform.DOMove(defaultPos, moveOff.magnitude / moveSpeed).SetEase(Ease.Linear));
+            action.AppendInterval(waitTime);
+            action.SetLoops(-1);
 
         }
 
@@ -22,6 +42,7 @@ namespace DoodleWorldNS {
 
             if (other.gameObject.tag == TagCollection.PLAYER) {
 
+                // ---- 注释这一段 ----
                 // 力的起点
                 Vector2 startPos = (Vector2)transform.position + col.offset;
 
@@ -30,12 +51,18 @@ namespace DoodleWorldNS {
                 Vector2 dir = (Vector2)p.transform.position - startPos;
 
                 // 设置弹力
-                p.rig.velocity = dir.normalized * bounceForce;
+                p.rig.velocity = dir * bounceForce;
+                // -------------------
 
-                // PlayerController.OnEnterFSMStateEvent(this, FSMStateType.Jump);
                 p.EnterFSMState(this, FSMStateType.Jump);
 
             }
+
+        }
+
+        void OnDestroy() {
+
+            action?.Kill();
 
         }
 

@@ -20,6 +20,7 @@ namespace DoodleWorldNS {
         public string debugLevel;
         public GameObject debugMapEditor;
 
+        Camera cam;
 
         void Start() {
 
@@ -67,6 +68,7 @@ namespace DoodleWorldNS {
             }
 
             player.ResetPhysics();
+            player.InitValue();
 
             // 载入关卡
             if (currentLevel != null) {
@@ -81,6 +83,10 @@ namespace DoodleWorldNS {
 
             // 加载UI
             UIController.OnLoadLifeEvent(this, player);
+
+            // 相机跟随
+            cam = cam ?? Camera.main;
+            cam.FollowTargetLimited(true, player.transform.position, currentLevel.mapBorder.borderTilemap, currentLevel.mapBorder.bounds, ConfigCollection.cameraOffset);
 
         }
 
