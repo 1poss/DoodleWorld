@@ -54,6 +54,7 @@ namespace DoodleWorldNS {
 
             lifeMax = 3;
             life = lifeMax;
+            maxHeight = 0;
 
         }
 
@@ -66,6 +67,7 @@ namespace DoodleWorldNS {
 
             // 重置物理
             rig.velocity = Vector2.zero;
+            maxHeight = 0;
             moveSpeed = 5f;
             tendSpeed = 0f;
             fallingGravity = -6f;
@@ -135,7 +137,7 @@ namespace DoodleWorldNS {
             if (transform.position.y > maxHeight) {
 
                 maxHeight = transform.position.y;
-                
+
             }
 
         }
@@ -183,6 +185,26 @@ namespace DoodleWorldNS {
 
             }
             
+        }
+
+        public void Bounce(Transform here, Collider2D col, float force) {
+
+            // 力的起点
+            Vector2 startPos = (Vector2)here.position + col.offset;
+
+            // 力的方向
+            Vector2 dir = (Vector2)transform.position - startPos;
+
+            // 落差
+            float heightOff = maxHeight - startPos.y;
+
+            // 设置弹力
+            rig.velocity = dir * (force + heightOff * 0.45f);
+
+            maxHeight = 0;
+
+            EnterFSMState(typeof(Effect), FSMStateType.Jump);
+
         }
         #endregion
 

@@ -29,6 +29,12 @@ namespace DoodleWorldNS {
 
         }
 
+        public void FinishedGame() {
+
+            UIController.OnPopupFinishedGameEvent(this, EventArgs.Empty);
+            
+        }
+
         void OnDestroy() {
 
             LevelController.ReloadLevelEvent -= LoadLevel;

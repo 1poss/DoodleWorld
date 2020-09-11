@@ -114,24 +114,8 @@ namespace DoodleWorldNS {
 
             if (other.gameObject.tag == TagCollection.PLAYER) {
 
-                // ---- 注释这一段 ----
-                // 力的起点
-                Vector2 startPos = (Vector2)transform.position + col.offset;
-
-                // 力的方向
                 Player p = other.gameObject.GetComponent<Player>();
-                Vector2 dir = (Vector2)p.transform.position - startPos;
-
-                // 落差
-                float heightOff = p.maxHeight - startPos.y;
-
-                // 设置弹力
-                p.rig.velocity = dir * (bounceForce + heightOff * 0.3f);
-
-                p.maxHeight = 0;
-                // -------------------
-
-                p.EnterFSMState(this, FSMStateType.Jump);
+                p.Bounce(transform, col, bounceForce);
 
                 if (!isAutoMove) {
 
