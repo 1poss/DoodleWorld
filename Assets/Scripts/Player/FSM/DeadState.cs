@@ -6,17 +6,19 @@ using JackUtil;
 
 namespace DoodleWorldNS {
 
-    public class JumpState : FSMStateBase<Player> {
+    public class DeadState : FSMStateBase<Player> {
 
-        public override int StateEnum => (int)FSMStateType.Jump;
+        public override int StateEnum => (int)FSMStateType.Dead;
 
         public override void Enter(Player actor) {
 
             // DebugUtil.Log("Enter: " + StateEnum);
 
             actor.allowControlType = 0
-                                    | ControlType.MOVE_IN_AIR
+                                    // | ControlType.MOVE
                                     | ControlType.FALLING;
+
+            actor.ResetPhysics();
 
             // throw new NotImplementedException();
 
@@ -24,9 +26,9 @@ namespace DoodleWorldNS {
 
         public override void Execute(Player actor) {
 
-            actor.allowControlType = 0
-                                    | ControlType.MOVE_IN_AIR
-                                    | ControlType.FALLING;
+            // actor.allowControlType = 0
+                                    // | ControlType.MOVE
+                                    // | ControlType.FALLING;
 
             // throw new NotImplementedException();
 

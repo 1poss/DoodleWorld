@@ -55,7 +55,7 @@ namespace JackUtil {
 
             FSMStateBase<T> _targetState = stateDic.GetValue(_enum);
             if (_targetState == null) {
-                DebugUtil.LogError("错误的Enum: " + _enum.ToString());
+                DebugUtil.LogError("未注册的Enum: " + _enum.ToString());
             }
             currentState.Exit(actor);
             currentState = _targetState;

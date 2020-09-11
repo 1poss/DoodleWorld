@@ -12,7 +12,7 @@ namespace DoodleWorldNS {
 
         public override void Enter(Player actor) {
 
-            DebugUtil.Log("Enter: " + StateEnum);
+            // DebugUtil.Log("Enter: " + StateEnum);
 
             actor.allowControlType = 0
                                     | ControlType.MOVE
