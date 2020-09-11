@@ -111,8 +111,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea2781d2807751f48a4daa0bf8bbc697, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  col: {fileID: 0}
+  sr: {fileID: 3319443412311832091}
+  col: {fileID: 3319443412311832090}
+  tree1: {fileID: 21300000, guid: 8a14d42f8d44bbb45a7b07473cff2e32, type: 3}
+  tree2: {fileID: 21300000, guid: 1ec080749c828bc49a7d372c448a2305, type: 3}
   bounceForce: 12
-  moveSpeed: 0
-  waitTime: 0
-  moveOff: {x: 0, y: 0}
+  moveSpeed: 2
+  waitTime: 1

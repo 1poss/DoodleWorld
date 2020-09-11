@@ -17,6 +17,7 @@ namespace DoodleWorldNS {
         public float fallingGravity;
         public float fallingSpeedMax;
         public float fallingSpeedMaxBase;
+        public float maxHeight;
 
         public int life;
         public int lifeMax;
@@ -129,6 +130,12 @@ namespace DoodleWorldNS {
 
                 Falling();
 
+            }
+
+            if (transform.position.y > maxHeight) {
+
+                maxHeight = transform.position.y;
+                
             }
 
         }

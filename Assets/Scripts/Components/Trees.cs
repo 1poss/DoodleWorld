@@ -8,17 +8,48 @@ namespace DoodleWorldNS {
 
     public class Trees : MonoBehaviour {
 
+        static System.Random random;
+
+        public SpriteRenderer sr;
         public Collider2D col;
+
+        public Sprite tree1;
+        public Sprite tree2;
 
         public float bounceForce;
 
         Vector2 defaultPos;
+
         public float moveSpeed;
         public float waitTime;
-        public Vector2 moveOff;
+        Vector2 moveOff;
         Sequence action;
 
+        int state;
+
+        bool isAutoMove;
+
         protected virtual void Awake() {
+
+            if (random == null) {
+
+                random = new System.Random(0);
+
+            }
+
+            int rd = random.Next(2);
+
+            if (rd == 0) {
+
+                sr.sprite = tree1;
+
+            } else {
+                
+                sr.sprite = tree2;
+
+            }
+
+            isAutoMove = false; // 自动升降
 
             col = GetComponent<Collider2D>();
 
@@ -29,6 +60,22 @@ namespace DoodleWorldNS {
             }
             moveSpeed = Mathf.Abs(moveSpeed);
 
+            state = 0;
+
+            moveOff = new Vector2(0, 1);
+
+            if (isAutoMove) {
+
+                AutoMove();
+
+            }
+
+        }
+
+        void AutoMove() {
+
+            action?.Kill();
+
             action = DOTween.Sequence();
             action.Append(transform.DOMove(defaultPos + moveOff, moveOff.magnitude / moveSpeed).SetEase(Ease.Linear));
             action.AppendInterval(waitTime);
@@ -36,6 +83,31 @@ namespace DoodleWorldNS {
             action.AppendInterval(waitTime);
             action.SetLoops(-1);
 
+        }
+
+        void ChangeState() {
+
+            action?.Kill();
+            action = DOTween.Sequence();
+
+            if (state == 0) {
+                state = 1;
+                action.Append(transform.DOMove(defaultPos + Vector2.down * 0.1f, 0.1f).SetEase(Ease.Linear));
+                action.Append(transform.DOMove(defaultPos + Vector2.up * 0.1f, 0.1f).SetEase(Ease.Linear));
+                action.Append(transform.DOMove(defaultPos + moveOff * state, moveOff.magnitude / moveSpeed).SetEase(Ease.Linear));
+            } else if (state == 1) {
+                state = -1;
+                action.Append(transform.DOMove(defaultPos + moveOff * state, moveOff.magnitude / moveSpeed).SetEase(Ease.Linear));
+                action.Append(transform.DOMove(defaultPos + moveOff * state + Vector2.down * 0.1f, 0.1f).SetEase(Ease.Linear));
+                action.Append(transform.DOMove(defaultPos + moveOff * state + Vector2.up * 0.1f, 0.1f).SetEase(Ease.Linear));
+            } else if (state == -1) {
+                state = 0;
+                action.Append(transform.DOMove(defaultPos + Vector2.down * 0.1f, 0.1f).SetEase(Ease.Linear));
+                action.Append(transform.DOMove(defaultPos + Vector2.up * 0.1f, 0.1f).SetEase(Ease.Linear));
+                action.Append(transform.DOMove(defaultPos + moveOff * state, moveOff.magnitude / moveSpeed).SetEase(Ease.Linear));
+            }
+
+            action.SetLoops(1);
         }
 
         protected virtual void OnCollisionEnter2D(Collision2D other) {
@@ -50,11 +122,22 @@ namespace DoodleWorldNS {
                 Player p = other.gameObject.GetComponent<Player>();
                 Vector2 dir = (Vector2)p.transform.position - startPos;
 
+                // 落差
+                float heightOff = p.maxHeight - startPos.y;
+
                 // 设置弹力
-                p.rig.velocity = dir * bounceForce;
+                p.rig.velocity = dir * (bounceForce + heightOff * 0.3f);
+
+                p.maxHeight = 0;
                 // -------------------
 
                 p.EnterFSMState(this, FSMStateType.Jump);
+
+                if (!isAutoMove) {
+
+                    ChangeState();
+
+                }
 
             }
 

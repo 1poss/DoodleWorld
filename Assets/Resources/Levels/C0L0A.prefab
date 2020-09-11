@@ -1920,6 +1920,11 @@ PrefabInstance:
       propertyPath: bounceForce
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 3319443412311832088, guid: a4e9401c8782038499bfad7010946215,
+        type: 3}
+      propertyPath: moveOff.y
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4e9401c8782038499bfad7010946215, type: 3}
 --- !u!4 &4106499593646019395 stripped
@@ -2000,6 +2005,11 @@ PrefabInstance:
       propertyPath: bounceForce
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 3319443412311832088, guid: a4e9401c8782038499bfad7010946215,
+        type: 3}
+      propertyPath: moveOff.y
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4e9401c8782038499bfad7010946215, type: 3}
 --- !u!4 &4106499594439178876 stripped
@@ -2079,6 +2089,16 @@ PrefabInstance:
         type: 3}
       propertyPath: bounceForce
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3319443412311832088, guid: a4e9401c8782038499bfad7010946215,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3319443412311832088, guid: a4e9401c8782038499bfad7010946215,
+        type: 3}
+      propertyPath: moveOff.y
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4e9401c8782038499bfad7010946215, type: 3}
