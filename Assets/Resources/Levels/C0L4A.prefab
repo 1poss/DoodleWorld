@@ -1461,7 +1461,7 @@ PrefabInstance:
     - target: {fileID: 7317642852048466331, guid: 8fcf47d54c849214790837fd02d24ac4,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fcf47d54c849214790837fd02d24ac4, type: 3}
@@ -2287,6 +2287,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CloudPlatform (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4748091488748032995, guid: 9ae99805b3bb9d344a3154c284b36ba4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ae99805b3bb9d344a3154c284b36ba4, type: 3}

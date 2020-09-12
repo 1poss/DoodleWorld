@@ -31,9 +31,10 @@ namespace DoodleWorldNS {
 
         public void FinishedGame() {
 
+            App.Instance.StopTimer();
             UIController.OnPopupFinishedGameEvent(this, EventArgs.Empty);
             PlayerController.OnPauseEvent(this, EventArgs.Empty);
-            
+
         }
 
         void OnDestroy() {

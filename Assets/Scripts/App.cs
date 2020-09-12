@@ -22,6 +22,9 @@ namespace DoodleWorldNS {
 
         Camera cam;
 
+        public float passGameTime;
+        bool isStartTimer;
+
         void Start() {
 
             if (m_instance == null) {
@@ -42,6 +45,16 @@ namespace DoodleWorldNS {
 
             // TODO
             // LoadLevel(debugLevel);
+
+        }
+
+        void FixedUpdate() {
+
+            if (isStartTimer) {
+
+                passGameTime += Time.fixedDeltaTime;
+
+            }
 
         }
 
@@ -88,6 +101,19 @@ namespace DoodleWorldNS {
             // 相机跟随
             cam = cam ?? Camera.main;
             cam.FollowTargetLimited(true, player.transform.position, currentLevel.mapBorder.borderTilemap, currentLevel.mapBorder.bounds, ConfigCollection.cameraOffset);
+
+        }
+
+        public void StartTimer() {
+
+            isStartTimer = true;
+            passGameTime = 0;
+
+        }
+
+        public void StopTimer() {
+
+            isStartTimer = false;
 
         }
 

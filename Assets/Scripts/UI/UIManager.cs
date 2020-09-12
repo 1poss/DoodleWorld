@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using DG.Tweening;
 using JackUtil;
 
@@ -12,6 +13,8 @@ namespace DoodleWorldNS {
         public TitlePanel titlePanel;
         public LifePanel lifePanel;
         public InGameMenuWindow inGameMenuWindow;
+
+        public Text timerTxt;
 
         void Awake() {
 
@@ -36,6 +39,18 @@ namespace DoodleWorldNS {
 
         }
 
+        void FixedUpdate() {
+
+            if (App.Instance == null) {
+
+                return;
+
+            }
+
+            timerTxt.text = string.Format("{0:f2}", App.Instance.passGameTime);
+
+        }
+
         void ReturnGame(object sender, EventArgs args) {
 
             PlayerController.OnRestorePauseEvent(this, args);
@@ -57,6 +72,8 @@ namespace DoodleWorldNS {
 
             lifePanel.Hide();
 
+            timerTxt.Hide();
+
             AudioController.OnPlayBGMEvent(this, false);
 
         }
@@ -66,9 +83,12 @@ namespace DoodleWorldNS {
             titlePanel.Hide();
             inGameMenuWindow.Hide();
 
+            timerTxt.Show();
+
             AudioController.OnPlayBGMEvent(this, true);
 
             App.Instance.LoadLevel("C0L0A");
+            App.Instance.StartTimer();
 
         }
 

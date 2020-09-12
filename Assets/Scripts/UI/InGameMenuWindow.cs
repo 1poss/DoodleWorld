@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using DG.Tweening;
 using JackUtil;
 
@@ -13,6 +14,7 @@ namespace DoodleWorldNS {
         public Button pauseReturnButton;
         public Button congratulationButton;
         public Button gameOverButton;
+        public Text passGameTimeTxt;
 
         // 通用菜单
         public Button exitButton;
@@ -71,6 +73,7 @@ namespace DoodleWorldNS {
             this.Show();
             pauseReturnButton.Hide();
             congratulationButton.Show();
+            passGameTimeTxt.text = App.Instance.passGameTime.ToString();
             gameOverButton.Hide();
 
         }
