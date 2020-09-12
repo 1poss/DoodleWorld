@@ -32,13 +32,15 @@ namespace DoodleWorldNS {
                 UIController.OnRetryEvent(this, EventArgs.Empty)
             );
 
-            this.Hide();
+            // this.Hide();
 
         }
 
         public void PopupPause(object sender, EventArgs args) {
 
-            if (isActiveAndEnabled) {
+            print(gameObject.activeSelf);
+
+            if (gameObject.activeSelf) {
 
                 this.Hide();
                 PlayerController.OnRestorePauseEvent(this, EventArgs.Empty);

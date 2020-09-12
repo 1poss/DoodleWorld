@@ -53,6 +53,7 @@ namespace DoodleWorldNS {
             Level[] levelPrefabs = Resources.LoadAll<Level>("Levels");
             for (int i = 0; i < levelPrefabs.Length; i += 1) {
                 Level lv = levelPrefabs[i];
+                lv.transform.position = Vector3.zero;
                 levelPrefabDic.Add(lv.levelUid, lv);
             }
 

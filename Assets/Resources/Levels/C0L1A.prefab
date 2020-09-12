@@ -107,7 +107,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1396176078538743197}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 37, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1396176079769797432}
@@ -1478,6 +1478,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1396176078538743198}
     m_Modifications:
+    - target: {fileID: 700642740801145313, guid: a571cd4d04035da4a8d68850fd25351c,
+        type: 3}
+      propertyPath: leftOffX
+      value: -29
+      objectReference: {fileID: 0}
+    - target: {fileID: 700642740801145313, guid: a571cd4d04035da4a8d68850fd25351c,
+        type: 3}
+      propertyPath: rightOffX
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 700642740801145314, guid: a571cd4d04035da4a8d68850fd25351c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2073,6 +2083,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigCloud
       objectReference: {fileID: 0}
+    - target: {fileID: 2359240768283644058, guid: 8df072e3a1975d34d986b55857c9af1c,
+        type: 3}
+      propertyPath: leftOffX
+      value: -23
+      objectReference: {fileID: 0}
+    - target: {fileID: 2359240768283644058, guid: 8df072e3a1975d34d986b55857c9af1c,
+        type: 3}
+      propertyPath: rightOffX
+      value: 22
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8df072e3a1975d34d986b55857c9af1c, type: 3}
 --- !u!4 &2680132058746414199 stripped
@@ -2163,6 +2183,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1396176078538743198}
     m_Modifications:
+    - target: {fileID: 700642740801145313, guid: a571cd4d04035da4a8d68850fd25351c,
+        type: 3}
+      propertyPath: leftOffX
+      value: -11
+      objectReference: {fileID: 0}
+    - target: {fileID: 700642740801145313, guid: a571cd4d04035da4a8d68850fd25351c,
+        type: 3}
+      propertyPath: rightOffX
+      value: 34
+      objectReference: {fileID: 0}
     - target: {fileID: 700642740801145314, guid: a571cd4d04035da4a8d68850fd25351c,
         type: 3}
       propertyPath: m_LocalPosition.x

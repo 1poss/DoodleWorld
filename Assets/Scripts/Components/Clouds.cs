@@ -8,28 +8,31 @@ namespace DoodleWorldNS {
 
     public class Clouds : MonoBehaviour {
 
-        public float startX;
-        public float endX;
+        float leftOffX;
+        float rightOffX;
         public float moveSpeed;
-        Vector2 defaultPos;
+        float centerX;
 
         Sequence action;
         Sequence nextAction;
 
         void Awake() {
 
-            defaultPos = transform.position;
+
+            centerX = transform.position.x;
+            leftOffX = -centerX + -7;
+            rightOffX = 38 - centerX;
 
             action?.Kill();
             action = DOTween.Sequence();
-            action.Append(transform.DOLocalMoveX(endX, (endX - defaultPos.x) / moveSpeed).SetEase(Ease.Linear));
+            action.Append(transform.DOMoveX(centerX + rightOffX, (rightOffX) / moveSpeed).SetEase(Ease.Linear));
             // action.Append(transform.DOLocalMoveX(startPos.x, 0));
             // action.Append(transform.DOLocalMoveX(defaultPos.x, (defaultPos.x - startPos.x) / moveSpeed));
             action.AppendCallback(() => {
-                transform.localPosition = new Vector3(startX, transform.localPosition.y);
+                transform.position = new Vector3(centerX + leftOffX, transform.localPosition.y);
                 nextAction?.Kill();
                 nextAction = DOTween.Sequence();
-                nextAction.Append(transform.DOLocalMoveX(endX, (endX - startX) / moveSpeed).SetEase(Ease.Linear));
+                nextAction.Append(transform.DOMoveX(centerX + rightOffX, (rightOffX - leftOffX) / moveSpeed).SetEase(Ease.Linear));
                 nextAction.SetLoops(-1);
             });
         }

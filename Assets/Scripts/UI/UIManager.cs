@@ -52,11 +52,10 @@ namespace DoodleWorldNS {
 
         void BackToTitle(object sender, EventArgs args) {
 
+            titlePanel.Show();
             inGameMenuWindow.Hide();
 
-            lifePanel.bd.SetActive(false);
-
-            titlePanel.Show();
+            lifePanel.Hide();
 
             AudioController.OnPlayBGMEvent(this, false);
 
@@ -65,6 +64,7 @@ namespace DoodleWorldNS {
         void StartGame(object sender, EventArgs args) {
 
             titlePanel.Hide();
+            inGameMenuWindow.Hide();
 
             AudioController.OnPlayBGMEvent(this, true);
 
