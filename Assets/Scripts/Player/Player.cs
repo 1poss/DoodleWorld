@@ -204,6 +204,8 @@ namespace DoodleWorldNS {
 
             maxHeight = 0;
 
+            AudioController.OnPlaySoundEvent(this, SoundType.TreeBounce);
+
             EnterFSMState(typeof(Effect), FSMStateType.Jump);
 
         }
@@ -246,6 +248,8 @@ namespace DoodleWorldNS {
                 LevelController.OnReloadLevelEvent(this, this);
 
             }
+
+            AudioController.OnPlaySoundEvent(this, SoundType.Dead);
 
         }
 

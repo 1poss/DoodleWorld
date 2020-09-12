@@ -9,8 +9,6 @@ namespace DoodleWorldNS {
 
     public class InGameMenuWindow : MonoBehaviour {
 
-        public GameObject bd;
-
         // 标题语
         public Button pauseReturnButton;
         public Button congratulationButton;
@@ -49,8 +47,6 @@ namespace DoodleWorldNS {
 
                 this.Show();
 
-                bd.SetActive(true);
-
                 pauseReturnButton.Show();
                 congratulationButton.Hide();
                 gameOverButton.Hide();
@@ -61,7 +57,7 @@ namespace DoodleWorldNS {
 
         public void PopupGameOver(object sender, EventArgs args) {
 
-            bd.SetActive(true);
+            this.Show();
             pauseReturnButton.Hide();
             congratulationButton.Hide();
             gameOverButton.Show();
@@ -70,7 +66,7 @@ namespace DoodleWorldNS {
 
         public void PopupFinishedGame(object sender, EventArgs args) {
 
-            bd.SetActive(true);
+            this.Show();
             pauseReturnButton.Hide();
             congratulationButton.Show();
             gameOverButton.Hide();

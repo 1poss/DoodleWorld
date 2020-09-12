@@ -15,6 +15,8 @@ namespace DoodleWorldNS {
                 Player p = other.gameObject.GetComponent<Player>();
                 p.EnterFSMState(this, FSMStateType.Idle);
 
+                AudioController.OnPlaySoundEvent(this, SoundType.PlatformBounce);
+
             }
 
         }

@@ -40,5 +40,11 @@ namespace DoodleWorldNS {
             action.SetLoops(-1);
 
         }
+
+        void OnDestroy() {
+
+            action?.Kill();
+            
+        }
     }
 }

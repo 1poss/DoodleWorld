@@ -46,7 +46,7 @@ namespace DoodleWorldNS {
 
             App.Instance.LoadLevel(App.Instance.currentLevel.levelUid);
 
-            inGameMenuWindow.bd.SetActive(false);
+            inGameMenuWindow.Hide();
 
         }
 
@@ -58,11 +58,15 @@ namespace DoodleWorldNS {
 
             titlePanel.Show();
 
+            AudioController.OnPlayBGMEvent(this, false);
+
         }
 
         void StartGame(object sender, EventArgs args) {
 
             titlePanel.Hide();
+
+            AudioController.OnPlayBGMEvent(this, true);
 
             App.Instance.LoadLevel("C0L0A");
 

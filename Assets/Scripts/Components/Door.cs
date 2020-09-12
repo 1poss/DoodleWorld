@@ -50,8 +50,10 @@ namespace DoodleWorldNS {
 
                 if (isOpen) {
 
-                    App.Instance.LoadLevel(nextLevelUid);
+                    AudioController.OnPlaySoundEvent(this, SoundType.EnterDoor);
 
+                    App.Instance.LoadLevel(nextLevelUid);
+                    
                 }
 
             }

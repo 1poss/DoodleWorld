@@ -14,6 +14,7 @@ namespace DoodleWorldNS {
         Vector2 defaultPos;
 
         Sequence action;
+        Sequence nextAction;
 
         void Awake() {
 
@@ -26,7 +27,8 @@ namespace DoodleWorldNS {
             // action.Append(transform.DOLocalMoveX(defaultPos.x, (defaultPos.x - startPos.x) / moveSpeed));
             action.AppendCallback(() => {
                 transform.localPosition = new Vector3(startX, transform.localPosition.y);
-                Sequence nextAction = DOTween.Sequence();
+                nextAction?.Kill();
+                nextAction = DOTween.Sequence();
                 nextAction.Append(transform.DOLocalMoveX(endX, (endX - startX) / moveSpeed).SetEase(Ease.Linear));
                 nextAction.SetLoops(-1);
             });
@@ -34,6 +36,7 @@ namespace DoodleWorldNS {
 
         void OnDestroy() {
             action?.Kill();
+            nextAction?.Kill();
         }
     }
 }

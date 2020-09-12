@@ -15,6 +15,8 @@ namespace DoodleWorldNS {
 
             if (other.gameObject.tag == TagCollection.PLAYER) {
 
+                AudioController.OnPlaySoundEvent(this, SoundType.Gather);
+
                 Destroy(gameObject);
 
                 eventAction?.Invoke();
