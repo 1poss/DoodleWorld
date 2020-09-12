@@ -1712,7 +1712,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef2b0cdd7e972445aceef965df0a49d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bd: {fileID: 1876642947}
   pauseReturnButton: {fileID: 826651061}
   congratulationButton: {fileID: 2082863086}
   gameOverButton: {fileID: 883309262}
@@ -2261,16 +2260,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8569589058958275891, guid: 6b6f818decbab154ea23972b968c0809,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8569589058958275891, guid: 6b6f818decbab154ea23972b968c0809,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b6f818decbab154ea23972b968c0809, type: 3}
