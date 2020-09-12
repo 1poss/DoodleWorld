@@ -9,6 +9,12 @@ namespace DoodleWorldNS {
 
     public static class UIController {
 
+        // 标题相关
+        public static event Action<object, EventArgs> StartGameEvent;
+        public static void OnStartGameEvent(object sender, EventArgs args) {
+            StartGameEvent?.Invoke(sender, args);
+        }
+
         // 生命相关
         public static event Action<object, Player> LoadLifeEvent;
         public static void OnLoadLifeEvent(object sender, Player player) {

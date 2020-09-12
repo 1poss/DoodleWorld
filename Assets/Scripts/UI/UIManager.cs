@@ -9,10 +9,14 @@ namespace DoodleWorldNS {
 
     public sealed class UIManager : MonoBehaviour {
 
+        public TitlePanel titlePanel;
         public LifePanel lifePanel;
         public InGameMenuWindow inGameMenuWindow;
 
         void Awake() {
+
+            // 标题
+            UIController.StartGameEvent += StartGame;
 
             // 生命值
             UIController.LoadLifeEvent += lifePanel.LoadLife;
@@ -27,6 +31,8 @@ namespace DoodleWorldNS {
             // 菜单行为
             UIController.RetryEvent += RetryLevel;
             UIController.BackToTitleEvent += BackToTitle;
+
+            BackToTitle(this, EventArgs.Empty);
 
         }
 
@@ -46,9 +52,19 @@ namespace DoodleWorldNS {
 
         void BackToTitle(object sender, EventArgs args) {
 
-            inGameMenuWindow.bd.SetActive(false);
+            inGameMenuWindow.Hide();
 
-            print("未实现");
+            lifePanel.bd.SetActive(false);
+
+            titlePanel.Show();
+
+        }
+
+        void StartGame(object sender, EventArgs args) {
+
+            titlePanel.Hide();
+
+            App.Instance.LoadLevel("C0L0A");
 
         }
 

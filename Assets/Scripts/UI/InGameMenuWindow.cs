@@ -40,12 +40,14 @@ namespace DoodleWorldNS {
 
         public void PopupPause(object sender, EventArgs args) {
 
-            if (bd.activeSelf) {
+            if (isActiveAndEnabled) {
 
-                bd.SetActive(false);
+                this.Hide();
                 PlayerController.OnRestorePauseEvent(this, EventArgs.Empty);
 
             } else {
+
+                this.Show();
 
                 bd.SetActive(true);
 

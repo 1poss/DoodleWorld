@@ -41,7 +41,7 @@ namespace DoodleWorldNS {
             }
 
             // TODO
-            LoadLevel(debugLevel);
+            // LoadLevel(debugLevel);
 
         }
 

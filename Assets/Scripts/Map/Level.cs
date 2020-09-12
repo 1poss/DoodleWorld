@@ -32,6 +32,7 @@ namespace DoodleWorldNS {
         public void FinishedGame() {
 
             UIController.OnPopupFinishedGameEvent(this, EventArgs.Empty);
+            PlayerController.OnPauseEvent(this, EventArgs.Empty);
             
         }
 

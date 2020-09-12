@@ -21,6 +21,12 @@ namespace DoodleWorldNS {
 
         public virtual void LoadLife(object sender, Player player) {
 
+            if (!bd.activeSelf) {
+
+                bd.SetActive(true);
+
+            }
+
             Clear();
 
             for (int i = 0; i < player.life; i += 1) {

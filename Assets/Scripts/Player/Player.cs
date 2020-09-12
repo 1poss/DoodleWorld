@@ -39,6 +39,7 @@ namespace DoodleWorldNS {
             PlayerController.DeadEvent += Dead;
             PlayerController.EatHeartEvent += EatHeart;
             PlayerController.EnterFSMStateEvent += EnterFSMState;
+            PlayerController.PauseEvent += Pause;
             PlayerController.RestorePauseEvent += RestorePause;
 
             fsm = new FSMBase<Player>(this);
