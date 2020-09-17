@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Newtonsoft.Json;
 using DG.Tweening;
 using JackUtil;
 
@@ -45,6 +46,18 @@ namespace DoodleWorldNS {
 
             // TODO
             // LoadLevel(debugLevel);
+            HttpHelper helper = new HttpHelper("http://127.0.0.1:9105");
+            var param = new Dictionary<string, string>{
+                {"user", "cw"},
+                {"pwd", "chenwansal"}
+            };
+            helper.PostAsync("/login", param, (err) => {
+
+            }, (result) => {
+
+                print(result);
+
+            });
 
         }
 
