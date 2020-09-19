@@ -28,7 +28,7 @@ namespace DoodleWorldNS {
             if (other.gameObject.tag == TagCollection.PLAYER) {
 
                 Player p = other.gameObject.GetComponent<Player>();
-                p.Bounce(transform, col, bounceForce);
+                p.CircleBounce(transform, col, bounceForce);
 
                 Destroy(gameObject);
 

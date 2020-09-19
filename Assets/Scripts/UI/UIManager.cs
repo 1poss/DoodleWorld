@@ -87,7 +87,7 @@ namespace DoodleWorldNS {
 
             AudioController.OnPlayBGMEvent(this, true);
 
-            App.Instance.LoadLevel("C0L5A");
+            App.Instance.LoadLevel(App.Instance.debugLevel);
             App.Instance.StartTimer();
 
         }

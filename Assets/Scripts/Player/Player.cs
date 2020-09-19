@@ -11,6 +11,7 @@ namespace DoodleWorldNS {
         public Rigidbody2D rig;
         public FSMBase<Player> fsm;
         public ControlType allowControlType;
+        public Transform foot;
 
         public float moveSpeed;
         public float tendSpeed;
@@ -178,29 +179,56 @@ namespace DoodleWorldNS {
 
             if (raiseAxis == 0) {
 
-                fallingSpeedMax = fallingSpeedMaxBase;
+                // fallingSpeedMax = fallingSpeedMaxBase;
 
             } else {
 
-                fallingSpeedMax = fallingSpeedMaxBase * 0.5f;
+                // fallingSpeedMax = fallingSpeedMaxBase * 2f;
+
+                rig.velocity = new Vector2(0, -fallingSpeedMax);
 
             }
+
+        }
+
+        public void PlatBounce(Transform here, Collider2D col, float force) {
+
+            fallingSpeedMax = fallingSpeedMaxBase;
+
+            Vector2 startPos = (Vector2)here.position + col.offset;
+
+            if (foot.position.y <= startPos.y) {
+
+                return;
+
+            }
+
+            Vector2 dir = (Vector2)foot.position - startPos;
+
+            float heightOff = maxHeight - startPos.y;
+
+            rig.velocity = new Vector2(0, force);
+
+            maxHeight = 0;
             
         }
 
-        public void Bounce(Transform here, Collider2D col, float force) {
+        public void CircleBounce(Transform here, Collider2D col, float force) {
+
+            fallingSpeedMax = fallingSpeedMaxBase;
 
             // 力的起点
             Vector2 startPos = (Vector2)here.position + col.offset;
 
             // 力的方向
-            Vector2 dir = (Vector2)transform.position - startPos;
+            Vector2 dir = (Vector2)foot.position - startPos;
 
             // 落差
             float heightOff = maxHeight - startPos.y;
 
             // 设置弹力
-            rig.velocity = dir * (force + heightOff * 0.45f);
+            rig.velocity = dir.normalized * (force - rig.velocity.y + heightOff);
+            // rig.velocity = new Vector2(rig.velocity.x, force);
 
             maxHeight = 0;
 
