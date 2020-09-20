@@ -12,6 +12,11 @@ namespace DoodleWorldNS {
         static App m_instance;
         public static App Instance => m_instance;
 
+        // ---- WEB ----
+        public HttpHelper httpHelper;
+        public Account account;
+
+        // ---- GAME ----
         public Player playerPrefab;
         Player player;
 
@@ -44,20 +49,21 @@ namespace DoodleWorldNS {
 
             }
 
-            // TODO
-            // LoadLevel(debugLevel);
-            HttpHelper helper = new HttpHelper("http://127.0.0.1:9105");
-            var param = new Dictionary<string, string>{
-                {"user", "cw"},
-                {"pwd", "chenwansal"}
-            };
-            helper.PostAsync("/login", param, (err) => {
+            // TODO WebRequest
+            // httpHelper = new HttpHelper("http://127.0.0.1:9105");
+            // account = new Account(httpHelper);
+            // account.username = "cw";
+            // account.pwd = "chenwansal";
+            // account.verifyCode = "334422";
+            // account.Login((err) => {
 
-            }, (result) => {
+            //     DebugUtil.LogError(err);
 
-                print(result);
+            // },(result) => {
 
-            });
+            //     DebugUtil.Log(result);
+
+            // });
 
         }
 

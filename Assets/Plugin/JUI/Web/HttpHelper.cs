@@ -16,23 +16,22 @@ namespace JackUtil {
 
         }
 
-        public void ShowMsg(string msg) {
-
-            var obj = JsonConvert.DeserializeAnonymousType(msg, new { bb = 0});
-            DebugUtil.Log(obj.bb);
-
-        }
-
-        public void ShowResponse(HttpResponseMessage res) {
-
-            DebugUtil.Log(res.Content.ReadAsStringAsync());
-
-        }
-
         // Get
-        public void GetAsync(string uri, Dictionary<string, string> paramData, Action<string> errCallback, Action<string> resultCallback) {
+        public async void GetAsync(string uri, Dictionary<string, string> paramData, Action<string> errCallback, Action<string> resultCallback) {
 
-            client.GetStringAsync(uri).ContinueWith(t => {
+            if (paramData != null) {
+
+                uri += "?";
+
+                foreach (var kv in paramData) {
+                    string key = kv.Key;
+                    string value = kv.Value;
+                    uri += key + "=" + value + "&";
+                }
+
+            }
+
+            await client.GetStringAsync(uri).ContinueWith(t => {
                
                 if (t.IsFaulted) {
 
@@ -51,18 +50,20 @@ namespace JackUtil {
         }
 
         // Post
-        public void PostAsync(string uri, Dictionary<string, string> paramData, Action<string> errCallback, Action<string> resultCallback) {
+        public async void PostAsync(string uri, Dictionary<string, string> paramData, Action<string> errCallback, Action<string> resultCallback) {
 
-            client.PostAsync(uri, new FormUrlEncodedContent(paramData)).ContinueWith(t => {
-                
+            await client.PostAsync(uri, new FormUrlEncodedContent(paramData)).ContinueWith(t => {
+
                 if (t.IsFaulted) {
 
-                    errCallback?.Invoke(t.Result.StatusCode.ToString());
+                    errCallback.Invoke("错误:" + t.Result.StatusCode.ToString());
+                    DebugUtil.LogError("err");
 
                 } else {
 
                     HttpResponseMessage res = t.Result;
-                    resultCallback?.Invoke(res.Content.ReadAsStringAsync().Result);
+                    string jsonstring = res.Content.ReadAsStringAsync().Result;
+                    resultCallback.Invoke(jsonstring);
 
                 }
             });

@@ -15,6 +15,7 @@ namespace DoodleWorldNS {
 
         public float moveSpeed;
         public float tendSpeed;
+        public bool allowHorizental;
         public float fallingGravity;
         public float fallingSpeedMax;
         public float fallingSpeedMaxBase;
@@ -64,6 +65,7 @@ namespace DoodleWorldNS {
 
             // 重置控制
             isPause = false;
+            allowHorizental = true;
             allowControlType = 0;
             // EnterFSMState(this, FSMStateType.Idle);
 
@@ -124,7 +126,7 @@ namespace DoodleWorldNS {
 
             }
 
-            if ((allowControlType & ControlType.MOVE_IN_AIR) != 0) {
+            if ((allowControlType & ControlType.MOVE_IN_AIR) != 0 && allowHorizental) {
 
                 MoveInAir();
 
@@ -227,12 +229,14 @@ namespace DoodleWorldNS {
             float heightOff = maxHeight - startPos.y;
 
             // 设置弹力
-            rig.velocity = dir.normalized * (force - rig.velocity.y + heightOff);
-            // rig.velocity = new Vector2(rig.velocity.x, force);
+            float xForce = (dir.normalized * force).x;
+            rig.velocity = new Vector2(xForce, force);
 
             maxHeight = 0;
 
             AudioController.OnPlaySoundEvent(this, SoundType.TreeBounce);
+
+            // allowHorizental = false;
 
             EnterFSMState(typeof(Effect), FSMStateType.Jump);
 
