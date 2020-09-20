@@ -230,13 +230,21 @@ namespace DoodleWorldNS {
 
             // 设置弹力
             float xForce = (dir.normalized * force).x;
-            rig.velocity = new Vector2(xForce, force);
+            if (transform.position.y >= startPos.y) {
+
+                rig.velocity = new Vector2(xForce, force);
+
+            } else {
+
+                rig.velocity = new Vector2(xForce, rig.velocity.y - force * 0.5f);
+
+            }
 
             maxHeight = 0;
 
             AudioController.OnPlaySoundEvent(this, SoundType.TreeBounce);
 
-            // allowHorizental = false;
+            allowHorizental = false;
 
             EnterFSMState(typeof(Effect), FSMStateType.Jump);
 

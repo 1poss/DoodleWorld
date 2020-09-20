@@ -28,7 +28,7 @@ namespace DoodleWorldNS {
                                     | ControlType.MOVE_IN_AIR
                                     | ControlType.FALLING;
 
-            if (actor.rig.velocity.y <= 0) {
+            if (actor.rig.velocity.y <= 8) {
 
                 actor.allowHorizental = true;
 
