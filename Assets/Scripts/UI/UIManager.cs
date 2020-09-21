@@ -28,6 +28,7 @@ namespace DoodleWorldNS {
 
             // 弹出菜单
             UIController.PopupPauseEvent += inGameMenuWindow.PopupPause;
+            UIController.ReturnGameEvent += inGameMenuWindow.PopupPause;
             UIController.PopupGameOverEvent += inGameMenuWindow.PopupGameOver;
             UIController.PopupFinishedGameEvent += inGameMenuWindow.PopupFinishedGame;
 
