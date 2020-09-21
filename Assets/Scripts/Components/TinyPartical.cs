@@ -9,11 +9,20 @@ namespace DoodleWorldNS {
     public class TinyPartical : MonoBehaviour {
 
         static System.Random random;
-        public float endY;
+        float endY;
         float defaultY;
         Sequence action;
 
+        public float bounceForce;
+        public Collider2D col;
+
         void Awake() {
+
+            if (col == null) {
+
+                col = GetComponent<Collider2D>();
+                
+            }
 
             defaultY = transform.localPosition.y;
             endY = defaultY + 1;
@@ -38,6 +47,17 @@ namespace DoodleWorldNS {
             action.Append(transform.DOLocalMoveY(endY, 0.45f).SetEase(Ease.OutBack));
             action.Append(transform.DOLocalMoveY(defaultY, 0.45f).SetEase(Ease.InBack));
             action.SetLoops(-1);
+
+        }
+
+        protected virtual void OnCollisionEnter2D(Collision2D other) {
+
+            if (other.gameObject.tag == TagCollection.PLAYER) {
+
+                Player p = other.gameObject.GetComponent<Player>();
+                p.CircleBounce(transform, col, bounceForce);
+
+            }
 
         }
 
