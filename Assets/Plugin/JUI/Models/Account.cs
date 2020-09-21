@@ -1,9 +1,11 @@
 using System;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace JackUtil {
 
+    [Serializable]
     public class Account {
 
         public HttpHelper helper;
@@ -20,7 +22,7 @@ namespace JackUtil {
             isLogined = false;
         }
 
-        public void Login(Action<string> errCallback, Action<bool> resultCallback) {
+        public async Task<bool> Login(Action<string> errCallback, Action<bool> resultCallback) {
 
             Dictionary<string, string> param = new Dictionary<string, string>();
             param.Add("username", username);
@@ -30,11 +32,9 @@ namespace JackUtil {
             verifyCode = string.Empty;
             pwd = string.Empty;
 
-            helper.PostAsync("/Login", param, errCallback, (result) => {
-                bool b = JsonConvert.DeserializeObject<bool>(result);
-                resultCallback?.Invoke(b);
-                isLogined = true;
-            });
+            string res = await helper.PostAsync("/Login", param);
+            bool b = bool.Parse(res);
+            return b;
 
         }
 

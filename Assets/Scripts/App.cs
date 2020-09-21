@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json;
@@ -31,7 +32,7 @@ namespace DoodleWorldNS {
         public float passGameTime;
         bool isStartTimer;
 
-        void Start() {
+        async void Start() {
 
             if (m_instance == null) {
                 m_instance = this;
@@ -50,7 +51,11 @@ namespace DoodleWorldNS {
             }
 
             // TODO WebRequest
-            // httpHelper = new HttpHelper("http://127.0.0.1:9105");
+            httpHelper = new HttpHelper("http://127.0.0.1:9106");
+            string response = await httpHelper.PostAsync("/Test", null);
+            bool obj = JsonConvert.DeserializeObject<bool>(response);
+            print(obj);
+
             // account = new Account(httpHelper);
             // account.username = "cw";
             // account.pwd = "chenwansal";
