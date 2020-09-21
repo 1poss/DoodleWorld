@@ -49,7 +49,7 @@ namespace DoodleWorldNS {
 
             // ---- GameOver ----
             showAdButton.onClick.AddListener(() => {
-
+                UIController.OnRetryEvent(this, EventArgs.Empty);
             });
 
             newGameInGameOverButton.onClick.AddListener(() => {

@@ -34,6 +34,11 @@ namespace DoodleWorldNS {
 
         void Awake() {
 
+            fsm = new FSMBase<Player>(this);
+            fsm.RegisterState(new IdleState());
+            fsm.RegisterState(new JumpState());
+            fsm.RegisterState(new DeadState());
+
             ResetPhysics();
 
             InitValue();
@@ -44,11 +49,6 @@ namespace DoodleWorldNS {
             PlayerController.PauseEvent += Pause;
             PlayerController.RestorePauseEvent += RestorePause;
 
-            fsm = new FSMBase<Player>(this);
-            fsm.RegisterState(new IdleState());
-            fsm.RegisterState(new JumpState());
-            fsm.RegisterState(new DeadState());
-
             cam = Camera.main;
 
         }
@@ -58,6 +58,7 @@ namespace DoodleWorldNS {
             lifeMax = 3;
             life = lifeMax;
             maxHeight = 0;
+            rig.velocity = Vector2.zero;
 
         }
 
@@ -67,17 +68,18 @@ namespace DoodleWorldNS {
             isPause = false;
             allowHorizental = true;
             allowControlType = 0;
-            // EnterFSMState(this, FSMStateType.Idle);
 
             // 重置物理
             rig.velocity = Vector2.zero;
             maxHeight = 0;
-            moveSpeed = 5f;
+            moveSpeed = 4.2f;
             tendSpeed = 0f;
             fallingGravity = -6f;
             fallingSpeedMaxBase = 14f;
             fallingSpeedMax = fallingSpeedMaxBase;
 
+            EnterFSMState(this, FSMStateType.Idle);
+            
         }
 
         protected virtual void Update() {
