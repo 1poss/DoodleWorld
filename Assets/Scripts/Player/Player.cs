@@ -222,23 +222,8 @@ namespace DoodleWorldNS {
             // 力的起点
             Vector2 startPos = (Vector2)here.position + col.offset;
 
-            // 力的方向
-            Vector2 dir = (Vector2)foot.position - startPos;
-
-            // 落差
-            float heightOff = maxHeight - startPos.y;
-
-            // 设置弹力
-            float xForce = (dir.normalized * force).x;
-            if (transform.position.y >= startPos.y) {
-
-                rig.velocity = new Vector2(xForce, force);
-
-            } else {
-
-                rig.velocity = new Vector2(xForce, rig.velocity.y - force * 0.5f);
-
-            }
+            // 弹
+            rig.CircleBounce(startPos, force);
 
             maxHeight = 0;
 

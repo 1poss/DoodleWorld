@@ -135,6 +135,25 @@ namespace JackUtil {
             }
         }
 
+        public static void CircleBounce(this Rigidbody2D rig, Vector2 startPos, float force) {
+
+            // 力的方向
+            Vector2 dir = (Vector2)rig.position - startPos;
+
+            // 设置弹力
+            float xForce = (dir.normalized * force).x;
+            if (rig.position.y >= startPos.y) {
+
+                rig.velocity = new Vector2(xForce, force);
+
+            } else {
+
+                rig.velocity = new Vector2(xForce, rig.velocity.y - force * 0.5f);
+
+            }
+
+        }
+
         public static Collider2D CollideBox(this Rigidbody2D _rig, Vector2 _offSet, Vector2 _size, LayerMask _layer) {
 
             Collider2D _col = Physics2D.OverlapBox((Vector2)_rig.transform.position + _offSet, _size, 0, _layer);
