@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Text;
 using System.Net.Sockets;
@@ -11,19 +12,61 @@ namespace JackUtil {
         TcpHelper tcpHelper;
         public event Action<Packet> RecievePacketEvent;
 
+        Dictionary<string, Action<Packet>> eventDic;
+
         public JcpHelper(string url, int port) {
+
+            eventDic = new Dictionary<string, Action<Packet>>();
 
             tcpHelper = new TcpHelper(url, port);
             tcpHelper.RecieveMsgEvent += RecieveMsg;
-            tcpHelper.StartRecieving();
 
         }
 
-        public void SendDataAsync<T>(string eventHandler, T dataObj) {
+        public void AddEventListener(string eventName, Action<Packet> cb) {
 
-            string o = JsonConvert.SerializeObject(dataObj);
+            if (!eventDic.ContainsKey(eventName)) {
 
-            Packet p = new Packet(eventHandler, o);
+                eventDic.Add(eventName, cb);
+
+            } else {
+
+                DebugUtil.LogWarning("已存在: " + eventName);
+
+            }
+
+        }
+
+        void TriggerEvent(string eventName, Packet p) {
+
+            if (eventDic.ContainsKey(eventName)) {
+
+                // DebugUtil.Log("触发: " + eventName);
+
+                eventDic.GetValue(eventName)?.Invoke(p);
+
+            } else {
+
+                DebugUtil.LogError("事件未注册: " + eventName);
+
+            }
+        }
+
+        public void EmitEvent<T>(string eventName, T dataObj) {
+
+            string o;
+
+            if (dataObj is string) {
+
+                o = dataObj as string;
+
+            } else {
+
+                o = JsonConvert.SerializeObject(dataObj);
+
+            }
+
+            Packet p = new Packet(eventName, o);
 
             tcpHelper.SendDataAsync(p.ToString());
 
@@ -31,10 +74,37 @@ namespace JackUtil {
 
         void RecieveMsg(string packetStr) {
 
-            DebugUtil.Log("RCV: " + packetStr);
+            Task.Run(() => {
 
-            Packet p = Packet.DeserializeObject(packetStr);
-            RecievePacketEvent?.Invoke(p);
+                while(packetStr.Length > 5) {
+
+                    int l = Packet.ReadLength(packetStr);
+
+                    if (l == 0) {
+
+                        DebugUtil.Log(l);
+                        break;
+
+                    }
+
+                    Packet p = Packet.CutString(l, packetStr);
+
+                    if (p != null) {
+
+                        TriggerEvent(p.e, p);
+
+                    } else {
+
+                        DebugUtil.Log("接收的数据非Packet String");
+                        break;
+
+                    }
+
+                    packetStr = packetStr.Substring(5 + l);
+
+                }
+
+            });
 
         }
 

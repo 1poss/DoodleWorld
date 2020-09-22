@@ -58,6 +58,10 @@ namespace DoodleWorldNS {
             // print(obj);
             jcp = new JcpHelper("127.0.0.1", 9107);
             jcp.RecievePacketEvent += packet => print(packet);
+            jcp.AddEventListener("Test", packet => {
+                DebugUtil.Log("从服务端收到: " + packet.o);
+            });
+            jcp.StartRecieving();
 
             // account = new Account(httpHelper);
             // account.username = "cw";
@@ -85,7 +89,7 @@ namespace DoodleWorldNS {
 
             if (Input.GetAxisRaw("Jump") != 0) {
 
-                jcp.SendDataAsync("Test", "nihao");
+                jcp.EmitEvent("Test", "nihao");
 
             }
 

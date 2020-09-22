@@ -8,12 +8,12 @@ namespace JackUtil {
     [Serializable]
     public class Packet {
 
-        public string a; // 数据地址
+        public string e; // eventName
         public string o; // 数据内容
 
         public Packet(string a, string o) {
 
-            this.a = a;
+            this.e = a;
             this.o = o;
 
         }
@@ -40,6 +40,14 @@ namespace JackUtil {
 
         }
 
+        public static Packet CutString(int length, string leftToDeal) {
+
+            string s = leftToDeal.Substring(0, length + 5);
+            Packet p = Packet.DeserializeObject(s);
+            return p;
+
+        }
+
         public static int ReadLength(string packetStr) {
 
             if (packetStr.Length < 5) {
@@ -47,8 +55,6 @@ namespace JackUtil {
                 return 0;
 
             } else {
-
-                DebugUtil.Log(packetStr);
 
                 string s = packetStr.Substring(0, 5);
                 return int.Parse(s);
