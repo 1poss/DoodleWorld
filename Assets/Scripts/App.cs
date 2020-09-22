@@ -12,9 +12,10 @@ namespace DoodleWorldNS {
 
         static App m_instance;
         public static App Instance => m_instance;
-
+ 
         // ---- WEB ----
         public HttpHelper httpHelper;
+        public TcpHelper tcpHelper;
         public Account account;
 
         // ---- GAME ----
@@ -51,10 +52,16 @@ namespace DoodleWorldNS {
             }
 
             // TODO WebRequest
-            httpHelper = new HttpHelper("http://127.0.0.1:9106");
-            string response = await httpHelper.PostAsync("/Test", null);
-            bool obj = JsonConvert.DeserializeObject<bool>(response);
-            print(obj);
+            // httpHelper = new HttpHelper("http://127.0.0.1:9106");
+            // string response = await httpHelper.PostAsync("/Test", null);
+            // bool obj = JsonConvert.DeserializeObject<bool>(response);
+            // print(obj);
+
+            tcpHelper = new TcpHelper("127.0.0.1", 9107);
+            tcpHelper.SendData("yoyoyo1");
+            tcpHelper.SendData("heiheioyo2");
+            string res = await tcpHelper.Recieving();
+            print("Recieve: " + res);
 
             // account = new Account(httpHelper);
             // account.username = "cw";
