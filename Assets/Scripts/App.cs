@@ -15,7 +15,7 @@ namespace DoodleWorldNS {
  
         // ---- WEB ----
         public HttpHelper httpHelper;
-        public TcpHelper tcpHelper;
+        public JcpHelper jcp;
         public Account account;
 
         // ---- GAME ----
@@ -56,11 +56,8 @@ namespace DoodleWorldNS {
             // string response = await httpHelper.PostAsync("/Test", null);
             // bool obj = JsonConvert.DeserializeObject<bool>(response);
             // print(obj);
-
-            tcpHelper = new TcpHelper("127.0.0.1", 9107);
-            tcpHelper.RecieveMsgEvent += msg => print("recieve: " + msg);
-            tcpHelper.SendDataAsync("heiheioyo2");
-            tcpHelper.StartRecieving();
+            jcp = new JcpHelper("127.0.0.1", 9107);
+            jcp.RecievePacketEvent += packet => print(packet);
 
             // account = new Account(httpHelper);
             // account.username = "cw";
@@ -88,19 +85,19 @@ namespace DoodleWorldNS {
 
             if (Input.GetAxisRaw("Jump") != 0) {
 
-                tcpHelper.SendDataAsync("yoyoyo1");
+                jcp.SendDataAsync("Test", "nihao");
 
             }
 
             if (Input.GetAxisRaw("Vertical") != 0) {
 
-                tcpHelper.Abort();
+                jcp.Abort();
 
             }
 
             if (Input.GetAxisRaw("Horizontal") != 0) {
 
-                tcpHelper.StartRecieving();
+                jcp.StartRecieving();
 
             }
 
@@ -163,6 +160,13 @@ namespace DoodleWorldNS {
 
             isStartTimer = false;
 
+        }
+
+        void OnDestroy() {
+
+            print("Abort");
+            jcp?.Abort();
+            
         }
 
     }

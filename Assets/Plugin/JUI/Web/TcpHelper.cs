@@ -10,27 +10,23 @@ namespace JackUtil {
 
     public class TcpHelper {
 
-        public TcpClient tcp;
+        TcpClient tcp;
+        string url;
+        int port;
         byte[] recieveData;
         byte[] sendData;
+        int maxDataLength;
         NetworkStream stream;
         CancellationToken token;
         CancellationTokenSource tokenSource;
 
         public event Action<string> RecieveMsgEvent;
 
-        public TcpHelper(string url, int port) {
+        public TcpHelper(string url, int port, int maxDataLength = 8192) {
 
-            tcp = new TcpClient(url, port);
-
-            stream = tcp.GetStream();
-
-        }
-
-        ~ TcpHelper() {
-
-            stream?.Close();
-            tcp?.Close();
+            this.url = url;
+            this.port = port;
+            this.maxDataLength = maxDataLength;
 
         }
 
@@ -42,6 +38,9 @@ namespace JackUtil {
         }
 
         public void StartRecieving() {
+
+            tcp = new TcpClient(url, port);
+            stream = tcp.GetStream();
 
             tokenSource = new CancellationTokenSource();
 
@@ -59,7 +58,7 @@ namespace JackUtil {
 
                     string resData = string.Empty;
 
-                    recieveData = new byte[8192];
+                    recieveData = new byte[maxDataLength];
                     Int32 bytes = stream.Read(recieveData, 0, recieveData.Length);
                     resData = Encoding.UTF8.GetString(recieveData, 0, bytes);
                     stream.Flush();
@@ -77,7 +76,10 @@ namespace JackUtil {
 
         public void Abort() {
 
-            tokenSource.Cancel();
+            tokenSource?.Cancel();
+
+            stream?.Close();
+            tcp?.Close();
 
         }
 
