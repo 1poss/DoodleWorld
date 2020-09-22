@@ -33,7 +33,7 @@ namespace DoodleWorldNS {
         public float passGameTime;
         bool isStartTimer;
 
-        async void Start() {
+        void Start() {
 
             if (m_instance == null) {
                 m_instance = this;
@@ -58,10 +58,9 @@ namespace DoodleWorldNS {
             // print(obj);
 
             tcpHelper = new TcpHelper("127.0.0.1", 9107);
-            tcpHelper.SendData("yoyoyo1");
-            tcpHelper.SendData("heiheioyo2");
-            string res = await tcpHelper.Recieving();
-            print("Recieve: " + res);
+            tcpHelper.RecieveMsgEvent += msg => print("recieve: " + msg);
+            tcpHelper.SendDataAsync("heiheioyo2");
+            tcpHelper.StartRecieving();
 
             // account = new Account(httpHelper);
             // account.username = "cw";
@@ -84,6 +83,24 @@ namespace DoodleWorldNS {
             if (isStartTimer) {
 
                 passGameTime += Time.fixedDeltaTime;
+
+            }
+
+            if (Input.GetAxisRaw("Jump") != 0) {
+
+                tcpHelper.SendDataAsync("yoyoyo1");
+
+            }
+
+            if (Input.GetAxisRaw("Vertical") != 0) {
+
+                tcpHelper.Abort();
+
+            }
+
+            if (Input.GetAxisRaw("Horizontal") != 0) {
+
+                tcpHelper.StartRecieving();
 
             }
 

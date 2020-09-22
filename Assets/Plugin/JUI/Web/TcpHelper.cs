@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Text;
 using System.Collections.Generic;
@@ -13,6 +14,10 @@ namespace JackUtil {
         byte[] recieveData;
         byte[] sendData;
         NetworkStream stream;
+        CancellationToken token;
+        CancellationTokenSource tokenSource;
+
+        public event Action<string> RecieveMsgEvent;
 
         public TcpHelper(string url, int port) {
 
@@ -29,28 +34,50 @@ namespace JackUtil {
 
         }
 
-        public void SendData(string message) {
+        public void SendDataAsync(string message) {
 
             sendData = Encoding.UTF8.GetBytes(message);
-            stream.Write(sendData, 0, sendData.Length);
-            DebugUtil.Log("发送了: " + message);
+            stream.WriteAsync(sendData, 0, sendData.Length);
 
         }
 
-        public async Task<string> Recieving() {
+        public void StartRecieving() {
 
-            string resData = string.Empty;
+            tokenSource = new CancellationTokenSource();
 
-            await Task.Run(() => {
+            token = tokenSource.Token;
 
-                recieveData = new byte[8192];
-                Int32 bytes = stream.Read(recieveData, 0, recieveData.Length);
-                resData = Encoding.UTF8.GetString(recieveData, 0, bytes);
-                stream.Flush();
+            Task t = new Task(async () => {
 
-            });
-            
-            return resData;
+                while(true) {
+
+                    if (token.IsCancellationRequested) {
+
+                        return;
+
+                    }
+
+                    string resData = string.Empty;
+
+                    recieveData = new byte[8192];
+                    Int32 bytes = stream.Read(recieveData, 0, recieveData.Length);
+                    resData = Encoding.UTF8.GetString(recieveData, 0, bytes);
+                    stream.Flush();
+                    RecieveMsgEvent?.Invoke(resData);
+
+                    await Task.Delay(16);
+
+                }
+
+            }, token);
+
+            t.Start();
+
+        }
+
+        public void Abort() {
+
+            tokenSource.Cancel();
 
         }
 
