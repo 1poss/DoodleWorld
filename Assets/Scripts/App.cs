@@ -57,7 +57,6 @@ namespace DoodleWorldNS {
             // bool obj = JsonConvert.DeserializeObject<bool>(response);
             // print(obj);
             jcp = new JcpHelper("127.0.0.1", 9107);
-            jcp.RecievePacketEvent += packet => print(packet);
             jcp.AddEventListener("Test", packet => {
                 DebugUtil.Log("从服务端收到: " + packet.o);
             });

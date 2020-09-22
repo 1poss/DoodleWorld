@@ -37,9 +37,30 @@ namespace JackUtil {
 
         }
 
-        public void StartRecieving() {
+        public async void StartRecieving() {
 
-            tcp = new TcpClient(url, port);
+            await Task.Run(async () => {
+
+                while(tcp == null || !tcp.Connected) {
+
+                    try {
+
+                        tcp = new TcpClient(url, port);
+
+                    } catch(Exception e) {
+
+                        DebugUtil.Log(e);
+
+                    } finally {
+
+                        await Task.Delay(2000);
+
+                    }
+
+                }
+
+            });
+
             stream = tcp.GetStream();
 
             tokenSource = new CancellationTokenSource();

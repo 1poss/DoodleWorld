@@ -10,7 +10,6 @@ namespace JackUtil {
     public class JcpHelper {
 
         TcpHelper tcpHelper;
-        public event Action<Packet> RecievePacketEvent;
 
         Dictionary<string, Action<Packet>> eventDic;
 
