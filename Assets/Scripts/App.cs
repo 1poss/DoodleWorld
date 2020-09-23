@@ -33,6 +33,9 @@ namespace DoodleWorldNS {
         public float passGameTime;
         bool isStartTimer;
 
+        // ---- AD ----
+        public MyAd myAd;
+
         void Start() {
 
             if (m_instance == null) {
@@ -51,30 +54,18 @@ namespace DoodleWorldNS {
 
             }
 
-            // TODO WebRequest
+            // HttpClient Example
             // httpHelper = new HttpHelper("http://127.0.0.1:9106");
-            // string response = await httpHelper.PostAsync("/Test", null);
-            // bool obj = JsonConvert.DeserializeObject<bool>(response);
-            // print(obj);
-            jcp = new JcpHelper("127.0.0.1", 9107);
-            jcp.AddEventListener("Test", packet => {
-                DebugUtil.Log("从服务端收到: " + packet.o);
-            });
-            jcp.StartRecieving();
 
-            // account = new Account(httpHelper);
-            // account.username = "cw";
-            // account.pwd = "chenwansal";
-            // account.verifyCode = "334422";
-            // account.Login((err) => {
-
-            //     DebugUtil.LogError(err);
-
-            // },(result) => {
-
-            //     DebugUtil.Log(result);
-
+            // TcpClient Example
+            // jcp = new JcpHelper("127.0.0.1", 9107);
+            // jcp.AddEventListener("Test", packet => {
+            //     DebugUtil.Log("从服务端收到: " + packet.o);
             // });
+            // jcp.StartRecieving();
+
+            // ---- 载入广告 ----
+            myAd.Init();
 
         }
 
