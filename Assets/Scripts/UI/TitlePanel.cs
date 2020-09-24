@@ -11,6 +11,9 @@ namespace DoodleWorldNS {
 
         public Button startGameButton;
         public Button exitGameButton;
+        public Button showAdButton;
+
+        public UnityAd ad;
 
         void Awake() {
 
@@ -20,6 +23,14 @@ namespace DoodleWorldNS {
 
             exitGameButton.onClick.AddListener(() => {
                 Application.Quit();
+            });
+
+        }
+
+        public void Init() {
+
+            showAdButton.onClick.AddListener(() => {
+                ad.ShowRewardedVideo();
             });
 
         }

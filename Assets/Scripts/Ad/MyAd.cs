@@ -1,73 +1,93 @@
-using System;
-using System.Collections.Generic;
-using UnityEngine;
-using JackUtil;
-using ByteDance;
-using ByteDance.Union;
+// using System;
+// using System.Collections.Generic;
+// using UnityEngine;
+// using UnityEngine.UI;
+// using JackUtil;
+// using ByteDance;
+// using ByteDance.Union;
 
-namespace DoodleWorldNS {
+// namespace DoodleWorldNS {
 
-    public class MyAd : MonoBehaviour {
+//     public class MyAd : MonoBehaviour {
 
-        AdNative adNative;
-        AdSlot adSlot;
-        RewardAd rewardAd;
+//         static MyAd m_instance;
+//         public static MyAd Instance => m_instance;
 
-        public void Init() {
+//         public AdNative adNative;
+//         public AdSlot adSlot;
+//         public RewardAd rewardAd;
 
-            adNative = SDK.CreateAdNative();
-            SDK.RequestPermissionIfNecessary();
+//         public Text adLogText;
 
-            adSlot = new AdSlot.Builder()
-                .SetCodeId("945483518")
-                .SetImageAcceptedSize(640, 320)
-                .SetSupportDeepLink(true)
-                .SetAdCount(3)
-                .SetRewardName("复活")
-                .SetRewardAmount(6)
-                .SetUserID("")
-                .SetOrientation(AdOrientation.Vertical)
-                .Build();
-            rewardAd = new RewardAd();
+//         void Awake() {
 
-            adNative.LoadRewardVideoAd(adSlot, rewardAd);
+//             if (m_instance == null) {
+//                 m_instance = this;
+//             }
+//         }
 
-        }
-    }
+//         public void Init() {
 
-    public class RewardAd : IRewardVideoAdListener {
+//             adNative = SDK.CreateAdNative();
+//             SDK.RequestPermissionIfNecessary();
 
-        /// <summary>
-        /// Invoke when load Ad error.
-        /// </summary>
-        public void OnError(int code, string message) {
+//             adSlot = new AdSlot.Builder()
+//                 .SetCodeId("945483518")
+//                 .SetImageAcceptedSize(640, 320)
+//                 .SetSupportDeepLink(true)
+//                 .SetAdCount(3)
+//                 .SetRewardName("复活")
+//                 .SetRewardAmount(6)
+//                 .SetUserID("")
+//                 .SetOrientation(AdOrientation.Vertical)
+//                 .Build();
+//             rewardAd = new RewardAd();
 
-            DebugUtil.Log("广告载入出错: " + code + ", " + message);
+//             adNative.LoadRewardVideoAd(adSlot, rewardAd);
 
-        }
+//         }
+//     }
 
-        /// <summary>
-        /// Invoke when the Ad load success.
-        /// </summary>
-        public void OnRewardVideoAdLoad(RewardVideoAd ad) {
+//     public class RewardAd : IRewardVideoAdListener {
 
-            ad.ShowRewardVideoAd();
+//         public RewardVideoAd ad;
 
-        }
+//         /// <summary>
+//         /// Invoke when load Ad error.
+//         /// </summary>
+//         public void OnError(int code, string message) {
 
-        /// <summary>
-        /// The Ad loaded locally, user can play local video directly.
-        /// </summary>
-        public void OnRewardVideoCached() {
+//             MyAd.Instance.adLogText.text = "广告载入出错: " + code + ", " + message;
 
-        }
+//         }
 
-        /// <summary>
-        /// Invoke when the Ad load success.
-        /// </summary>
-        public void OnExpressRewardVideoAdLoad(ExpressRewardVideoAd ad) {
+//         /// <summary>
+//         /// Invoke when the Ad load success.
+//         /// </summary>
+//         public void OnRewardVideoAdLoad(RewardVideoAd ad) {
 
-        }
+//             MyAd.Instance.adLogText.text = "广告载入成功: " + ad.ToString();
+//             this.ad = ad;
 
-    }
-}
+//         }
+
+//         /// <summary>
+//         /// The Ad loaded locally, user can play local video directly.
+//         /// </summary>
+//         public void OnRewardVideoCached() {
+
+//             // ad.ShowRewardVideoAd();
+
+//         }
+
+//         /// <summary>
+//         /// Invoke when the Ad load success.
+//         /// </summary>
+//         public void OnExpressRewardVideoAdLoad(ExpressRewardVideoAd ad) {
+
+//             ad.ShowRewardVideoAd();
+
+//         }
+
+//     }
+// }

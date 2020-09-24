@@ -40,6 +40,12 @@ namespace DoodleWorldNS {
 
         }
 
+        public void Init() {
+
+            titlePanel.Init();
+            
+        }
+
         void FixedUpdate() {
 
             if (App.Instance == null) {

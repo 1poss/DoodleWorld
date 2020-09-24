@@ -34,7 +34,10 @@ namespace DoodleWorldNS {
         bool isStartTimer;
 
         // ---- AD ----
-        public MyAd myAd;
+        // public MyAd myAd;
+
+        // ---- UI ----
+        public UIManager uiManager;
 
         void Start() {
 
@@ -65,7 +68,8 @@ namespace DoodleWorldNS {
             // jcp.StartRecieving();
 
             // ---- 载入广告 ----
-            myAd.Init();
+            // myAd.Init();
+            uiManager.Init();
 
         }
 
