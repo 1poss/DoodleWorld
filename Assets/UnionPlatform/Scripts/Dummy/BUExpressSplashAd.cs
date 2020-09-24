@@ -18,7 +18,8 @@ namespace ByteDance.Union
         /// <summary>
         /// Sets the interaction listener for this Ad.
         /// </summary>
-        public void SetSplashInteractionListener(
+        // TODO new
+        public new void SetSplashInteractionListener(
             ISplashAdInteractionListener listener)
         {
         }
@@ -26,11 +27,11 @@ namespace ByteDance.Union
         /// <summary>
         /// Sets the listener for the Ad download.
         /// </summary>
-        public void SetDownloadListener(IAppDownloadListener listener)
+        public new void SetDownloadListener(IAppDownloadListener listener)
         {
         }
 
-        public void Dispose()
+        public new void Dispose()
         {
         }
 
