@@ -27,6 +27,15 @@ namespace JackUtil {
             this.url = url;
             this.port = port;
             this.maxDataLength = maxDataLength;
+            try {
+                
+                tcp = new TcpClient(url, port);
+
+            } catch(Exception e) {
+
+                DebugUtil.Log(e);
+
+            }
 
         }
 
@@ -37,7 +46,7 @@ namespace JackUtil {
 
         }
 
-        public async void StartRecieving() {
+        public async Task StartRecieving() {
 
             await Task.Run(async () => {
 

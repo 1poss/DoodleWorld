@@ -27,6 +27,7 @@ namespace JackUtil {
             if (!eventDic.ContainsKey(eventName)) {
 
                 eventDic.Add(eventName, cb);
+                DebugUtil.Log("注册: " + eventName);
 
             } else {
 
@@ -71,35 +72,47 @@ namespace JackUtil {
 
         }
 
-        void RecieveMsg(string packetStr) {
+        async void RecieveMsg(string packetStr) {
 
-            Task.Run(() => {
+            // DebugUtil.Log("收到: " + packetStr);
 
-                while(packetStr.Length > 5) {
+            await Task.Run(() => {
 
-                    int l = Packet.ReadLength(packetStr);
+                try {
 
-                    if (l == 0) {
+                    while(packetStr.Length > 5) {
 
-                        DebugUtil.Log(l);
-                        break;
+                        // DebugUtil.Log("循环中: " + packetStr.Length);
+
+                        int l = Packet.ReadLength(packetStr);
+
+                        if (l == 0) {
+
+                            DebugUtil.Log(l);
+                            break;
+
+                        }
+
+                        Packet p = Packet.CutString(l, packetStr);
+
+                        if (p != null) {
+
+                            TriggerEvent(p.e, p);
+
+                        } else {
+
+                            DebugUtil.Log("接收的数据非Packet String");
+                            break;
+
+                        }
+
+                        packetStr = packetStr.Substring(5 + l);
 
                     }
 
-                    Packet p = Packet.CutString(l, packetStr);
+                } catch(Exception e) {
 
-                    if (p != null) {
-
-                        TriggerEvent(p.e, p);
-
-                    } else {
-
-                        DebugUtil.Log("接收的数据非Packet String");
-                        break;
-
-                    }
-
-                    packetStr = packetStr.Substring(5 + l);
+                    DebugUtil.Log("线程错误: " + e);
 
                 }
 
@@ -107,9 +120,9 @@ namespace JackUtil {
 
         }
 
-        public void StartRecieving() {
+        public async void StartRecieving() {
 
-            tcpHelper?.StartRecieving();
+            await tcpHelper?.StartRecieving();
 
         }
 

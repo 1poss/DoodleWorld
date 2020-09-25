@@ -52,8 +52,16 @@ namespace JackUtil {
             _mono.gameObject.SetActive(true);
         }
 
+        public static void Show(this GameObject _go) {
+            _go.SetActive(true);
+        }
+
         public static void Hide(this MonoBehaviour _mono) {
             _mono.gameObject.SetActive(false);
+        }
+
+        public static void Hide(this GameObject _go) {
+            _go.SetActive(false);
         }
 
     }
