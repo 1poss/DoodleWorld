@@ -137,18 +137,20 @@ namespace DoodleWorldNS {
 
             if ((allowControlType & ControlType.MOVE) != 0) {
 
-                KeyMove();
                 #if UNITY_IOS || UNITY_ANDROID
                 TapMove();
+                #else
+                KeyMove();
                 #endif
 
             }
 
             if ((allowControlType & ControlType.MOVE_IN_AIR) != 0 && allowHorizental) {
 
-                KeyMoveInAir();
                 #if UNITY_IOS || UNITY_ANDROID
                 TapMoveInAir();
+                #else
+                KeyMoveInAir();
                 #endif
 
             }
