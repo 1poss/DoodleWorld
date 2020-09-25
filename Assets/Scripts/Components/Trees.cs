@@ -11,12 +11,9 @@ namespace DoodleWorldNS {
         static System.Random random;
 
         public SpriteRenderer sr;
-        public Collider2D col;
 
         public Sprite tree1;
         public Sprite tree2;
-
-        public float bounceForce;
 
         Vector2 defaultPos;
 
@@ -50,8 +47,6 @@ namespace DoodleWorldNS {
             }
 
             isAutoMove = false; // 自动升降
-
-            col = GetComponent<Collider2D>();
 
             defaultPos = transform.position;
 
@@ -113,9 +108,6 @@ namespace DoodleWorldNS {
         protected virtual void OnCollisionEnter2D(Collision2D other) {
 
             if (other.gameObject.tag == TagCollection.PLAYER) {
-
-                Player p = other.gameObject.GetComponent<Player>();
-                p.CircleBounce(transform, col, bounceForce);
 
                 if (!isAutoMove) {
 
