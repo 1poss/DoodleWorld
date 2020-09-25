@@ -13,6 +13,10 @@ namespace DoodleWorldNS {
         public ControlType allowControlType;
         public Transform foot;
 
+        public TapTriggerListener leftTapArea;
+        public TapTriggerListener rightTapArea;
+        int tapStatus;
+
         public float moveSpeed;
         public float tendSpeed;
         public bool allowHorizental;
@@ -33,6 +37,14 @@ namespace DoodleWorldNS {
         #endregion
 
         void Awake() {
+
+            leftTapArea = GameObject.FindGameObjectWithTag("LeftTapArea").GetComponent<TapTriggerListener>();
+            rightTapArea = GameObject.FindGameObjectWithTag("RightTapArea").GetComponent<TapTriggerListener>();
+
+            leftTapArea.RegisterTapEvent(TapType.TapDown, () => tapStatus = -1);
+            leftTapArea.RegisterTapEvent(TapType.TapUp, () => tapStatus = 0);
+            rightTapArea.RegisterTapEvent(TapType.TapDown, () => tapStatus = 1);
+            rightTapArea.RegisterTapEvent(TapType.TapUp, () => tapStatus = 0);
 
             fsm = new FSMBase<Player>(this);
             fsm.RegisterState(new IdleState());
@@ -68,6 +80,7 @@ namespace DoodleWorldNS {
             isPause = false;
             allowHorizental = true;
             allowControlType = 0;
+            tapStatus = 0;
 
             // 重置物理
             rig.velocity = Vector2.zero;
@@ -124,13 +137,19 @@ namespace DoodleWorldNS {
 
             if ((allowControlType & ControlType.MOVE) != 0) {
 
-                Move();
+                KeyMove();
+                #if UNITY_IOS || UNITY_ANDROID
+                TapMove();
+                #endif
 
             }
 
             if ((allowControlType & ControlType.MOVE_IN_AIR) != 0 && allowHorizental) {
 
-                MoveInAir();
+                KeyMoveInAir();
+                #if UNITY_IOS || UNITY_ANDROID
+                TapMoveInAir();
+                #endif
 
             }
 
@@ -149,7 +168,7 @@ namespace DoodleWorldNS {
         }
 
         #region Controls
-        void Move() {
+        void KeyMove() {
 
             float xAxis = Input.GetAxisRaw("Horizontal");
 
@@ -157,7 +176,19 @@ namespace DoodleWorldNS {
 
         }
 
-        void MoveInAir() {
+        void TapMove() {
+
+            rig.MoveInPlatform(tapStatus, moveSpeed);
+
+        }
+
+        void TapMoveInAir() {
+
+            rig.MoveInAir(tapStatus, moveSpeed);
+
+        }
+
+        void KeyMoveInAir() {
 
             float xAxis = Input.GetAxisRaw("Horizontal");
 
@@ -215,6 +246,8 @@ namespace DoodleWorldNS {
 
             maxHeight = 0;
             
+            EnterFSMState(typeof(Effect), FSMStateType.Idle);
+
         }
 
         public void CircleBounce(Transform here, Collider2D col, float force) {
@@ -262,11 +295,11 @@ namespace DoodleWorldNS {
 
             UIController.OnReduceLifeEvent(this, new ReduceLifeEventArgs(this, 1));
 
+            ResetPhysics();
+
+            EnterFSMState(this, FSMStateType.Dead);
+
             if (life <= 0) {
-
-                ResetPhysics();
-
-                EnterFSMState(this, FSMStateType.Dead);
 
                 UIController.OnPopupGameOverEvent(this, EventArgs.Empty);
 

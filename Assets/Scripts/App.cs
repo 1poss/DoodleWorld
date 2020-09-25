@@ -81,24 +81,6 @@ namespace DoodleWorldNS {
 
             }
 
-            if (Input.GetAxisRaw("Jump") != 0) {
-
-                jcp.EmitEvent("Test", "nihao");
-
-            }
-
-            if (Input.GetAxisRaw("Vertical") != 0) {
-
-                jcp.Abort();
-
-            }
-
-            if (Input.GetAxisRaw("Horizontal") != 0) {
-
-                jcp.StartRecieving();
-
-            }
-
         }
 
         void InitGame() {
