@@ -33,7 +33,7 @@ namespace DoodleWorldNS {
             if (other.gameObject.tag == TagCollection.PLAYER) {
 
                 Player p = other.gameObject.GetComponent<Player>();
-                p.CircleBounce(transform, col, bounceForce);
+                p.PlatBounce(transform, col, bounceForce);
 
             }
 
