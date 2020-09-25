@@ -16,7 +16,7 @@ namespace DoodleWorldNS {
         public float bounceForce;
         public Collider2D col;
 
-        void Awake() {
+        void Start() {
 
             if (col == null) {
 

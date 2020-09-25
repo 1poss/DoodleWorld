@@ -21,8 +21,8 @@ namespace DoodleWorldNS {
         public int bridgeLength;
         public bool isHorizontal;
 
-        [ContextMenu("ReAwake")]
-        void Awake() {
+        [ContextMenu("ReStart")]
+        void Start() {
 
             defaultPos = transform.position;
             transform.rotation = new Quaternion();

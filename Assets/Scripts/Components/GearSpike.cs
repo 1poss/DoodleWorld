@@ -12,8 +12,8 @@ namespace DoodleWorldNS {
         float rotateGap;
         public Ease inEase;
 
-        [ContextMenu("ReAwake")]
-        void Awake() {
+        [ContextMenu("ReStart")]
+        void Start() {
 
             rotateGap = 2f;
 

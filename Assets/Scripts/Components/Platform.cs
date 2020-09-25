@@ -11,7 +11,7 @@ namespace DoodleWorldNS {
         Collider2D col;
         float bouncePower;
 
-        void Awake() {
+        void Start() {
 
             col = GetComponent<Collider2D>();
             bouncePower = 9;

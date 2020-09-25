@@ -49,6 +49,9 @@ namespace DoodleWorldNS {
 
             DontDestroyOnLoad(gameObject);
 
+            Physics2D.IgnoreLayerCollision(LayerCollection.RAIN_LAYER, LayerCollection.SPIKE_LAYER);
+            Physics2D.IgnoreLayerCollision(LayerCollection.RAIN_LAYER, LayerCollection.RAIN_LAYER);
+
             InitGame();
 
             if (debugMapEditor != null && debugMapEditor.activeSelf) {

@@ -26,7 +26,7 @@ namespace DoodleWorldNS {
 
         bool isAutoMove;
 
-        protected virtual void Awake() {
+        protected virtual void Start() {
 
             if (random == null) {
 

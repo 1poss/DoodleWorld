@@ -16,7 +16,7 @@ namespace DoodleWorldNS {
         Sequence action;
         Sequence nextAction;
 
-        void Awake() {
+        void Start() {
 
 
             centerX = transform.position.x;

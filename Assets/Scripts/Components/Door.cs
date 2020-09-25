@@ -14,7 +14,7 @@ namespace DoodleWorldNS {
         public bool isOpen;
         public string nextLevelUid;
 
-        protected virtual void Awake() {
+        protected virtual void Start() {
 
             if (isOpen) {
 
