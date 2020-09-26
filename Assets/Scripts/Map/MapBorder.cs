@@ -25,6 +25,11 @@ namespace DoodleWorldNS {
                 Player p = other.gameObject.GetComponent<Player>();
                 p.Dead(this, EventArgs.Empty);
 
+            } else if (other.gameObject.tag == TagCollection.BULLET) {
+
+                BossBullet b = other.gameObject.GetComponent<BossBullet>();
+                Destroy(b.gameObject);
+
             }
 
         }

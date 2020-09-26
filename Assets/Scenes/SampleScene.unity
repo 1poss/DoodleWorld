@@ -2754,6 +2754,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rainPrefab: {fileID: 2826243139141471202, guid: a73c84daec7126443a65361866634dce,
     type: 3}
+  bulletPrefab: {fileID: 8605549431658280124, guid: 59e70673c0fd9dd42a9dba0e0175160e,
+    type: 3}
 --- !u!1 &1183233654
 GameObject:
   m_ObjectHideFlags: 0
@@ -4928,6 +4930,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: C0L0A
+      objectReference: {fileID: 0}
+    - target: {fileID: 6660807134146247746, guid: 8314d34c9a039594b8341049d2218de5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6660807134501013652, guid: 8314d34c9a039594b8341049d2218de5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6660807134501013652, guid: 8314d34c9a039594b8341049d2218de5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6660807134501013652, guid: 8314d34c9a039594b8341049d2218de5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8314d34c9a039594b8341049d2218de5, type: 3}

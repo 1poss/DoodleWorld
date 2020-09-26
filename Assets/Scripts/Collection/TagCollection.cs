@@ -8,6 +8,8 @@ namespace DoodleWorldNS {
 
         public const string PLAYER = "Player";
         public const string TREES = "Trees";
+        public const string AIR_WALL = "AirWall";
+        public const string BULLET = "Bullet";
         
     }
 }

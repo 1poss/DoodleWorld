@@ -6,6 +6,8 @@ TagManager:
   tags:
   - RightTapArea
   - LeftTapArea
+  - AirWall
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -17,8 +19,8 @@ TagManager:
   - 
   - Rain
   - AirWall
-  - 
-  - 
+  - Bullet
+  - Spike
   - 
   - 
   - 

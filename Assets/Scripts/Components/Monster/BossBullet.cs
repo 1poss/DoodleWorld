@@ -13,6 +13,7 @@ namespace DoodleWorldNS {
         public float bounceForce;
 
         Vector2 defaultPos;
+        Sequence action;
 
         public void Shoot(Transform startTrans, Vector2 dir, float moveSpeed) {
 
@@ -20,6 +21,14 @@ namespace DoodleWorldNS {
             defaultPos = transform.position;
 
             rig.velocity = dir * moveSpeed;
+            transform.rotation = dir.To2DFaceRotation();
+            
+            action = DOTween.Sequence();
+            action.AppendInterval(5f);
+            action.AppendCallback(() => {
+                Destroy(gameObject);
+            });
+            action.SetLoops(1);
             
         }
 
@@ -32,11 +41,19 @@ namespace DoodleWorldNS {
 
                 Destroy(gameObject);
 
+            } else if (other.gameObject.tag == TagCollection.AIR_WALL) {
+
+                print("Col AirWall");
+
+                Destroy(gameObject);
+
             }
 
         }
 
         void OnDestroy() {
+
+            action?.Kill();
 
         }
 

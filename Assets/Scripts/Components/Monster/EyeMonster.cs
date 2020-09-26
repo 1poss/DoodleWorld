@@ -6,19 +6,21 @@ using JackUtil;
 
 namespace DoodleWorldNS {
 
-    public class BossNoEyes : MonoBehaviour {
+    public class EyeMonster : MonoBehaviour {
 
-        public Transform shooterTrans;
+        public Transform head;
+        public Collider2D col;
+        public Transform shooter;
+
         public float shootSpeed;
-
         Sequence action;
 
         void Start() {
 
             action = DOTween.Sequence();
             action.AppendCallback(() => {
-                BossBullet b = Instantiate(PrefabCollection.Instance.bulletPrefab, transform.parent);
-                b.Shoot(shooterTrans, Vector2.left, shootSpeed);
+                BossBullet b = Instantiate(PrefabCollection.Instance.bulletPrefab, transform);
+                b.Shoot(shooter, (Vector2)shooter.position - ((Vector2)head.position + col.offset), shootSpeed);
             });
             action.AppendInterval(1.5f);
             action.SetLoops(-1);
@@ -30,6 +32,7 @@ namespace DoodleWorldNS {
             action?.Kill();
 
         }
+
 
     }
 }

@@ -143,10 +143,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shooterTrans: {fileID: 51359943048397741}
-  bulletPrefab: {fileID: 8605549431658280124, guid: 59e70673c0fd9dd42a9dba0e0175160e,
-    type: 3}
-  col: {fileID: 51359944314519518}
-  bounceForce: 5
   shootSpeed: 5
 --- !u!1 &280978689243379339
 GameObject:
@@ -294,7 +290,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 280978689820835471}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -496,9 +492,9 @@ GameObject:
   - component: {fileID: 1516027577802029426}
   - component: {fileID: 1516027577802029427}
   - component: {fileID: 1516027577802029425}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tilemap
-  m_TagString: Untagged
+  m_TagString: AirWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2251,7 +2247,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06c79a5f85fc1004a9098f718bf3965d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endY: 0
+  bounceForce: 0
+  col: {fileID: 0}
 --- !u!1 &1998711547993476645
 GameObject:
   m_ObjectHideFlags: 0
@@ -2346,7 +2343,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06c79a5f85fc1004a9098f718bf3965d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endY: 0
+  bounceForce: 0
+  col: {fileID: 0}
 --- !u!1 &1998711548348062542
 GameObject:
   m_ObjectHideFlags: 0
@@ -2441,7 +2439,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06c79a5f85fc1004a9098f718bf3965d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endY: 0
+  bounceForce: 0
+  col: {fileID: 0}
 --- !u!1 &1998711548460176340
 GameObject:
   m_ObjectHideFlags: 0
@@ -2536,7 +2535,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06c79a5f85fc1004a9098f718bf3965d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endY: 0
+  bounceForce: 0
+  col: {fileID: 0}
 --- !u!1 &1998711548759535937
 GameObject:
   m_ObjectHideFlags: 0
@@ -2631,7 +2631,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06c79a5f85fc1004a9098f718bf3965d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endY: 0
+  bounceForce: 0
+  col: {fileID: 0}
 --- !u!1 &1998711548785113166
 GameObject:
   m_ObjectHideFlags: 0
@@ -2726,7 +2727,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06c79a5f85fc1004a9098f718bf3965d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endY: 0
+  bounceForce: 0
+  col: {fileID: 0}
 --- !u!1 &1998711549002805161
 GameObject:
   m_ObjectHideFlags: 0
@@ -2821,7 +2823,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06c79a5f85fc1004a9098f718bf3965d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endY: 0
+  bounceForce: 0
+  col: {fileID: 0}
 --- !u!1 &2309154061432790816
 GameObject:
   m_ObjectHideFlags: 0
@@ -3029,10 +3032,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sr: {fileID: 3361796017283073744}
-  col: {fileID: 3361796017283073745}
   tree1: {fileID: 21300000, guid: 8a14d42f8d44bbb45a7b07473cff2e32, type: 3}
   tree2: {fileID: 21300000, guid: 1ec080749c828bc49a7d372c448a2305, type: 3}
-  bounceForce: 12
   moveSpeed: 2
   waitTime: 1
 --- !u!1 &3361796017291014264
@@ -3149,10 +3150,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sr: {fileID: 3361796017291014263}
-  col: {fileID: 3361796017291014262}
   tree1: {fileID: 21300000, guid: 8a14d42f8d44bbb45a7b07473cff2e32, type: 3}
   tree2: {fileID: 21300000, guid: 1ec080749c828bc49a7d372c448a2305, type: 3}
-  bounceForce: 12
   moveSpeed: 2
   waitTime: 1
 --- !u!1 &3361796017983541996
@@ -3269,10 +3268,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sr: {fileID: 3361796017983541987}
-  col: {fileID: 3361796017983541986}
   tree1: {fileID: 21300000, guid: 8a14d42f8d44bbb45a7b07473cff2e32, type: 3}
   tree2: {fileID: 21300000, guid: 1ec080749c828bc49a7d372c448a2305, type: 3}
-  bounceForce: 12
   moveSpeed: 2
   waitTime: 1
 --- !u!1 &3361796018082614429
@@ -3387,10 +3384,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sr: {fileID: 3361796018082614418}
-  col: {fileID: 3361796018082614419}
   tree1: {fileID: 21300000, guid: 8a14d42f8d44bbb45a7b07473cff2e32, type: 3}
   tree2: {fileID: 21300000, guid: 1ec080749c828bc49a7d372c448a2305, type: 3}
-  bounceForce: 12
   moveSpeed: 2
   waitTime: 1
 --- !u!1 &3361796018169117770
@@ -3505,10 +3500,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sr: {fileID: 3361796018169117765}
-  col: {fileID: 3361796018169117764}
   tree1: {fileID: 21300000, guid: 8a14d42f8d44bbb45a7b07473cff2e32, type: 3}
   tree2: {fileID: 21300000, guid: 1ec080749c828bc49a7d372c448a2305, type: 3}
-  bounceForce: 12
   moveSpeed: 2
   waitTime: 1
 --- !u!1 &3361796018466471659
@@ -3623,10 +3616,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sr: {fileID: 3361796018466471652}
-  col: {fileID: 3361796018466471653}
   tree1: {fileID: 21300000, guid: 8a14d42f8d44bbb45a7b07473cff2e32, type: 3}
   tree2: {fileID: 21300000, guid: 1ec080749c828bc49a7d372c448a2305, type: 3}
-  bounceForce: 12
   moveSpeed: 2
   waitTime: 1
 --- !u!1 &3361796018643852968
@@ -3741,10 +3732,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sr: {fileID: 3361796018643852967}
-  col: {fileID: 3361796018643852966}
   tree1: {fileID: 21300000, guid: 8a14d42f8d44bbb45a7b07473cff2e32, type: 3}
   tree2: {fileID: 21300000, guid: 1ec080749c828bc49a7d372c448a2305, type: 3}
-  bounceForce: 12
   moveSpeed: 2
   waitTime: 1
 --- !u!1 &3361796019093848874
@@ -3859,10 +3848,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sr: {fileID: 3361796019093848869}
-  col: {fileID: 3361796019093848868}
   tree1: {fileID: 21300000, guid: 8a14d42f8d44bbb45a7b07473cff2e32, type: 3}
   tree2: {fileID: 21300000, guid: 1ec080749c828bc49a7d372c448a2305, type: 3}
-  bounceForce: 12
   moveSpeed: 2
   waitTime: 1
 --- !u!1 &3361796019151535130
@@ -3979,10 +3966,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sr: {fileID: 3361796019151535125}
-  col: {fileID: 3361796019151535124}
   tree1: {fileID: 21300000, guid: 8a14d42f8d44bbb45a7b07473cff2e32, type: 3}
   tree2: {fileID: 21300000, guid: 1ec080749c828bc49a7d372c448a2305, type: 3}
-  bounceForce: 12
   moveSpeed: 2
   waitTime: 1
 --- !u!1 &7294436114197925529
@@ -4220,10 +4205,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sr: {fileID: 8716451714353227273}
-  col: {fileID: 8716451714353227272}
   tree1: {fileID: 21300000, guid: 8a14d42f8d44bbb45a7b07473cff2e32, type: 3}
   tree2: {fileID: 21300000, guid: 1ec080749c828bc49a7d372c448a2305, type: 3}
-  bounceForce: 12
   moveSpeed: 2
   waitTime: 1
 --- !u!1 &8716451714463749539
@@ -4731,10 +4714,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sr: {fileID: 8716451714605996283}
-  col: {fileID: 8716451714605996282}
   tree1: {fileID: 21300000, guid: 8a14d42f8d44bbb45a7b07473cff2e32, type: 3}
   tree2: {fileID: 21300000, guid: 1ec080749c828bc49a7d372c448a2305, type: 3}
-  bounceForce: 12
   moveSpeed: 2
   waitTime: 1
 --- !u!1 &8716451714658478442
@@ -4849,10 +4830,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sr: {fileID: 8716451714658478446}
-  col: {fileID: 8716451714658478445}
   tree1: {fileID: 21300000, guid: 8a14d42f8d44bbb45a7b07473cff2e32, type: 3}
   tree2: {fileID: 21300000, guid: 1ec080749c828bc49a7d372c448a2305, type: 3}
-  bounceForce: 12
   moveSpeed: 2
   waitTime: 1
 --- !u!1 &8716451714873870468
@@ -4967,10 +4946,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sr: {fileID: 8716451714873870472}
-  col: {fileID: 8716451714873870471}
   tree1: {fileID: 21300000, guid: 8a14d42f8d44bbb45a7b07473cff2e32, type: 3}
   tree2: {fileID: 21300000, guid: 1ec080749c828bc49a7d372c448a2305, type: 3}
-  bounceForce: 12
   moveSpeed: 2
   waitTime: 1
 --- !u!1 &8716451715294417740
@@ -5085,10 +5062,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sr: {fileID: 8716451715294417744}
-  col: {fileID: 8716451715294417743}
   tree1: {fileID: 21300000, guid: 8a14d42f8d44bbb45a7b07473cff2e32, type: 3}
   tree2: {fileID: 21300000, guid: 1ec080749c828bc49a7d372c448a2305, type: 3}
-  bounceForce: 12
   moveSpeed: 2
   waitTime: 1
 --- !u!1 &8716451715558244812
@@ -5568,10 +5543,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sr: {fileID: 8716451715891179729}
-  col: {fileID: 8716451715891179728}
   tree1: {fileID: 21300000, guid: 8a14d42f8d44bbb45a7b07473cff2e32, type: 3}
   tree2: {fileID: 21300000, guid: 1ec080749c828bc49a7d372c448a2305, type: 3}
-  bounceForce: 12
   moveSpeed: 2
   waitTime: 1
 --- !u!1 &8716451716034914824
@@ -5686,10 +5659,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sr: {fileID: 8716451716034914828}
-  col: {fileID: 8716451716034914827}
   tree1: {fileID: 21300000, guid: 8a14d42f8d44bbb45a7b07473cff2e32, type: 3}
   tree2: {fileID: 21300000, guid: 1ec080749c828bc49a7d372c448a2305, type: 3}
-  bounceForce: 12
   moveSpeed: 2
   waitTime: 1
 --- !u!1 &8716451716063860131
@@ -5805,10 +5776,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shooterTrans: {fileID: 8716451714594215371}
-  bulletPrefab: {fileID: 8605549431658280124, guid: 59e70673c0fd9dd42a9dba0e0175160e,
-    type: 3}
-  col: {fileID: 8716451716063860134}
-  bounceForce: 5
   shootSpeed: 5
 --- !u!1 &8716451716199291917
 GameObject:
@@ -5922,10 +5889,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sr: {fileID: 8716451716199291921}
-  col: {fileID: 8716451716199291920}
   tree1: {fileID: 21300000, guid: 8a14d42f8d44bbb45a7b07473cff2e32, type: 3}
   tree2: {fileID: 21300000, guid: 1ec080749c828bc49a7d372c448a2305, type: 3}
-  bounceForce: 12
   moveSpeed: 2
   waitTime: 1
 --- !u!1 &8716451716315400825
@@ -6042,9 +6007,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sr: {fileID: 8716451716315400828}
-  col: {fileID: 8716451716315400827}
   tree1: {fileID: 21300000, guid: 8a14d42f8d44bbb45a7b07473cff2e32, type: 3}
   tree2: {fileID: 21300000, guid: 1ec080749c828bc49a7d372c448a2305, type: 3}
-  bounceForce: 12
   moveSpeed: 2
   waitTime: 1

@@ -12,6 +12,7 @@ namespace DoodleWorldNS {
         public static PrefabCollection Instance => m_instance;
 
         public RainSpike rainPrefab;
+        public BossBullet bulletPrefab;
 
         void Awake() {
 
