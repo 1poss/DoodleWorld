@@ -24,6 +24,7 @@ namespace DoodleWorldNS {
 
             action?.Kill();
             action = DOTween.Sequence();
+            float rainGap = 0.5f;
             List<float> posList = new List<float>();
             action.AppendCallback(() => {
                 rainAction?.Kill();
@@ -34,11 +35,11 @@ namespace DoodleWorldNS {
                     rainAction.AppendCallback(() => {
                         RainSpawner.SpawnRain(transform, (Vector2)transform.position + Vector2.right * pos);
                     });
-                    rainAction.AppendInterval(0.5f);
+                    rainAction.AppendInterval(rainGap);
                     rainAction.SetLoops(1);
                 }
             });
-            action.AppendInterval(3f);
+            action.AppendInterval(rainGap * width + 3f);
             action.SetLoops(-1);
 
             sr.sprite = null;
@@ -67,7 +68,7 @@ namespace DoodleWorldNS {
 
             action?.Kill();
             rainAction?.Kill();
-            
+
         }
 
         
