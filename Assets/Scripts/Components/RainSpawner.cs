@@ -23,16 +23,20 @@ namespace DoodleWorldNS {
 
             action?.Kill();
             action = DOTween.Sequence();
+            action.AppendCallback(() => {
+                SpawnRain(transform, transform.position);
+            });
             action.AppendInterval(gapTime);
-            action.AppendCallback(SpawnRain);
             action.SetLoops(-1);
 
         }
 
-        void SpawnRain() {
+        public static void SpawnRain(Transform trans, Vector2 stratPos) {
 
-            RainSpike rain = Instantiate(PrefabCollection.Instance.rainPrefab, transform);
-            rain.Init(transform.position, 1);
+            // print("生成雨: " + stratPos);
+
+            RainSpike rain = Instantiate(PrefabCollection.Instance.rainPrefab, trans);
+            rain.Init(stratPos, 1);
 
         }
 

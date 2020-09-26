@@ -25,18 +25,19 @@ namespace DoodleWorldNS {
         void Start() {
 
             defaultPos = transform.position;
+
+            int childCount = transform.childCount;
+            if (childCount == bridgeLength) {
+                return;
+            }
+
             transform.rotation = new Quaternion();
 
             // 清
-            int childCount = transform.childCount;
             for (int i = childCount - 1; i >= 0; i -= 1) {
                 Transform t = transform.GetChild(i);
                 DestroyImmediate(t.gameObject);
             }
-            // GameObject[] goes = gameObject.transform.GetComponentsInChildren<GameObject>();
-            // foreach (GameObject go in goes) {
-            //     DestroyImmediate(go.gameObject);
-            // }
 
             // 左
             if (left == null) {

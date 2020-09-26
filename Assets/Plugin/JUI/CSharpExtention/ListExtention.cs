@@ -28,6 +28,13 @@ namespace JackUtil {
 
         }
 
+        public static T Pop<T>(this List<T> _list) {
+            T t = _list.Last();
+            int index = _list.Count - 1;
+            _list.RemoveAt(index);
+            return t;
+        }
+
     }
 
 }
