@@ -9,6 +9,12 @@ namespace DoodleWorldNS {
 
     public static class UIController {
 
+        // 输入昵称
+        public static event Action<object, EventArgs> PopUsernameInputFieldEvent;
+        public static void OnPopUsernameInputFieldEvent(object sender, EventArgs args) {
+            PopUsernameInputFieldEvent?.Invoke(sender, args);
+        }
+
         // 标题相关
         public static event Action<object, EventArgs> StartGameEvent;
         public static void OnStartGameEvent(object sender, EventArgs args) {

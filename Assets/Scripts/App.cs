@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,7 @@ namespace DoodleWorldNS {
         public Account account;
 
         // ---- GAME ----
+        public GameData gameData;
         public Player playerPrefab;
         Player player;
 
@@ -74,6 +76,13 @@ namespace DoodleWorldNS {
             // ---- 载入广告 ----
             // myAd.Init();
             uiManager.Init();
+
+            // ---- 载入存档 ----
+            gameData = new GameData();
+            if (gameData.username == "") {
+                // 弹出输入名称的UI
+                UIController.OnPopUsernameInputFieldEvent(this, EventArgs.Empty);
+            }
 
         }
 
