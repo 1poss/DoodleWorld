@@ -41,7 +41,7 @@ namespace DoodleWorldNS {
         // ---- UI ----
         public UIManager uiManager;
 
-        void Start() {
+        async void Start() {
 
             if (m_instance == null) {
                 m_instance = this;
@@ -64,7 +64,9 @@ namespace DoodleWorldNS {
             }
 
             // HttpClient Example
-            // httpHelper = new HttpHelper("http://127.0.0.1:9106");
+            httpHelper = new HttpHelper("http://127.0.0.1:9101");
+            string res = await httpHelper.GetAsync("/BestBoard", null);
+            print(res);
 
             // TcpClient Example
             // jcp = new JcpHelper("127.0.0.1", 9107);

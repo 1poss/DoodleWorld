@@ -19,7 +19,7 @@ namespace JackUtil {
         }
 
         // Get
-        public async Task<string> GetAsync(string uri, Dictionary<string, string> paramData, Action<string> errCallback, Action<string> resultCallback) {
+        public async Task<string> GetAsync(string uri, Dictionary<string, string> paramData) {
 
             if (paramData != null) {
 
@@ -35,17 +35,16 @@ namespace JackUtil {
             
             string r = string.Empty;
 
-            await client.GetStringAsync(uri).ContinueWith(t => {
+            await client.GetStringAsync(uri).ContinueWith(async t => {
                
                 if (t.IsFaulted) {
 
-                    // ShowMsg(t.Result);
-                    r = t.Result;
+                    r = await t;
+                    DebugUtil.LogError(r);
                     
                 } else {
 
-                    // ShowMsg(t.Result);
-                    r = t.Result;
+                    r = await t;
 
                 }
 
@@ -64,15 +63,16 @@ namespace JackUtil {
 
             string r = string.Empty;
 
-            await client.PostAsync(uri, new FormUrlEncodedContent(paramData)).ContinueWith(t => {
+            await client.PostAsync(uri, new FormUrlEncodedContent(paramData)).ContinueWith(async t => {
+
+                HttpResponseMessage res = await t;
 
                 if (t.IsFaulted) {
 
-                    r = "错误:" + t.Result.StatusCode.ToString();
+                    r = "错误:" + res.StatusCode.ToString();
 
                 } else {
 
-                    HttpResponseMessage res = t.Result;
                     r = res.Content.ReadAsStringAsync().Result;
 
                 }
