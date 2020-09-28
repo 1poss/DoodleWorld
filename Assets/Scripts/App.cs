@@ -78,7 +78,7 @@ namespace DoodleWorldNS {
             uiManager.Init();
 
             // ---- 载入存档 ----
-            gameData = new GameData();
+            gameData = new GameData(Application.dataPath, "data.db");
             if (gameData.username == "") {
                 // 弹出输入名称的UI
                 UIController.OnPopUsernameInputFieldEvent(this, EventArgs.Empty);

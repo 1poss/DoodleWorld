@@ -9,6 +9,9 @@ namespace DoodleWorldNS {
     [Serializable]
     public class GameData {
 
+        static string dirPath;
+        static string filePath;
+
         [NonSerialized]
         GameData lastData;
         public string username;
@@ -19,7 +22,10 @@ namespace DoodleWorldNS {
         public Dictionary<string, float> levelBestTimeDic;
         public Dictionary<string, int> levelDeadTimesDic;
 
-        public GameData() {
+        public GameData(string dirPath, string filePath) {
+
+            GameData.dirPath = dirPath;
+            GameData.filePath = filePath;
 
             GameData gd = LoadWithSearching();
 
@@ -49,7 +55,7 @@ namespace DoodleWorldNS {
 
         GameData LoadWithSearching() {
 
-            string[] gdFiles = Directory.GetFiles(Application.dataPath, "data.gd");
+            string[] gdFiles = Directory.GetFiles(dirPath, "data.gd");
 
             if (gdFiles.Length == 0) {
 
@@ -71,7 +77,7 @@ namespace DoodleWorldNS {
 
         public void SaveData() {
 
-            FileUtil.SaveFile(this, Application.dataPath, "/data.gd");
+            FileUtil.SaveFile(this, dirPath, filePath);
             
         }
 

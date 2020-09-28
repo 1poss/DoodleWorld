@@ -32,17 +32,26 @@ namespace JackUtil {
             connection.CreateTable<AccountTable>();
 
             // 插入数据
-            int id = connection.Insert(new AccountTable() {
-                username = "jack",
-                password = "rsdyxjh"
-            });
+            // int id = connection.Insert(new AccountTable() {
+            //     username = "jack",
+            //     password = "rsdyxjh"
+            // });
+
+            connection.Update(new AccountTable() { id = 10, username = "n"}, typeof(AccountTable));
 
             // 查询数据
             string username = "jack";
-            IEnumerable<AccountTable> accounts = connection.Query<AccountTable>("select * from Account where username = ?", username);
+            List<AccountTable> accounts = connection.Query<AccountTable>("select * from Account where username = ?", username);
+            foreach (AccountTable tb in accounts) {
+                DebugUtil.Log(tb.id);
+                DebugUtil.Log(tb.username);
+                DebugUtil.Log(tb.password);
+                // connection.Delete<AccountTable>(tb.id);
+            }
 
             // 删除数据
-            connection.Delete(id);
+
+            connection.Close();
 
         }
 
