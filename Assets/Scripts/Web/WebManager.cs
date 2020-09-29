@@ -39,9 +39,39 @@ namespace DoodleWorldNS {
                 msg = ""
             });
 
+            if (any.status == false) {
+
+                ui.RegisterFailed(any.msg);
+
+            } else {
+
+                ui.EnterTitle(username);
+
+            }
+
         }
 
-        public void Login(string uid) {
+        public async Task Login(string uid) {
+
+            string res = await http.PostAsync("/Login", new Dictionary<string, string>(){
+                {"uid", uid}
+            });
+
+            var any = JsonConvert.DeserializeAnonymousType(res, new {
+                username = "",
+                status = false,
+                msg = ""
+            });
+
+            if (any.status == false) {
+
+                ui.LoginFailed(any.msg);
+
+            } else {
+
+                ui.EnterTitle(any.username);
+
+            }
 
         }
 

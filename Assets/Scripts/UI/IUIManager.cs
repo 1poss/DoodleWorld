@@ -9,6 +9,12 @@ using JackUtil;
 namespace DoodleWorldNS {
 
     interface IUIManager {
+
+        void EnterRegister();
+        void RegisterFailed(string msg);
+        void LoginFailed(string msg);
+        void EnterTitle(string username);
+        void EnterGame();
         
     }
 }

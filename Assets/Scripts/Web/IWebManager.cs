@@ -13,7 +13,7 @@ namespace DoodleWorldNS {
 
         void GetBestBoard(string uid);
         Task Register(string username);
-        void Login(string uid);
+        Task Login(string uid);
 
     }
 

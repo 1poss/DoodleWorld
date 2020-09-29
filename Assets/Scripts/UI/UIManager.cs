@@ -101,5 +101,35 @@ namespace DoodleWorldNS {
 
         }
 
+        public void EnterRegister() {
+
+            // 找存档
+            // 如果有则读取, 并执行IWeb.Login(string uid)
+
+            // 如果无存档, 显示注册页
+
+        }
+
+        public void RegisterFailed(string msg) {
+
+            print("Register Failed: " + msg);
+
+        }
+
+        public void LoginFailed(string msg) {
+
+            // 显示重试 / 离线模式
+            print("LoginFailed: " + msg);
+
+        }
+
+        public void EnterTitle(string username) {
+            
+        }
+
+        public void EnterGame() {
+
+        }
+
     }
 }
