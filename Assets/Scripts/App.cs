@@ -65,8 +65,11 @@ namespace DoodleWorldNS {
 
             // HttpClient Example
             httpHelper = new HttpHelper("http://127.0.0.1:9101");
-            string res = await httpHelper.GetAsync("/BestBoard", null);
-            print(res);
+            string getRes = await httpHelper.GetAsync("/BestBoard", null);
+            string postRes = await httpHelper.PostAsync("/Register", new Dictionary<string, string>{
+                {"username", "chenwansal"}
+            });
+            print(getRes);
 
             // TcpClient Example
             // jcp = new JcpHelper("127.0.0.1", 9107);

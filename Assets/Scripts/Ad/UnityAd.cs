@@ -15,8 +15,8 @@ namespace DoodleWorldNS {
 
         void Start() {
 
-            Advertisement.AddListener(this);
-            Advertisement.Initialize(gameId, testMode);
+            // Advertisement.AddListener(this);
+            // Advertisement.Initialize(gameId, testMode);
 
         }
 

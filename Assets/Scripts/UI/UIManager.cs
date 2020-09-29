@@ -8,7 +8,9 @@ using JackUtil;
 
 namespace DoodleWorldNS {
 
-    public sealed class UIManager : MonoBehaviour {
+    public sealed class UIManager : MonoBehaviour, IUIManager {
+
+        IWebManager web;
 
         public TitlePanel titlePanel;
         public LifePanel lifePanel;
