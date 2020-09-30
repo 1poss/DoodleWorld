@@ -11,6 +11,9 @@ namespace JackUtil {
 
         HttpClient client;
 
+        ///<summary>
+        ///uri = "http://xxx.xxx.xxx.xxx:port"
+        ///</summary>
         public HttpHelper(string uri) {
 
             client = new HttpClient();

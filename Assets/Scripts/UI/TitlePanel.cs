@@ -9,29 +9,24 @@ namespace DoodleWorldNS {
 
     public class TitlePanel : MonoBehaviour {
 
+        [NonSerialized]
+        IUIManager ui;
+
         public Button startGameButton;
         public Button exitGameButton;
         public Button showAdButton;
 
-        public UnityAd ad;
-
-        void Awake() {
-
-            startGameButton.onClick.AddListener(() => {
-                UIController.OnStartGameEvent(this, EventArgs.Empty);
-            });
-
-            exitGameButton.onClick.AddListener(() => {
-                Application.Quit();
-            });
-
+        public void Inject(IUIManager ui) {
+            this.ui = ui;
+            startGameButton.onClick.AddListener(ui.EnterGame);
+            exitGameButton.onClick.AddListener(Application.Quit);
         }
 
         public void Init() {
 
-            showAdButton.onClick.AddListener(() => {
-                ad.ShowRewardedVideo();
-            });
+            // showAdButton.onClick.AddListener(() => {
+            //     ad.ShowRewardedVideo();
+            // });
 
         }
 

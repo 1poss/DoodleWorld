@@ -10,12 +10,16 @@ namespace DoodleWorldNS {
 
     public class WebManager : MonoBehaviour, IWebManager {
 
+        [NonSerialized]
         IUIManager ui;
+        [NonSerialized]
+        IWorldManager world;
+
         HttpHelper http;
 
-        void Awake() {
+        void Start() {
 
-            http = new HttpHelper("127.0.0.1:9101");
+            http = new HttpHelper("http://127.0.0.1:9101");
 
         }
 
@@ -23,11 +27,16 @@ namespace DoodleWorldNS {
 
         }
 
+        public void Inject(IUIManager ui, IWorldManager world) {
+            this.ui = ui;
+            this.world = world;
+        }
+
         public void GetBestBoard(string uid) {
 
         }
 
-        public async Task Register(string username) {
+        public async Task PostRegister(string username) {
 
             string res = await http.PostAsync("/Register", new Dictionary<string, string>(){
                 {"username", username}
@@ -51,7 +60,7 @@ namespace DoodleWorldNS {
 
         }
 
-        public async Task Login(string uid) {
+        public async Task PostLogin(string uid) {
 
             string res = await http.PostAsync("/Login", new Dictionary<string, string>(){
                 {"uid", uid}

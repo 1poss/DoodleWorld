@@ -9,11 +9,12 @@ using JackUtil;
 
 namespace DoodleWorldNS {
 
-    interface IWebManager {
+    public interface IWebManager {
 
+        void Inject(IUIManager ui, IWorldManager world);
         void GetBestBoard(string uid);
-        Task Register(string username);
-        Task Login(string uid);
+        Task PostRegister(string username);
+        Task PostLogin(string uid);
 
     }
 

@@ -10,6 +10,9 @@ namespace DoodleWorldNS {
 
     public class InGameMenuWindow : MonoBehaviour {
 
+        [NonSerialized]
+        IUIManager ui;
+
         // 按钮
         // ---- Victory ----
         [Header("Victory")]
@@ -74,6 +77,10 @@ namespace DoodleWorldNS {
 
             });
 
+        }
+
+        public void Inject(IUIManager ui) {
+            this.ui = ui;
         }
 
         public void PopupPause(object sender, EventArgs args) {

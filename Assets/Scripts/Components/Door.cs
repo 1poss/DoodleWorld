@@ -52,7 +52,7 @@ namespace DoodleWorldNS {
 
                     AudioController.OnPlaySoundEvent(this, SoundType.EnterDoor);
 
-                    App.Instance.LoadLevel(nextLevelUid);
+                    App.Instance.world.LoadLevel(nextLevelUid);
                     
                 }
 

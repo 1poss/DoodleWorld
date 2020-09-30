@@ -8,6 +8,9 @@ namespace DoodleWorldNS {
 
     public class Player : MonoBehaviour {
 
+        [NonSerialized]
+        IWorldManager world;
+
         public Rigidbody2D rig;
         public FSMBase<Player> fsm;
         public ControlType allowControlType;
@@ -65,6 +68,10 @@ namespace DoodleWorldNS {
 
         }
 
+        public void Inject(IWorldManager world) {
+            this.world = world;
+        }
+
         public void InitValue() {
 
             lifeMax = 3;
@@ -120,15 +127,6 @@ namespace DoodleWorldNS {
 
             if (isPause) {
                 return;
-            }
-
-            // 相机跟随
-            Level currentLevel = App.Instance.currentLevel;
-
-            if (currentLevel != null) {
-
-                cam.FollowTargetLimited(false, transform.position, currentLevel.mapBorder.borderTilemap, currentLevel.mapBorder.bounds, ConfigCollection.cameraOffset);
-
             }
 
             fsm.Execute();

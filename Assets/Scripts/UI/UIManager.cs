@@ -10,7 +10,14 @@ namespace DoodleWorldNS {
 
     public sealed class UIManager : MonoBehaviour, IUIManager {
 
+        [NonSerialized]
+        IWorldManager world;
+        [NonSerialized]
         IWebManager web;
+
+        public UnityAd ad;
+
+        public GameData gameData;
 
         public TitlePanel titlePanel;
         public LifePanel lifePanel;
@@ -42,10 +49,21 @@ namespace DoodleWorldNS {
 
         }
 
+        public void Inject(IWorldManager world, IWebManager web) {
+
+            this.world = world;
+            this.web = web;
+
+            titlePanel.Inject(this);
+            lifePanel.Inject(this);
+            inGameMenuWindow.Inject(this);
+
+        }
+
         public void Init() {
 
             titlePanel.Init();
-            
+
         }
 
         void FixedUpdate() {
@@ -56,7 +74,7 @@ namespace DoodleWorldNS {
 
             }
 
-            timerTxt.text = string.Format("{0:f2}", App.Instance.passGameTime);
+            // timerTxt.text = string.Format("{0:f2}", App.Instance.passGameTime);
 
         }
 
@@ -68,7 +86,7 @@ namespace DoodleWorldNS {
 
         void RetryLevel(object sender, EventArgs args) {
 
-            App.Instance.LoadLevel(App.Instance.currentLevel.levelUid);
+           world.LoadLevel();
 
             inGameMenuWindow.Hide();
 
@@ -96,8 +114,7 @@ namespace DoodleWorldNS {
 
             AudioController.OnPlayBGMEvent(this, true);
 
-            App.Instance.LoadLevel(App.Instance.debugLevel);
-            App.Instance.StartTimer();
+            world.LoadLevel(App.Instance.debugLevel);
 
         }
 
@@ -105,8 +122,18 @@ namespace DoodleWorldNS {
 
             // 找存档
             // 如果有则读取, 并执行IWeb.Login(string uid)
+            gameData = new GameData(Application.dataPath, "data.db");
+            if (gameData.uid != "") {
 
-            // 如果无存档, 显示注册页
+                EnterTitle(gameData.username);
+
+            // 如果无存档, 显示注册窗
+            } else {
+
+                // 弹出输入名称的UI
+                UIController.OnPopUsernameInputFieldEvent(this, EventArgs.Empty);
+
+            }
 
         }
 

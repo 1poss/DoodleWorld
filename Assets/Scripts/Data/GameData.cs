@@ -14,6 +14,7 @@ namespace DoodleWorldNS {
 
         [NonSerialized]
         GameData lastData;
+        public string uid;
         public string username;
         public string currentLevel;
 
@@ -31,6 +32,7 @@ namespace DoodleWorldNS {
 
             if (gd == null) {
 
+                uid = "";
                 username = "";
                 currentLevel = "";
                 totalTime = 999999999;
@@ -41,6 +43,7 @@ namespace DoodleWorldNS {
 
             } else {
 
+                uid = gd.uid;
                 username = gd.username;
                 currentLevel = gd.currentLevel;
                 totalTime = gd.totalTime;
