@@ -17,9 +17,9 @@ namespace DoodleWorldNS {
         public Button showAdButton;
 
         public void Inject(IUIManager ui) {
+
             this.ui = ui;
-            startGameButton.onClick.AddListener(ui.EnterGame);
-            exitGameButton.onClick.AddListener(Application.Quit);
+
         }
 
         public void Init() {
@@ -27,6 +27,9 @@ namespace DoodleWorldNS {
             // showAdButton.onClick.AddListener(() => {
             //     ad.ShowRewardedVideo();
             // });
+
+            startGameButton.onClick.AddListener(ui.EnterGame);
+            exitGameButton.onClick.AddListener(Application.Quit);
 
         }
 

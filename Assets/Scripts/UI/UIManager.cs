@@ -22,6 +22,7 @@ namespace DoodleWorldNS {
         public TitlePanel titlePanel;
         public LifePanel lifePanel;
         public InGameMenuWindow inGameMenuWindow;
+        public InputNameWindow inputNameWindow;
 
         public Text timerTxt;
 
@@ -56,6 +57,7 @@ namespace DoodleWorldNS {
 
             titlePanel.Inject(this);
             lifePanel.Inject(this);
+            inputNameWindow.Inject(this, web);
             inGameMenuWindow.Inject(this);
 
         }
@@ -63,6 +65,9 @@ namespace DoodleWorldNS {
         public void Init() {
 
             titlePanel.Init();
+            inputNameWindow.Init();
+
+            EnterRegister();
 
         }
 
@@ -131,6 +136,8 @@ namespace DoodleWorldNS {
             } else {
 
                 // 弹出输入名称的UI
+                inputNameWindow.Show();
+                inputNameWindow.Reset();
                 UIController.OnPopUsernameInputFieldEvent(this, EventArgs.Empty);
 
             }
@@ -139,7 +146,7 @@ namespace DoodleWorldNS {
 
         public void RegisterFailed(string msg) {
 
-            print("Register Failed: " + msg);
+            inputNameWindow.RegisterFailed(msg);
 
         }
 
@@ -151,6 +158,9 @@ namespace DoodleWorldNS {
         }
 
         public void EnterTitle(string username) {
+
+            titlePanel.Show();
+            inputNameWindow.Hide();
             
         }
 

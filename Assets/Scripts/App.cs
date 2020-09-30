@@ -46,7 +46,7 @@ namespace DoodleWorldNS {
             world.Inject(ui, web);
 
             // 一切的开始在于 UI
-            ui.EnterRegister();
+            ui.Init();
 
             // 删除 Debug 用的组件
             if (debugMapEditor != null && debugMapEditor.activeSelf) {

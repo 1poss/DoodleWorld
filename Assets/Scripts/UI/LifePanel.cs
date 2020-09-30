@@ -23,7 +23,9 @@ namespace DoodleWorldNS {
         }
 
         public void Inject(IUIManager ui) {
+
             this.ui = ui;
+
         }
 
         public virtual void LoadLife(object sender, Player player) {

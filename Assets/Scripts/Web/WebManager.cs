@@ -23,10 +23,6 @@ namespace DoodleWorldNS {
 
         }
 
-        public void Init() {
-
-        }
-
         public void Inject(IUIManager ui, IWorldManager world) {
             this.ui = ui;
             this.world = world;
@@ -40,6 +36,8 @@ namespace DoodleWorldNS {
 
             string res = await http.PostAsync("/Register", new Dictionary<string, string>(){
                 {"username", username}
+            }, errCode => {
+                ui.RegisterFailed(errCode);
             });
 
             var any = JsonConvert.DeserializeAnonymousType(res, new {
