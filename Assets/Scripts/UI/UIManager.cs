@@ -29,7 +29,6 @@ namespace DoodleWorldNS {
         void Awake() {
 
             // 标题
-            UIController.StartGameEvent += StartGame;
 
             // 生命值
             UIController.LoadLifeEvent += lifePanel.LoadLife;
@@ -44,9 +43,6 @@ namespace DoodleWorldNS {
 
             // 菜单行为
             UIController.RetryEvent += RetryLevel;
-            UIController.BackToTitleEvent += BackToTitle;
-
-            BackToTitle(this, EventArgs.Empty);
 
         }
 
@@ -91,35 +87,9 @@ namespace DoodleWorldNS {
 
         void RetryLevel(object sender, EventArgs args) {
 
-           world.LoadLevel();
+            world.LoadLevel();
 
             inGameMenuWindow.Hide();
-
-        }
-
-        void BackToTitle(object sender, EventArgs args) {
-
-            titlePanel.Show();
-            inGameMenuWindow.Hide();
-
-            lifePanel.Hide();
-
-            timerTxt.Hide();
-
-            AudioController.OnPlayBGMEvent(this, false);
-
-        }
-
-        void StartGame(object sender, EventArgs args) {
-
-            titlePanel.Hide();
-            inGameMenuWindow.Hide();
-
-            timerTxt.Show();
-
-            AudioController.OnPlayBGMEvent(this, true);
-
-            world.LoadLevel(App.Instance.debugLevel);
 
         }
 
@@ -161,10 +131,25 @@ namespace DoodleWorldNS {
 
             titlePanel.Show();
             inputNameWindow.Hide();
+            inGameMenuWindow.Hide();
+            lifePanel.Hide();
+
+            timerTxt.Hide();
+
+            AudioController.OnPlayBGMEvent(this, false);
             
         }
 
         public void EnterGame() {
+
+            titlePanel.Hide();
+            inGameMenuWindow.Hide();
+
+            timerTxt.Show();
+
+            AudioController.OnPlayBGMEvent(this, true);
+
+            world.LoadLevel(App.Instance.debugLevel);
 
         }
 

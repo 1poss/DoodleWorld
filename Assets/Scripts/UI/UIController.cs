@@ -63,11 +63,6 @@ namespace DoodleWorldNS {
             RetryEvent?.Invoke(sender, args);
         }
 
-        public static event Action<object, EventArgs> BackToTitleEvent;
-        public static void OnBackToTitleEvent(object sender, EventArgs args) {
-            BackToTitleEvent?.Invoke(sender, args);
-        }
-
     }
 
     public class ReduceLifeEventArgs : EventArgs {
