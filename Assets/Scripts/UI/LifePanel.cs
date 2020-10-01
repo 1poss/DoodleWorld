@@ -45,8 +45,6 @@ namespace DoodleWorldNS {
 
         public virtual void ReduceLife(Player player, int reduceNumber) {
 
-            print("-" + reduceNumber);
-
             if (lifeList.Count < reduceNumber) {
 
                 Clear();

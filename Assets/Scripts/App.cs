@@ -18,6 +18,7 @@ namespace DoodleWorldNS {
         public WebManager web;
         public UIManager ui;
         public WorldManager world;
+        public DataManager data;
 
         // ---- DEBUG ----
         public GameObject debugMapEditor;
@@ -40,11 +41,13 @@ namespace DoodleWorldNS {
 
         void Start() {
 
-            web.Inject(ui, world);
+            web.Inject(ui, world, data);
             ui.Inject(world, web);
             world.Inject(ui, web);
+            data.Inject();
 
             // 一切的开始在于 UI
+            data.Init();
             ui.Init();
 
             // 删除 Debug 用的组件

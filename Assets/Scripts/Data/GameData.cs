@@ -12,16 +12,12 @@ namespace DoodleWorldNS {
         static string dirPath;
         static string filePath;
 
-        [NonSerialized]
-        GameData lastData;
         public string uid;
         public string username;
         public string currentLevel;
 
-        public float totalTime;
-        public float totalDeadTimes;
-        public Dictionary<string, float> levelBestTimeDic;
-        public Dictionary<string, int> levelDeadTimesDic;
+        public float currentTime;
+        public float currentDeadTimes;
 
         public GameData(string dirPath, string filePath) {
 
@@ -35,30 +31,40 @@ namespace DoodleWorldNS {
                 uid = "";
                 username = "";
                 currentLevel = "";
-                totalTime = 999999999;
-                totalDeadTimes = 0;
-                levelBestTimeDic = new Dictionary<string, float>();
-                levelDeadTimesDic = new Dictionary<string, int>();
-                lastData = null;
+                currentTime = 0;
+                currentDeadTimes = 0;
 
             } else {
 
                 uid = gd.uid;
                 username = gd.username;
                 currentLevel = gd.currentLevel;
-                totalTime = gd.totalTime;
-                totalDeadTimes = gd.totalDeadTimes;
-                levelBestTimeDic = gd.levelBestTimeDic;
-                levelDeadTimesDic = gd.levelDeadTimesDic;
-                lastData = gd;
+                currentTime = gd.currentTime;
+                currentDeadTimes = gd.currentDeadTimes;
 
             }
 
         }
 
+        public void Reset() {
+
+            currentLevel = App.Instance.world.GetStartLevel();
+            currentTime = 0;
+            currentDeadTimes = 0;
+
+        }
+
+        public void AddTime(float time) {
+            currentTime += time;
+        }
+
+        public void AddDeadTimes(int times) {
+            currentDeadTimes += times;
+        }
+
         GameData LoadWithSearching() {
 
-            string[] gdFiles = Directory.GetFiles(dirPath, "data.gd");
+            string[] gdFiles = Directory.GetFiles(dirPath, filePath);
 
             if (gdFiles.Length == 0) {
 

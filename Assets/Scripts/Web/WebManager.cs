@@ -10,10 +10,9 @@ namespace DoodleWorldNS {
 
     public class WebManager : MonoBehaviour, IWebManager {
 
-        [NonSerialized]
         IUIManager ui;
-        [NonSerialized]
         IWorldManager world;
+        IDataManager data;
 
         HttpHelper http;
 
@@ -23,9 +22,10 @@ namespace DoodleWorldNS {
 
         }
 
-        public void Inject(IUIManager ui, IWorldManager world) {
+        public void Inject(IUIManager ui, IWorldManager world, IDataManager data) {
             this.ui = ui;
             this.world = world;
+            this.data = data;
         }
 
         public void GetBestBoard(string uid) {
@@ -52,6 +52,7 @@ namespace DoodleWorldNS {
 
             } else {
 
+                data.NewId(any.uid, username);
                 ui.EnterTitle(username);
 
             }

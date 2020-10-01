@@ -29,6 +29,7 @@ namespace DoodleWorldNS {
             startGameButton.onClick.AddListener(() => {
                 ui.EnterGame(true);
             });
+            
             exitGameButton.onClick.AddListener(Application.Quit);
 
         }

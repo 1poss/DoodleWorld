@@ -10,14 +10,11 @@ namespace DoodleWorldNS {
 
     public sealed class UIManager : MonoBehaviour, IUIManager {
 
-        [NonSerialized]
         IWorldManager world;
-        [NonSerialized]
         IWebManager web;
+        IDataManager data;
 
         public UnityAd ad;
-
-        public GameData gameData;
 
         public TitlePanel titlePanel;
         public LifePanel lifePanel;
@@ -86,8 +83,8 @@ namespace DoodleWorldNS {
 
             // 找存档
             // 如果有则读取, 并执行IWeb.Login(string uid)
-            gameData = new GameData(Application.dataPath, "data.db");
-            if (gameData.uid != "") {
+            GameData gameData = data.GetData();
+            if (gameData.uid != "" && gameData.uid.Length >= 32) {
 
                 EnterTitle(gameData.username);
 
@@ -116,6 +113,8 @@ namespace DoodleWorldNS {
         }
 
         public void EnterTitle(string username) {
+
+            print("进入Title, 昵称是: " + username);
 
             titlePanel.Show();
             inputNameWindow.Hide();
