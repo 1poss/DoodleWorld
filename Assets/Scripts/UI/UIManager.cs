@@ -26,26 +26,6 @@ namespace DoodleWorldNS {
 
         public Text timerTxt;
 
-        void Awake() {
-
-            // 标题
-
-            // 生命值
-            UIController.LoadLifeEvent += lifePanel.LoadLife;
-            UIController.AddLifeEvent += lifePanel.AddLife;
-            UIController.ReduceLifeEvent += lifePanel.ReduceLife;
-
-            // 弹出菜单
-            UIController.PopupPauseEvent += inGameMenuWindow.PopupPause;
-            UIController.ReturnGameEvent += inGameMenuWindow.PopupPause;
-            UIController.PopupGameOverEvent += inGameMenuWindow.PopupGameOver;
-            UIController.PopupFinishedGameEvent += inGameMenuWindow.PopupFinishedGame;
-
-            // 菜单行为
-            UIController.RetryEvent += RetryLevel;
-
-        }
-
         public void Inject(IWorldManager world, IWebManager web) {
 
             this.world = world;
@@ -55,6 +35,7 @@ namespace DoodleWorldNS {
             lifePanel.Inject(this);
             inputNameWindow.Inject(this, web);
             inGameMenuWindow.Inject(this);
+            ad.Inject(this);
 
         }
 
@@ -62,6 +43,7 @@ namespace DoodleWorldNS {
 
             titlePanel.Init();
             inputNameWindow.Init();
+            inGameMenuWindow.Init();
 
             EnterRegister();
 
@@ -79,13 +61,20 @@ namespace DoodleWorldNS {
 
         }
 
-        void ReturnGame(object sender, EventArgs args) {
+        public void PauseGame() {
 
-            PlayerController.OnRestorePauseEvent(this, args);
+            inGameMenuWindow.PopupPause();
 
         }
 
-        void RetryLevel(object sender, EventArgs args) {
+        public void RestorePauseGame() {
+
+            inGameMenuWindow.PopupPause();
+            world.RestorePause();
+
+        }
+
+        public void RetryLevel() {
 
             world.LoadLevel();
 
@@ -108,7 +97,6 @@ namespace DoodleWorldNS {
                 // 弹出输入名称的UI
                 inputNameWindow.Show();
                 inputNameWindow.Reset();
-                UIController.OnPopUsernameInputFieldEvent(this, EventArgs.Empty);
 
             }
 
@@ -140,7 +128,7 @@ namespace DoodleWorldNS {
             
         }
 
-        public void EnterGame() {
+        public void EnterGame(bool isNewGame = false) {
 
             titlePanel.Hide();
             inGameMenuWindow.Hide();
@@ -149,7 +137,62 @@ namespace DoodleWorldNS {
 
             AudioController.OnPlayBGMEvent(this, true);
 
-            world.LoadLevel(App.Instance.debugLevel);
+            if (isNewGame) {
+
+                world.LoadLevel(world.GetNewGameLevel());
+
+            } else {
+
+                world.LoadLevel(world.GetStartLevel());
+
+            }
+
+        }
+
+        public void LoadLife(Player player) {
+
+            lifePanel.LoadLife(player);
+
+        }
+
+        public void AddLife(Player player, int number = 1) {
+
+            lifePanel.AddLife(player, number);
+
+        }
+
+        public void ReduceLife(Player player, int number = 1) {
+
+            lifePanel.ReduceLife(player, number);
+
+        }
+
+        public void GameOver() {
+
+            inGameMenuWindow.PopupGameOver();
+
+        }
+
+        public void FinishGame() {
+
+            inGameMenuWindow.PopupFinishedGame();
+
+        }
+
+        public void ShowAd() {
+
+            world.SetStartLevel(world.GetLevel().levelUid);
+            ad.ShowRewardedVideo();
+
+        }
+
+        public void AdFinished() {
+
+            EnterGame(false);
+
+        }
+
+        public void AdSkiped() {
 
         }
 

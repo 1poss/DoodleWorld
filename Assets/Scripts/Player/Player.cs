@@ -8,7 +8,7 @@ namespace DoodleWorldNS {
 
     public class Player : MonoBehaviour {
 
-        [NonSerialized]
+        IUIManager ui;
         IWorldManager world;
 
         public Rigidbody2D rig;
@@ -58,17 +58,12 @@ namespace DoodleWorldNS {
 
             InitValue();
 
-            PlayerController.DeadEvent += Dead;
-            PlayerController.EatHeartEvent += EatHeart;
-            PlayerController.EnterFSMStateEvent += EnterFSMState;
-            PlayerController.PauseEvent += Pause;
-            PlayerController.RestorePauseEvent += RestorePause;
-
             cam = Camera.main;
 
         }
 
-        public void Inject(IWorldManager world) {
+        public void Inject(IUIManager ui, IWorldManager world) {
+            this.ui = ui;
             this.world = world;
         }
 
@@ -112,8 +107,8 @@ namespace DoodleWorldNS {
 
                     if (escKey) {
 
-                        Pause(this, EventArgs.Empty);
-                        UIController.OnPopupPauseEvent(this, EventArgs.Empty);
+                        Pause();
+                        ui.PauseGame();
 
                     }
 
@@ -278,22 +273,22 @@ namespace DoodleWorldNS {
 
         }
 
-        public void EatHeart(object sender, EventArgs args) {
+        public void EatHeart() {
 
             life += 1;
             if (life >= lifeMax) {
                 life = lifeMax;
             }
 
-            UIController.OnAddLifeEvent(this, new AddLifeEventArgs(this, 1));
+            ui.AddLife(this, 1);
 
         }
 
-        public void Dead(object sender, EventArgs args) {
+        public void Dead() {
 
             life -= 1;
 
-            UIController.OnReduceLifeEvent(this, new ReduceLifeEventArgs(this, 1));
+            ui.ReduceLife(this, 1);
 
             ResetPhysics();
 
@@ -301,11 +296,11 @@ namespace DoodleWorldNS {
 
             if (life <= 0) {
 
-                UIController.OnPopupGameOverEvent(this, EventArgs.Empty);
+                ui.GameOver();
 
             } else {
 
-                LevelController.OnReloadLevelEvent(this, this);
+                world.Dead();
 
             }
 
@@ -313,7 +308,7 @@ namespace DoodleWorldNS {
 
         }
 
-        public void Pause(object sender, EventArgs args) {
+        public void Pause() {
 
             isPause = true;
             preVec = rig.velocity;
@@ -322,7 +317,7 @@ namespace DoodleWorldNS {
 
         }
 
-        public void RestorePause(object sender, EventArgs args) {
+        public void RestorePause() {
 
             isPause = false;
             rig.velocity = preVec;

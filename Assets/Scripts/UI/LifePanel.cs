@@ -28,7 +28,7 @@ namespace DoodleWorldNS {
 
         }
 
-        public virtual void LoadLife(object sender, Player player) {
+        public virtual void LoadLife(Player player) {
 
             this.Show();
 
@@ -43,10 +43,9 @@ namespace DoodleWorldNS {
 
         }
 
-        public virtual void ReduceLife(object sender, ReduceLifeEventArgs args) {
+        public virtual void ReduceLife(Player player, int reduceNumber) {
 
-            Player player = args.player;
-            int reduceNumber = args.reduceNumber;
+            print("-" + reduceNumber);
 
             if (lifeList.Count < reduceNumber) {
 
@@ -65,10 +64,7 @@ namespace DoodleWorldNS {
 
         }
 
-        public virtual void AddLife(object sender, AddLifeEventArgs args) {
-
-            Player player = args.player;
-            int addNumber = args.addNumber;
+        public virtual void AddLife(Player player, int addNumber) {
 
             if (lifeList.Count >= player.lifeMax) {
 

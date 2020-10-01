@@ -12,7 +12,8 @@ namespace DoodleWorldNS {
 
             if (other.gameObject.tag == TagCollection.PLAYER) {
 
-                PlayerController.OnDeadEvent(this, EventArgs.Empty);
+                Player p = other.gameObject.GetComponent<Player>();
+                p.Dead();
 
             }
 

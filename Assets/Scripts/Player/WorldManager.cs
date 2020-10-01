@@ -13,6 +13,9 @@ namespace DoodleWorldNS {
         [NonSerialized]
         IWebManager web;
 
+        public string newGameLevel;
+        string currentStartLevel;
+
         public Player playerPrefab;
         Player player;
         MapBorder map;
@@ -34,6 +37,14 @@ namespace DoodleWorldNS {
                 levelPrefabDic.Add(lv.levelUid, lv);
             }
 
+            if (player == null) {
+
+                player = Instantiate(playerPrefab);
+
+            }
+
+            
+
         }
 
         void Update() {
@@ -53,10 +64,22 @@ namespace DoodleWorldNS {
 
         }
 
+        public string GetNewGameLevel() => newGameLevel;
+        public string GetStartLevel() => currentStartLevel;
+        public void SetStartLevel(string levelId) => currentStartLevel = levelId;
+
         public void Inject(IUIManager ui, IWebManager web) {
 
             this.ui = ui;
             this.web = web;
+
+            player.Inject(ui, this);
+
+        }
+
+        public void Dead() {
+
+            currentLevel?.LoadLevel(player);
 
         }
 
@@ -69,12 +92,6 @@ namespace DoodleWorldNS {
         public void LoadLevel(string levelUid) {
 
             // 载入玩家
-            if (player == null) {
-
-                player = Instantiate(playerPrefab);
-
-            }
-
             player.ResetPhysics();
             player.InitValue();
 
@@ -87,10 +104,11 @@ namespace DoodleWorldNS {
 
             Level lvPrefab = levelPrefabDic.GetValue(levelUid);
             currentLevel = Instantiate(lvPrefab);
-            currentLevel.LoadLevel(this, player);
+            currentLevel.LoadLevel(player);
+            currentLevel.Inject(ui, this);
 
             // 加载UI
-            UIController.OnLoadLifeEvent(this, player);
+            ui.LoadLife(player);
 
             // 相机跟随
             cam = cam ?? Camera.main;
@@ -98,19 +116,18 @@ namespace DoodleWorldNS {
 
         }
 
-        public void SetPlayer(Player player) {
-            
-            this.player = player;
-
-        }
+        public void SetPlayer(Player player) => this.player = player;
+        public Level GetLevel() => currentLevel;
 
         public Player GetPlayer() => player;
 
-        public void SetMap(MapBorder map) {
+        public void RestorePause() {
 
-            this.map = map;
+            player.RestorePause();
 
         }
+
+        public void SetMap(MapBorder map) => this.map = map;
 
         public MapBorder GetMap() => map;
 

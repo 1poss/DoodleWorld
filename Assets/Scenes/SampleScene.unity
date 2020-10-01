@@ -1969,7 +1969,6 @@ MonoBehaviour:
   web: {fileID: 2028033778}
   ui: {fileID: 1138751366}
   world: {fileID: 1569140411}
-  debugLevel: C0L0A
   debugMapEditor: {fileID: 383207422}
 --- !u!4 &529107684
 Transform:
@@ -4449,6 +4448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cba81c32e43b604495c6d3d93538715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  newGameLevel: C0L0A
   playerPrefab: {fileID: 6454541474039416931, guid: 117c0b5b0f5defb4396483fb437e858b,
     type: 3}
   currentLevel: {fileID: 0}

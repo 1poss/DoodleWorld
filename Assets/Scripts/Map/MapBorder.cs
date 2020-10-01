@@ -23,7 +23,7 @@ namespace DoodleWorldNS {
             if (other.gameObject.tag == TagCollection.PLAYER) {
 
                 Player p = other.gameObject.GetComponent<Player>();
-                p.Dead(this, EventArgs.Empty);
+                p.Dead();
 
             } else if (other.gameObject.tag == TagCollection.BULLET) {
 

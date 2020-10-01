@@ -8,6 +8,9 @@ namespace DoodleWorldNS {
 
     public class Level : MonoBehaviour {
 
+        IUIManager ui;
+        IWorldManager world;
+
         public string levelTitle;
         public string levelUid;
         public Transform startPos;
@@ -17,28 +20,29 @@ namespace DoodleWorldNS {
 
         protected virtual void Awake() {
 
-            LevelController.ReloadLevelEvent += LoadLevel;
-
             defaultPos = startPos.position;
 
         }
 
-        public void LoadLevel(object sender, Player player) {
+        public void Inject(IUIManager ui, IWorldManager world) {
+            this.ui = ui;
+            this.world = world;
+        }
+
+        public void LoadLevel(Player player) {
 
             player.transform.position = defaultPos;
 
         }
 
-        public void FinishedGame() {
+        public void FinishedGame(Player player) {
 
-            UIController.OnPopupFinishedGameEvent(this, EventArgs.Empty);
-            PlayerController.OnPauseEvent(this, EventArgs.Empty);
+            ui.FinishGame();
+            player.Pause();
 
         }
 
         void OnDestroy() {
-
-            LevelController.ReloadLevelEvent -= LoadLevel;
 
         }
 

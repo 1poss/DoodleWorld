@@ -24,11 +24,11 @@ namespace DoodleWorldNS {
 
         public void Init() {
 
-            // showAdButton.onClick.AddListener(() => {
-            //     ad.ShowRewardedVideo();
-            // });
+            showAdButton.onClick.AddListener(ui.ShowAd);
 
-            startGameButton.onClick.AddListener(ui.EnterGame);
+            startGameButton.onClick.AddListener(() => {
+                ui.EnterGame(true);
+            });
             exitGameButton.onClick.AddListener(Application.Quit);
 
         }

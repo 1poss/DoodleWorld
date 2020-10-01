@@ -15,7 +15,21 @@ namespace DoodleWorldNS {
         void RegisterFailed(string msg);
         void LoginFailed(string msg);
         void EnterTitle(string username);
-        void EnterGame();
+        void EnterGame(bool isNewGame);
+
+        void LoadLife(Player player);
+        void AddLife(Player player, int number = 1);
+        void ReduceLife(Player player, int number = 1);
+
+        void PauseGame();
+        void RestorePauseGame();
+        void RetryLevel();
+        void GameOver();
+        void FinishGame();
+
+        void ShowAd();
+        void AdFinished();
+        void AdSkiped();
         
     }
 

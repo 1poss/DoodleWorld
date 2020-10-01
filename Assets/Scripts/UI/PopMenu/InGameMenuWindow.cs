@@ -35,11 +35,15 @@ namespace DoodleWorldNS {
         public Button continueButton; // 继续游戏
         public Button showDeadBoardInPauseButton; // 查看死亡次数榜
 
-        void Awake() {
+        public void Inject(IUIManager ui) {
+            this.ui = ui;
+        }
+
+        public void Init() {
 
             // ---- Victory ----
             newGameButton.onClick.AddListener(() => {
-                UIController.OnStartGameEvent(this, EventArgs.Empty);
+                ui.EnterGame(true);
             });
 
             showTimeBoardButton.onClick.AddListener(() => {
@@ -51,27 +55,20 @@ namespace DoodleWorldNS {
             });
 
             // ---- GameOver ----
-            showAdButton.onClick.AddListener(() => {
-                UIController.OnRetryEvent(this, EventArgs.Empty);
-            });
+            showAdButton.onClick.AddListener(ui.ShowAd);
 
             newGameInGameOverButton.onClick.AddListener(() => {
-                UIController.OnStartGameEvent(this, EventArgs.Empty);
+                ui.EnterGame(true);
             });
-
 
             showDeadBoardInGameOverButton.onClick.AddListener(() => {
                 
             });
 
             // ---- Pause ----
-            retryButton.onClick.AddListener(() => {
-                UIController.OnRetryEvent(this, EventArgs.Empty);
-            });
+            retryButton.onClick.AddListener(ui.RetryLevel);
 
-            continueButton.onClick.AddListener(() => {
-                UIController.OnReturnGameEvent(this, EventArgs.Empty);
-            });
+            continueButton.onClick.AddListener(ui.RestorePauseGame);
 
             showDeadBoardInPauseButton.onClick.AddListener(() => {
 
@@ -79,18 +76,12 @@ namespace DoodleWorldNS {
 
         }
 
-        public void Inject(IUIManager ui) {
-            this.ui = ui;
-        }
-
-        public void PopupPause(object sender, EventArgs args) {
-
-            print(gameObject.activeSelf);
+        public void PopupPause() {
 
             if (gameObject.activeSelf) {
 
                 this.Hide();
-                PlayerController.OnRestorePauseEvent(this, EventArgs.Empty);
+                ui.RestorePauseGame();
 
             } else {
 
@@ -104,7 +95,7 @@ namespace DoodleWorldNS {
 
         }
 
-        public void PopupGameOver(object sender, EventArgs args) {
+        public void PopupGameOver() {
 
             this.Show();
 
@@ -114,7 +105,7 @@ namespace DoodleWorldNS {
 
         }
 
-        public void PopupFinishedGame(object sender, EventArgs args) {
+        public void PopupFinishedGame() {
 
             this.Show();
             pauseBD.SetActive(false);

@@ -20,7 +20,6 @@ namespace DoodleWorldNS {
         public WorldManager world;
 
         // ---- DEBUG ----
-        public string debugLevel;
         public GameObject debugMapEditor;
 
         void Awake() {

@@ -12,8 +12,9 @@ namespace DoodleWorldNS {
             if (other.tag == TagCollection.PLAYER) {
 
                 AudioController.OnPlaySoundEvent(this, SoundType.Gather);
-                
-                PlayerController.OnEatHeartEvent(this, EventArgs.Empty);
+
+                Player p = other.gameObject.GetComponent<Player>();
+                p.EatHeart();
                 
                 Destroy(gameObject);
 
