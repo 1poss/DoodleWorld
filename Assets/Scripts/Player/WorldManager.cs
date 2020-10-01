@@ -8,13 +8,12 @@ namespace DoodleWorldNS {
 
     public class WorldManager : MonoBehaviour, IWorldManager {
 
-        [NonSerialized]
         IUIManager ui;
-        [NonSerialized]
         IWebManager web;
+        IAudioManager audioPlayer;
+        IDataManager data;
 
         public string newGameLevel;
-        string currentStartLevel;
 
         public Player playerPrefab;
         Player player;
@@ -65,15 +64,15 @@ namespace DoodleWorldNS {
         }
 
         public string GetNewGameLevel() => newGameLevel;
-        public string GetStartLevel() => currentStartLevel;
-        public void SetStartLevel(string levelId) => currentStartLevel = levelId;
 
-        public void Inject(IUIManager ui, IWebManager web) {
+        public void Inject(IUIManager ui, IWebManager web, IAudioManager audioPlayer, IDataManager data) {
 
             this.ui = ui;
             this.web = web;
+            this.audioPlayer = audioPlayer;
+            this.data = data;
 
-            player.Inject(ui, this);
+            player.Inject(ui, this, audioPlayer);
 
         }
 
@@ -106,6 +105,7 @@ namespace DoodleWorldNS {
             currentLevel = Instantiate(lvPrefab);
             currentLevel.LoadLevel(player);
             currentLevel.Inject(ui, this);
+            data.GetData().currentLevel = currentLevel.levelUid;
 
             // 加载UI
             ui.LoadLife(player);

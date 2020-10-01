@@ -8,11 +8,8 @@ namespace DoodleWorldNS {
 
     public interface IWorldManager {
 
-        void Inject(IUIManager ui, IWebManager web);
         void Dead();
         string GetNewGameLevel();
-        string GetStartLevel();
-        void SetStartLevel(string levelId);
         void LoadLevel();
         void LoadLevel(string levelId);
         void SetPlayer(Player player);

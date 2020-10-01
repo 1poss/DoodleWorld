@@ -10,7 +10,6 @@ namespace DoodleWorldNS {
 
     public interface IUIManager {
 
-        void Inject(IWorldManager world, IWebManager web);
         void EnterRegister();
         void RegisterFailed(string msg);
         void LoginFailed(string msg);

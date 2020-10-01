@@ -19,6 +19,7 @@ namespace DoodleWorldNS {
         public UIManager ui;
         public WorldManager world;
         public DataManager data;
+        public AudioManager audioPlayer;
 
         // ---- DEBUG ----
         public GameObject debugMapEditor;
@@ -42,9 +43,9 @@ namespace DoodleWorldNS {
         void Start() {
 
             web.Inject(ui, world, data);
-            ui.Inject(world, web);
-            world.Inject(ui, web);
-            data.Inject();
+            ui.Inject(world, web, data);
+            world.Inject(ui, web, audioPlayer, data);
+            data.Inject(web);
 
             // 一切的开始在于 UI
             data.Init();

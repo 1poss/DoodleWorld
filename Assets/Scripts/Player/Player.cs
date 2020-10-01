@@ -10,6 +10,7 @@ namespace DoodleWorldNS {
 
         IUIManager ui;
         IWorldManager world;
+        IAudioManager audioPlayer;
 
         public Rigidbody2D rig;
         public FSMBase<Player> fsm;
@@ -62,9 +63,10 @@ namespace DoodleWorldNS {
 
         }
 
-        public void Inject(IUIManager ui, IWorldManager world) {
+        public void Inject(IUIManager ui, IWorldManager world, IAudioManager audioPlayer) {
             this.ui = ui;
             this.world = world;
+            this.audioPlayer = audioPlayer;
         }
 
         public void InitValue() {

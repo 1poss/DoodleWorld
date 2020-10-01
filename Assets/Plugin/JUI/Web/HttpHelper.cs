@@ -74,7 +74,7 @@ namespace JackUtil {
                 } else {
 
                     HttpResponseMessage res = await t;
-                    r = res.Content.ReadAsStringAsync().Result;
+                    r = await res.Content.ReadAsStringAsync();
 
                 }
 

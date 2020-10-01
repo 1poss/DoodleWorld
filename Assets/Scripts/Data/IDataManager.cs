@@ -10,6 +10,7 @@ namespace DoodleWorldNS {
     public interface IDataManager {
 
         void NewId(string uid, string username);
+        void NewGame();
         void AddLevelTime(float time);
         void AddDeadTimes(int times);
 

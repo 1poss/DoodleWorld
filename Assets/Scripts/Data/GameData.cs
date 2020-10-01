@@ -17,7 +17,8 @@ namespace DoodleWorldNS {
         public string currentLevel;
 
         public float currentTime;
-        public float currentDeadTimes;
+        public int currentDeadTimes;
+        public int totalDeadTimes;
 
         public GameData(string dirPath, string filePath) {
 
@@ -33,6 +34,7 @@ namespace DoodleWorldNS {
                 currentLevel = "";
                 currentTime = 0;
                 currentDeadTimes = 0;
+                totalDeadTimes = 0;
 
             } else {
 
@@ -41,6 +43,7 @@ namespace DoodleWorldNS {
                 currentLevel = gd.currentLevel;
                 currentTime = gd.currentTime;
                 currentDeadTimes = gd.currentDeadTimes;
+                totalDeadTimes = gd.totalDeadTimes;
 
             }
 
@@ -48,7 +51,7 @@ namespace DoodleWorldNS {
 
         public void Reset() {
 
-            currentLevel = App.Instance.world.GetStartLevel();
+            currentLevel = App.Instance.world.GetNewGameLevel();
             currentTime = 0;
             currentDeadTimes = 0;
 
@@ -60,11 +63,12 @@ namespace DoodleWorldNS {
 
         public void AddDeadTimes(int times) {
             currentDeadTimes += times;
+            totalDeadTimes += times;
         }
 
         GameData LoadWithSearching() {
 
-            string[] gdFiles = Directory.GetFiles(dirPath, filePath);
+            string[] gdFiles = Directory.GetFiles(dirPath, filePath.Replace("/", ""));
 
             if (gdFiles.Length == 0) {
 

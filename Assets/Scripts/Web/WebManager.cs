@@ -61,13 +61,14 @@ namespace DoodleWorldNS {
 
         public async Task PostLogin(string uid) {
 
-            string res = await http.PostAsync("/Login", new Dictionary<string, string>(){
+            string res = await http.PostAsync("/Login", new Dictionary<string, string>() {
                 {"uid", uid}
             });
 
             var any = JsonConvert.DeserializeAnonymousType(res, new {
                 username = "",
                 status = false,
+                deadTimes = 0,
                 msg = ""
             });
 
@@ -77,7 +78,31 @@ namespace DoodleWorldNS {
 
             } else {
 
-                ui.EnterTitle(any.username);
+                data.GetData().totalDeadTimes = any.deadTimes;
+
+            }
+
+        }
+
+        public async Task PostFinalData() {
+
+            GameData gd = data.GetData();
+
+            string res = await http.PostAsync("/RecordFinal", new Dictionary<string, string>{
+                {"uid", gd.uid},
+                {"username", gd.username},
+                {"bestTime", gd.currentTime.ToString()},
+                {"deadTimes", gd.totalDeadTimes.ToString()}
+            });
+
+            var any = JsonConvert.DeserializeAnonymousType(res, new {
+                status = false,
+                msg = ""
+            });
+
+            if (any.status) {
+
+            } else {
 
             }
 

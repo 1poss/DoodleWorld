@@ -16,6 +16,7 @@ namespace DoodleWorldNS {
 
         public UnityAd ad;
 
+        public bool isGaming;
         public TitlePanel titlePanel;
         public LifePanel lifePanel;
         public InGameMenuWindow inGameMenuWindow;
@@ -23,10 +24,13 @@ namespace DoodleWorldNS {
 
         public Text timerTxt;
 
-        public void Inject(IWorldManager world, IWebManager web) {
+        public Text debugText;
+
+        public void Inject(IWorldManager world, IWebManager web, IDataManager data) {
 
             this.world = world;
             this.web = web;
+            this.data = data;
 
             titlePanel.Inject(this);
             lifePanel.Inject(this);
@@ -46,21 +50,32 @@ namespace DoodleWorldNS {
 
         }
 
-        void FixedUpdate() {
+        void Update() {
 
-            if (App.Instance == null) {
+            if (isGaming) {
 
-                return;
+                data.AddLevelTime(Time.deltaTime);
 
             }
 
-            // timerTxt.text = string.Format("{0:f2}", App.Instance.passGameTime);
+            if (data != null && data.GetData() != null) {
+
+                GameData gd =  data.GetData();
+
+                debugText.text = "uid: " + gd.uid
+                                + "\n\rusername: " + gd.username
+                                + "\n\rtime: " + gd.currentTime 
+                                + "\n\rcurrentDeadTime: " + gd.currentDeadTimes
+                                + "\n\rtotalDeadTimes: " + gd.totalDeadTimes;
+
+            }
 
         }
 
         public void PauseGame() {
 
             inGameMenuWindow.PopupPause();
+            isGaming = false;
 
         }
 
@@ -68,6 +83,7 @@ namespace DoodleWorldNS {
 
             inGameMenuWindow.PopupPause();
             world.RestorePause();
+            isGaming = true;
 
         }
 
@@ -76,6 +92,7 @@ namespace DoodleWorldNS {
             world.LoadLevel();
 
             inGameMenuWindow.Hide();
+            isGaming = true;
 
         }
 
@@ -97,6 +114,8 @@ namespace DoodleWorldNS {
 
             }
 
+            isGaming = false;
+
         }
 
         public void RegisterFailed(string msg) {
@@ -116,6 +135,9 @@ namespace DoodleWorldNS {
 
             print("进入Title, 昵称是: " + username);
 
+            // 进入标题时 读取用户数据(死亡次数)
+            web.PostLogin(data.GetData().uid);
+
             titlePanel.Show();
             inputNameWindow.Hide();
             inGameMenuWindow.Hide();
@@ -124,6 +146,7 @@ namespace DoodleWorldNS {
             timerTxt.Hide();
 
             AudioController.OnPlayBGMEvent(this, false);
+            isGaming = false;
             
         }
 
@@ -138,13 +161,16 @@ namespace DoodleWorldNS {
 
             if (isNewGame) {
 
+                data.NewGame();
                 world.LoadLevel(world.GetNewGameLevel());
 
             } else {
 
-                world.LoadLevel(world.GetStartLevel());
+                world.LoadLevel(data.GetData().currentLevel);
 
             }
+
+            isGaming = true;
 
         }
 
@@ -163,6 +189,7 @@ namespace DoodleWorldNS {
         public void ReduceLife(Player player, int number = 1) {
 
             lifePanel.ReduceLife(player, number);
+            data.AddDeadTimes(1);
 
         }
 
@@ -175,12 +202,14 @@ namespace DoodleWorldNS {
         public void FinishGame() {
 
             inGameMenuWindow.PopupFinishedGame();
+            isGaming = false;
+            data.GetData().SaveData();
+            web.PostFinalData();
 
         }
 
         public void ShowAd() {
 
-            world.SetStartLevel(world.GetLevel().levelUid);
             ad.ShowRewardedVideo();
 
         }

@@ -11,10 +11,10 @@ namespace DoodleWorldNS {
 
     public interface IWebManager {
 
-        void Inject(IUIManager ui, IWorldManager world, IDataManager data);
         void GetBestBoard(string uid);
         Task PostRegister(string username);
         Task PostLogin(string uid);
+        Task PostFinalData();
 
     }
 

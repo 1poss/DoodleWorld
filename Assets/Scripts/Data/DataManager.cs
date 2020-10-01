@@ -9,6 +9,8 @@ namespace DoodleWorldNS {
 
     public class DataManager : MonoBehaviour, IDataManager {
 
+        IWebManager web;
+
         GameData data;
 
         public void Init() {
@@ -17,8 +19,8 @@ namespace DoodleWorldNS {
 
         }
 
-        public void Inject() {
-
+        public void Inject(IWebManager web) {
+            this.web = web;
         }
 
         public void NewId(string uid, string username) {
@@ -32,7 +34,7 @@ namespace DoodleWorldNS {
         public void NewGame() {
 
             data.Reset();
-            
+
         }
 
         public void AddLevelTime(float time) {
@@ -48,6 +50,13 @@ namespace DoodleWorldNS {
         }
 
         public GameData GetData() => data;
+
+        void OnDestroy() {
+
+            data.SaveData();
+            print("退出前存档");
+            
+        }
 
     }
 }

@@ -16,7 +16,7 @@ namespace DoodleWorldNS {
 
     }
 
-    public class AudioPlayer : MonoBehaviour {
+    public class AudioManager : MonoBehaviour, IAudioManager {
 
         public AudioSource bgmPlayer;
         public AudioSource soundPlayer;
@@ -27,14 +27,7 @@ namespace DoodleWorldNS {
         public AudioClip gather;
         public AudioClip dead;
 
-        void Awake() {
-
-            AudioController.PlaySoundEvent += PlaySound;
-            AudioController.PlayBGMEvent += PlayBGM;
-
-        }
-
-        public void PlaySound(object sender, SoundType soundType) {
+        public void PlaySound(SoundType soundType) {
 
             if (soundPlayer.clip == enterDoor && soundPlayer.isPlaying && soundType == SoundType.PlatformBounce) {
                 return;
@@ -66,7 +59,7 @@ namespace DoodleWorldNS {
 
         }
 
-        public void PlayBGM(object sender, bool isPlay) {
+        public void PlayBGM(bool isPlay) {
 
             if (isPlay) {
 
