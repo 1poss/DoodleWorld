@@ -27,7 +27,7 @@ namespace JackUtil {
             if (!eventDic.ContainsKey(eventName)) {
 
                 eventDic.Add(eventName, cb);
-                DebugUtil.Log("注册: " + eventName);
+                // DebugUtil.Log("注册: " + eventName);
 
             } else {
 
@@ -37,22 +37,36 @@ namespace JackUtil {
 
         }
 
-        void TriggerEvent(string eventName, Packet p) {
+        async void TriggerEvent(string eventName, Packet p) {
 
-            if (eventDic.ContainsKey(eventName)) {
+            await Task.Run(() => {
 
-                // DebugUtil.Log("触发: " + eventName);
+                try {
 
-                eventDic.GetValue(eventName)?.Invoke(p);
+                    if (eventDic.ContainsKey(eventName)) {
 
-            } else {
+                        // DebugUtil.Log("触发: " + eventName);
 
-                DebugUtil.LogError("事件未注册: " + eventName);
+                        eventDic.GetValue(eventName)?.Invoke(p);
 
-            }
+                    } else {
+
+                        DebugUtil.LogError("事件未注册: " + eventName);
+
+                    }
+
+                } catch(Exception e) {
+
+                    DebugUtil.Log(e);
+
+                }
+
+            });
+
+            
         }
 
-        public void EmitEvent<T>(string eventName, T dataObj) {
+        public async void EmitEvent<T>(string eventName, T dataObj) {
 
             string o;
 
@@ -68,7 +82,7 @@ namespace JackUtil {
 
             Packet p = new Packet(eventName, o);
 
-            tcpHelper.SendDataAsync(p.ToString());
+            await tcpHelper.SendDataAsync(p.ToString());
 
         }
 
@@ -122,6 +136,7 @@ namespace JackUtil {
 
         public async void StartRecieving() {
 
+            await tcpHelper?.StartTcp();
             await tcpHelper?.StartRecieving();
 
         }

@@ -32,7 +32,7 @@ namespace DoodleWorldNS {
 
         }
 
-        public async Task PostRegister(string username) {
+        public async Task<bool> PostRegister(string username) {
 
             string res = await http.PostAsync("/Register", new Dictionary<string, string>(){
                 {"username", username}
@@ -46,14 +46,22 @@ namespace DoodleWorldNS {
                 msg = ""
             });
 
+            if (any == null) {
+
+                return false;
+                
+            }
+
             if (any.status == false) {
 
                 ui.RegisterFailed(any.msg);
+                return false;
 
             } else {
 
                 data.NewId(any.uid, username);
                 ui.EnterTitle(username);
+                return true;
 
             }
 

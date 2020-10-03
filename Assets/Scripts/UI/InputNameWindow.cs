@@ -26,9 +26,27 @@ namespace DoodleWorldNS {
 
         public void Init() {
 
-            yesButton.onClick.AddListener(() => {
+            yesButton.onClick.AddListener(async () => {
 
-                web.PostRegister(nameInputField.text);
+                string nname = nameInputField.text;
+
+                bool hasBlock = WordFilterUtil.IsBlockWord(nname);
+
+                if (!hasBlock) {
+
+                    bool isSucc = await web.PostRegister(nameInputField.text);
+
+                    if (!isSucc) {
+
+                        wrongText.text = "网络连接不佳";
+
+                    }
+
+                } else {
+
+                    wrongText.text = "名字包含非法关键词";
+
+                }
 
             });
 

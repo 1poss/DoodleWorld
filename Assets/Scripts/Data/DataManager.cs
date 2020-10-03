@@ -51,6 +51,13 @@ namespace DoodleWorldNS {
 
         public GameData GetData() => data;
 
+        [ContextMenu("DeleteData")]
+        public void DeleteData() {
+
+            data.DeleteData();
+
+        }
+
         void OnDestroy() {
 
             data.SaveData();

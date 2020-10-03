@@ -94,5 +94,11 @@ namespace DoodleWorldNS {
             
         }
 
+        public void DeleteData() {
+
+            File.Delete(dirPath + filePath);
+
+        }
+
     }
 }

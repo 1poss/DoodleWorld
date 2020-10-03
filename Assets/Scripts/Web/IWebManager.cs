@@ -12,7 +12,7 @@ namespace DoodleWorldNS {
     public interface IWebManager {
 
         void GetBestBoard(string uid);
-        Task PostRegister(string username);
+        Task<bool> PostRegister(string username);
         Task PostLogin(string uid);
         Task PostFinalData();
 

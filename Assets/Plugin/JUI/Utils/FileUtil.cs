@@ -75,7 +75,7 @@ namespace JackUtil {
             
         }
 
-        public static void DeleteFileInDir(string _dirPath) {
+        public static void DeleteAllFilesInDirUnsafe(string _dirPath) {
 
             string[] _files = Directory.GetFiles(_dirPath);
             for (int i = 0; i < _files.Length; i += 1) {

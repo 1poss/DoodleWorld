@@ -39,14 +39,17 @@ namespace JackUtil {
 
         }
 
-        public void SendDataAsync(string message) {
+        public async Task SendDataAsync(string message) {
 
             sendData = Encoding.UTF8.GetBytes(message);
-            stream.WriteAsync(sendData, 0, sendData.Length);
+            if (tcp == null || !tcp.Connected) {
+                await StartTcp();
+            }
+            await stream?.WriteAsync(sendData, 0, sendData.Length);
 
         }
 
-        public async Task StartRecieving() {
+        public async Task StartTcp() {
 
             await Task.Run(async () => {
 
@@ -55,14 +58,11 @@ namespace JackUtil {
                     try {
 
                         tcp = new TcpClient(url, port);
+                        await Task.Delay(2000);
 
                     } catch(Exception e) {
 
                         DebugUtil.Log(e);
-
-                    } finally {
-
-                        await Task.Delay(2000);
 
                     }
 
@@ -71,30 +71,48 @@ namespace JackUtil {
             });
 
             stream = tcp.GetStream();
-
             tokenSource = new CancellationTokenSource();
-
             token = tokenSource.Token;
+            
+        }
+
+        public async Task StartRecieving() {
+
+            if (tcp == null || !tcp.Connected) {
+                await StartTcp();
+            }
 
             Task t = new Task(async () => {
 
                 while(true) {
 
-                    if (token.IsCancellationRequested) {
+                    try {
 
-                        return;
+                        if (token.IsCancellationRequested) {
+
+                            return;
+
+                        }
+
+                        string resData = string.Empty;
+
+                        recieveData = new byte[maxDataLength];
+                        Int32 bytes = stream.Read(recieveData, 0, recieveData.Length);
+                        resData = Encoding.UTF8.GetString(recieveData, 0, bytes);
+                        stream.Flush();
+                        RecieveMsgEvent?.Invoke(resData);
+
+                        await Task.Delay(16);
+
+                    } catch (Exception e) {
+
+                        DebugUtil.Log(e);
+
+                        Abort();
+
+                        await Task.Delay(16);
 
                     }
-
-                    string resData = string.Empty;
-
-                    recieveData = new byte[maxDataLength];
-                    Int32 bytes = stream.Read(recieveData, 0, recieveData.Length);
-                    resData = Encoding.UTF8.GetString(recieveData, 0, bytes);
-                    stream.Flush();
-                    RecieveMsgEvent?.Invoke(resData);
-
-                    await Task.Delay(16);
 
                 }
 

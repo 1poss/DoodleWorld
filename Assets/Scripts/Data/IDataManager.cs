@@ -13,6 +13,7 @@ namespace DoodleWorldNS {
         void NewGame();
         void AddLevelTime(float time);
         void AddDeadTimes(int times);
+        void DeleteData();
 
         GameData GetData();
 

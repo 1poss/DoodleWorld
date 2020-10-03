@@ -58,6 +58,8 @@ namespace DoodleWorldNS {
 
             }
 
+            DebugUtil.Log(WordFilterUtil.IsBlockWord("了"));
+
         }
 
     }
