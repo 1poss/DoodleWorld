@@ -7,7 +7,7 @@ using JackUtil;
 
 namespace DoodleWorldNS {
 
-    public class UnityAd : MonoBehaviour, IUnityAdsListener {
+    public class AdManager : MonoBehaviour, IUnityAdsListener {
 
         UIManager ui;
 

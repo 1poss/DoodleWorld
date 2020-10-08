@@ -8,8 +8,16 @@ namespace DoodleWorldNS {
 
     public class BouncePlatform : MonoBehaviour {
 
+        AudioManager audioPlayer;
+
         public float bouncePower;
         public Collider2D col;
+
+        void Start() {
+
+            audioPlayer = App.Instance.audioPlayer;
+
+        }
 
         protected virtual void OnCollisionEnter2D(Collision2D other) {
 
@@ -23,7 +31,7 @@ namespace DoodleWorldNS {
 
                 }
 
-                AudioController.OnPlaySoundEvent(this, SoundType.PlatformBounce);
+                audioPlayer.PlaySound(SoundType.PlatformBounce);
 
             }
 

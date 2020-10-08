@@ -42,6 +42,7 @@ namespace DoodleWorldNS {
 
         void Start() {
 
+            // 初始化
             // 一切的开始在于 UI
             data.Init();
             ui.Init();

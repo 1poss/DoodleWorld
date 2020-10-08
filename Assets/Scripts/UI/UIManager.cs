@@ -13,8 +13,9 @@ namespace DoodleWorldNS {
         public WorldManager world;
         public WebManager web;
         public DataManager data;
+        public AudioManager audioPlayer;
 
-        public UnityAd ad;
+        public AdManager ad;
 
         public bool isGaming;
         public TitlePanel titlePanel;
@@ -128,7 +129,7 @@ namespace DoodleWorldNS {
 
             timerTxt.Hide();
 
-            AudioController.OnPlayBGMEvent(this, false);
+            audioPlayer.PlayBGM(false);
             isGaming = false;
             
         }
@@ -140,7 +141,7 @@ namespace DoodleWorldNS {
 
             timerTxt.Show();
 
-            AudioController.OnPlayBGMEvent(this, true);
+            audioPlayer.PlayBGM(true);
 
             if (isNewGame) {
 

@@ -16,7 +16,7 @@ namespace DoodleWorldNS {
 
     }
 
-    public class AudioManager : MonoBehaviour, IAudioManager {
+    public class AudioManager : MonoBehaviour {
 
         public AudioSource bgmPlayer;
         public AudioSource soundPlayer;

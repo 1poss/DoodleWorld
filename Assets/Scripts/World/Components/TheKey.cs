@@ -9,13 +9,21 @@ namespace DoodleWorldNS {
 
     public class TheKey : MonoBehaviour {
 
+        AudioManager audioPlayer;
+
         public UnityEvent eventAction;
+
+        void Start() {
+
+            audioPlayer = App.Instance.audioPlayer;
+            
+        }
 
         protected virtual void OnTriggerEnter2D(Collider2D other) {
 
             if (other.gameObject.tag == TagCollection.PLAYER) {
 
-                AudioController.OnPlaySoundEvent(this, SoundType.Gather);
+                audioPlayer.PlaySound(SoundType.Gather);
 
                 Destroy(gameObject);
 

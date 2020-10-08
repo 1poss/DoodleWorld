@@ -3566,6 +3566,7 @@ MonoBehaviour:
   world: {fileID: 1569140411}
   web: {fileID: 2028033778}
   data: {fileID: 944055555}
+  audioPlayer: {fileID: 1658596906}
   ad: {fileID: 222658530}
   isGaming: 0
   titlePanel: {fileID: 1988352994}

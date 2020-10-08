@@ -8,9 +8,9 @@ namespace DoodleWorldNS {
 
     public class Player : MonoBehaviour {
 
-        public UIManager ui;
-        public WorldManager world;
-        public AudioManager audioPlayer;
+        UIManager ui;
+        WorldManager world;
+        AudioManager audioPlayer;
 
         public Rigidbody2D rig;
         public FSMBase<Player> fsm;
@@ -93,7 +93,7 @@ namespace DoodleWorldNS {
             fallingSpeedMaxBase = 14f;
             fallingSpeedMax = fallingSpeedMaxBase;
 
-            EnterFSMState(this, FSMStateType.Idle);
+            EnterFSMState(FSMStateType.Idle);
             
         }
 
@@ -248,7 +248,7 @@ namespace DoodleWorldNS {
 
             maxHeight = 0;
             
-            EnterFSMState(typeof(Effect), FSMStateType.Idle);
+            EnterFSMState(FSMStateType.Idle);
 
         }
 
@@ -264,17 +264,17 @@ namespace DoodleWorldNS {
 
             maxHeight = 0;
 
-            AudioController.OnPlaySoundEvent(this, SoundType.TreeBounce);
+            audioPlayer.PlaySound(SoundType.TreeBounce);
 
             allowHorizental = false;
 
-            EnterFSMState(typeof(Effect), FSMStateType.Jump);
+            EnterFSMState(FSMStateType.Jump);
 
         }
         #endregion
 
         #region Exchanges
-        public void EnterFSMState(object sender, FSMStateType fsmStateType) {
+        public void EnterFSMState(FSMStateType fsmStateType) {
 
             fsm.EnterState((int)fsmStateType);
 
@@ -299,7 +299,7 @@ namespace DoodleWorldNS {
 
             ResetPhysics();
 
-            EnterFSMState(this, FSMStateType.Dead);
+            EnterFSMState(FSMStateType.Dead);
 
             if (life <= 0) {
 
@@ -311,7 +311,9 @@ namespace DoodleWorldNS {
 
             }
 
-            AudioController.OnPlaySoundEvent(this, SoundType.Dead);
+            audioPlayer.PlaySound(SoundType.Dead);
+
+            audioPlayer.PlaySound(SoundType.Dead);
 
         }
 

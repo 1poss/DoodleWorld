@@ -8,10 +8,14 @@ namespace DoodleWorldNS {
 
     public class Platform : MonoBehaviour {
 
+        AudioManager audioPlayer;
+
         Collider2D col;
         float bouncePower;
 
         void Start() {
+
+            audioPlayer = App.Instance.audioPlayer;
 
             col = GetComponent<Collider2D>();
             bouncePower = 9;
@@ -37,10 +41,10 @@ namespace DoodleWorldNS {
                 if (p.IsAboveTarget(transform.position, col)) {
 
                     p.PlatBounce(transform, col, bouncePower);
-                    
+
                 }
 
-                AudioController.OnPlaySoundEvent(this, SoundType.PlatformBounce);
+                audioPlayer.PlaySound(SoundType.PlatformBounce);
 
             }
 

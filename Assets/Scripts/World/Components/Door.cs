@@ -8,6 +8,8 @@ namespace DoodleWorldNS {
 
     public class Door : MonoBehaviour {
 
+        AudioManager audioPlayer;
+        
         public SpriteRenderer sr;
         public Sprite doorClose;
         public Sprite doorOpen;
@@ -25,6 +27,8 @@ namespace DoodleWorldNS {
                 CloseDoor();
 
             }
+
+            audioPlayer = App.Instance.audioPlayer;
 
         }
 
@@ -50,7 +54,7 @@ namespace DoodleWorldNS {
 
                 if (isOpen) {
 
-                    AudioController.OnPlaySoundEvent(this, SoundType.EnterDoor);
+                    audioPlayer.PlaySound(SoundType.EnterDoor);
 
                     App.Instance.world.LoadLevel(nextLevelUid);
                     
