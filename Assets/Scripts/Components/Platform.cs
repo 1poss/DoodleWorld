@@ -33,7 +33,12 @@ namespace DoodleWorldNS {
 
 
                 Player p = other.gameObject.GetComponent<Player>();
-                p.PlatBounce(transform, col, bouncePower);
+
+                if (p.IsAboveTarget(transform.position, col)) {
+
+                    p.PlatBounce(transform, col, bouncePower);
+                    
+                }
 
                 AudioController.OnPlaySoundEvent(this, SoundType.PlatformBounce);
 

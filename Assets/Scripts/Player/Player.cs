@@ -8,9 +8,9 @@ namespace DoodleWorldNS {
 
     public class Player : MonoBehaviour {
 
-        IUIManager ui;
-        IWorldManager world;
-        IAudioManager audioPlayer;
+        public UIManager ui;
+        public WorldManager world;
+        public AudioManager audioPlayer;
 
         public Rigidbody2D rig;
         public FSMBase<Player> fsm;
@@ -40,7 +40,11 @@ namespace DoodleWorldNS {
         bool isPause;
         #endregion
 
-        void Awake() {
+        void Start() {
+
+            ui = App.Instance.ui;
+            world = App.Instance.world;
+            audioPlayer = App.Instance.audioPlayer;
 
             leftTapArea = GameObject.FindGameObjectWithTag("LeftTapArea").GetComponent<TapTriggerListener>();
             rightTapArea = GameObject.FindGameObjectWithTag("RightTapArea").GetComponent<TapTriggerListener>();
@@ -61,12 +65,6 @@ namespace DoodleWorldNS {
 
             cam = Camera.main;
 
-        }
-
-        public void Inject(IUIManager ui, IWorldManager world, IAudioManager audioPlayer) {
-            this.ui = ui;
-            this.world = world;
-            this.audioPlayer = audioPlayer;
         }
 
         public void InitValue() {
@@ -223,22 +221,29 @@ namespace DoodleWorldNS {
 
         }
 
+        public bool IsAboveTarget(Vector2 target, Collider2D col) {
+
+            Vector2 startPos = target + col.offset;
+
+            if (foot.position.y < startPos.y) {
+
+                return false;
+ 
+            } else {
+
+                return true;
+
+            }
+        }
+
         public void PlatBounce(Transform here, Collider2D col, float force) {
 
             fallingSpeedMax = fallingSpeedMaxBase;
 
             Vector2 startPos = (Vector2)here.position + col.offset;
 
-            if (foot.position.y <= startPos.y) {
-
-                return;
-
-            }
-
             Vector2 dir = (Vector2)foot.position - startPos;
-
-            float heightOff = maxHeight - startPos.y;
-
+ 
             rig.velocity = new Vector2(0, force);
 
             maxHeight = 0;

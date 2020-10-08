@@ -42,11 +42,6 @@ namespace DoodleWorldNS {
 
         void Start() {
 
-            web.Inject(ui, world, data);
-            ui.Inject(world, web, data);
-            world.Inject(ui, web, audioPlayer, data);
-            data.Inject(web);
-
             // 一切的开始在于 UI
             data.Init();
             ui.Init();
@@ -57,8 +52,6 @@ namespace DoodleWorldNS {
                 Destroy(debugMapEditor);
 
             }
-
-            DebugUtil.Log(WordFilterUtil.IsBlockWord("了"));
 
         }
 

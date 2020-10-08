@@ -7,9 +7,9 @@ using JackUtil;
 
 namespace DoodleWorldNS {
 
-    public class DataManager : MonoBehaviour, IDataManager {
+    public class DataManager : MonoBehaviour {
 
-        IWebManager web;
+        public WebManager web;
 
         GameData data;
 
@@ -17,10 +17,6 @@ namespace DoodleWorldNS {
 
             data = new GameData(Application.dataPath, "/uid");
 
-        }
-
-        public void Inject(IWebManager web) {
-            this.web = web;
         }
 
         public void NewId(string uid, string username) {

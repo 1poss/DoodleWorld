@@ -8,11 +8,11 @@ using JackUtil;
 
 namespace DoodleWorldNS {
 
-    public sealed class UIManager : MonoBehaviour, IUIManager {
+    public sealed class UIManager : MonoBehaviour {
 
-        IWorldManager world;
-        IWebManager web;
-        IDataManager data;
+        public WorldManager world;
+        public WebManager web;
+        public DataManager data;
 
         public UnityAd ad;
 
@@ -25,20 +25,6 @@ namespace DoodleWorldNS {
         public Text timerTxt;
 
         public Text debugText;
-
-        public void Inject(IWorldManager world, IWebManager web, IDataManager data) {
-
-            this.world = world;
-            this.web = web;
-            this.data = data;
-
-            titlePanel.Inject(this);
-            lifePanel.Inject(this);
-            inputNameWindow.Inject(this, web);
-            inGameMenuWindow.Inject(this);
-            ad.Inject(this);
-
-        }
 
         public void Init() {
 
@@ -96,13 +82,14 @@ namespace DoodleWorldNS {
 
         }
 
-        public void EnterRegister() {
+        public async void EnterRegister() {
 
             // 找存档
             // 如果有则读取, 并执行IWeb.Login(string uid)
             GameData gameData = data.GetData();
             if (gameData.uid != "" && gameData.uid.Length >= 32) {
 
+                await web.PostLogin(gameData.uid);
                 EnterTitle(gameData.username);
 
             // 如果无存档, 显示注册窗
@@ -133,11 +120,7 @@ namespace DoodleWorldNS {
 
         public void EnterTitle(string username) {
 
-            print("进入Title, 昵称是: " + username);
-
             // 进入标题时 读取用户数据(死亡次数)
-            web.PostLogin(data.GetData().uid);
-
             titlePanel.Show();
             inputNameWindow.Hide();
             inGameMenuWindow.Hide();
@@ -199,12 +182,12 @@ namespace DoodleWorldNS {
 
         }
 
-        public void FinishGame() {
+        public async void FinishGame() {
 
             inGameMenuWindow.PopupFinishedGame();
             isGaming = false;
             data.GetData().SaveData();
-            web.PostFinalData();
+            await web.PostFinalData();
 
         }
 

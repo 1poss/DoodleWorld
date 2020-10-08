@@ -8,8 +8,8 @@ namespace DoodleWorldNS {
 
     public class Level : MonoBehaviour {
 
-        IUIManager ui;
-        IWorldManager world;
+        UIManager ui;
+        WorldManager world;
 
         public string levelTitle;
         public string levelUid;
@@ -24,7 +24,7 @@ namespace DoodleWorldNS {
 
         }
 
-        public void Inject(IUIManager ui, IWorldManager world) {
+        public void Inject(UIManager ui, WorldManager world) {
             this.ui = ui;
             this.world = world;
         }

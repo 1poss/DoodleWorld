@@ -9,20 +9,13 @@ namespace DoodleWorldNS {
 
     public class InputNameWindow : MonoBehaviour {
 
-        IWebManager web;
-        IUIManager ui;
+        public WebManager web;
+        public UIManager ui;
 
         public InputField nameInputField;
         public Text wrongText;
         public Button yesButton;
         public Button noButton;
-
-        public void Inject(IUIManager ui, IWebManager web) {
-
-            this.ui = ui;
-            this.web = web;
-
-        }
 
         public void Init() {
 
@@ -52,7 +45,7 @@ namespace DoodleWorldNS {
 
             noButton.onClick.AddListener(() => {
 
-                ui.EnterTitle("");
+                ui.EnterTitle("Guest");
 
             });
 

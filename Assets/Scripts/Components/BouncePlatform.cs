@@ -15,10 +15,13 @@ namespace DoodleWorldNS {
 
             if (other.gameObject.tag == TagCollection.PLAYER) {
 
-
                 Player p = other.gameObject.GetComponent<Player>();
-                print(p.rig.velocity.y);
-                p.PlatBounce(transform, col, bouncePower);
+
+                if (p.IsAboveTarget(transform.position, col)) {
+
+                    p.PlatBounce(transform, col, bouncePower);
+
+                }
 
                 AudioController.OnPlaySoundEvent(this, SoundType.PlatformBounce);
 

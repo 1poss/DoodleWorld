@@ -10,7 +10,6 @@ namespace DoodleWorldNS {
     public class SpikeBridge : MonoBehaviour {
 
         Vector2 defaultPos;
-        List<GameObject> centerList;
         GameObject left;
         public GameObject leftPrefab;
         GameObject right;
@@ -76,19 +75,19 @@ namespace DoodleWorldNS {
 
         }
         
-        void ClearList() {
+        // void ClearList() {
             
-            if (centerList == null) {
-                return;
-            }
+        //     if (centerList == null) {
+        //         return;
+        //     }
 
-            for(int i = centerList.Count - 1; i >= 0; i -= 1) {
-                GameObject go = centerList[i];
-                DestroyImmediate(go.gameObject);
-            }
+        //     for(int i = centerList.Count - 1; i >= 0; i -= 1) {
+        //         GameObject go = centerList[i];
+        //         DestroyImmediate(go.gameObject);
+        //     }
 
-            centerList.Clear();
-        }
+        //     centerList.Clear();
+        // }
 
     }
 }

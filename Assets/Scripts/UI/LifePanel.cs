@@ -9,8 +9,7 @@ namespace DoodleWorldNS {
 
     public class LifePanel : MonoBehaviour {
 
-        [NonSerialized]
-        IUIManager ui;
+        public UIManager ui;
 
         public GameObject bd;
         public Image lifeImgPrefab;
@@ -19,12 +18,6 @@ namespace DoodleWorldNS {
         protected virtual void Awake() {
 
             lifeList = new List<Image>();
-
-        }
-
-        public void Inject(IUIManager ui) {
-
-            this.ui = ui;
 
         }
 

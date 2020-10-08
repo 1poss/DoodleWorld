@@ -9,7 +9,7 @@ namespace DoodleWorldNS {
 
     public class UnityAd : MonoBehaviour, IUnityAdsListener {
 
-        IUIManager ui;
+        UIManager ui;
 
         string gameId = "3836325";
         string myPlacementId = "Dead";
@@ -22,7 +22,7 @@ namespace DoodleWorldNS {
 
         }
 
-        public void Inject(IUIManager ui) {
+        public void Inject(UIManager ui) {
             this.ui = ui;
         }
 

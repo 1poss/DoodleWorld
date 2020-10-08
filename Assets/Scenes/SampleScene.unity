@@ -249,6 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bab49dd6f37779244acf1fc198d73fb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ui: {fileID: 0}
   bd: {fileID: 19596111}
   lifeImgPrefab: {fileID: 5500522703608378472, guid: e073cf8a08b493040b15c25510866a06,
     type: 3}
@@ -1970,7 +1971,7 @@ MonoBehaviour:
   ui: {fileID: 1138751366}
   world: {fileID: 1569140411}
   data: {fileID: 944055555}
-  audioPlayer: {fileID: 0}
+  audioPlayer: {fileID: 1658596906}
   debugMapEditor: {fileID: 383207422}
 --- !u!4 &529107684
 Transform:
@@ -3057,6 +3058,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68ea828feb9833341afc3ab69d7820c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  web: {fileID: 2028033778}
 --- !u!1 &949877393
 GameObject:
   m_ObjectHideFlags: 0
@@ -3561,6 +3563,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e235849ca13879847958c5efeeff1c64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  world: {fileID: 1569140411}
+  web: {fileID: 2028033778}
+  data: {fileID: 944055555}
   ad: {fileID: 222658530}
   isGaming: 0
   titlePanel: {fileID: 1988352994}
@@ -4377,6 +4382,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f67dd3a5db690144b9cd60b9c92b7d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  web: {fileID: 2028033778}
+  ui: {fileID: 1138751366}
   nameInputField: {fileID: 1067619364}
   wrongText: {fileID: 156217521}
   yesButton: {fileID: 802184563}
@@ -4570,7 +4577,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cba81c32e43b604495c6d3d93538715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newGameLevel: C0L1A
+  ui: {fileID: 1138751366}
+  web: {fileID: 2028033778}
+  audioPlayer: {fileID: 1658596906}
+  data: {fileID: 944055555}
+  newGameLevel: C0L3A
   playerPrefab: {fileID: 6454541474039416931, guid: 117c0b5b0f5defb4396483fb437e858b,
     type: 3}
   currentLevel: {fileID: 0}
@@ -5356,6 +5367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef2b0cdd7e972445aceef965df0a49d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ui: {fileID: 1138751366}
   victoryBD: {fileID: 1506902143}
   newGameButton: {fileID: 622576451}
   showTimeBoardButton: {fileID: 793538033}
@@ -5578,6 +5590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2519d7362fcc83a49b563085bd6e4258, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ui: {fileID: 1138751366}
   startGameButton: {fileID: 230415040}
   exitGameButton: {fileID: 1235273581}
   showAdButton: {fileID: 1183233656}
@@ -5624,6 +5637,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2f03b422679c274699500124806a51a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ui: {fileID: 1138751366}
+  world: {fileID: 1569140411}
+  data: {fileID: 944055555}
 --- !u!1 &2082863084
 GameObject:
   m_ObjectHideFlags: 0

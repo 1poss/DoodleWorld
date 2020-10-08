@@ -8,11 +8,11 @@ using JackUtil;
 
 namespace DoodleWorldNS {
 
-    public class WebManager : MonoBehaviour, IWebManager {
+    public class WebManager : MonoBehaviour {
 
-        IUIManager ui;
-        IWorldManager world;
-        IDataManager data;
+        public UIManager ui;
+        public WorldManager world;
+        public DataManager data;
 
         HttpHelper http;
 
@@ -20,12 +20,6 @@ namespace DoodleWorldNS {
 
             http = new HttpHelper("http://127.0.0.1:9101");
 
-        }
-
-        public void Inject(IUIManager ui, IWorldManager world, IDataManager data) {
-            this.ui = ui;
-            this.world = world;
-            this.data = data;
         }
 
         public void GetBestBoard(string uid) {
@@ -60,6 +54,7 @@ namespace DoodleWorldNS {
             } else {
 
                 data.NewId(any.uid, username);
+                await PostLogin(any.uid);
                 ui.EnterTitle(username);
                 return true;
 
@@ -67,7 +62,7 @@ namespace DoodleWorldNS {
 
         }
 
-        public async Task PostLogin(string uid) {
+        public async Task<bool> PostLogin(string uid) {
 
             string res = await http.PostAsync("/Login", new Dictionary<string, string>() {
                 {"uid", uid}
@@ -80,13 +75,22 @@ namespace DoodleWorldNS {
                 msg = ""
             });
 
+            if (any == null) {
+
+                ui.LoginFailed("网络无法连接");
+                return false;
+
+            }
+
             if (any.status == false) {
 
                 ui.LoginFailed(any.msg);
+                return false;
 
             } else {
 
                 data.GetData().totalDeadTimes = any.deadTimes;
+                return true;
 
             }
 

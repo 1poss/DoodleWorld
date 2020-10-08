@@ -9,18 +9,11 @@ namespace DoodleWorldNS {
 
     public class TitlePanel : MonoBehaviour {
 
-        [NonSerialized]
-        IUIManager ui;
+        public UIManager ui;
 
         public Button startGameButton;
         public Button exitGameButton;
         public Button showAdButton;
-
-        public void Inject(IUIManager ui) {
-
-            this.ui = ui;
-
-        }
 
         public void Init() {
 

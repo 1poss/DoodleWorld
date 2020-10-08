@@ -10,8 +10,7 @@ namespace DoodleWorldNS {
 
     public class InGameMenuWindow : MonoBehaviour {
 
-        [NonSerialized]
-        IUIManager ui;
+        public UIManager ui;
 
         // 按钮
         // ---- Victory ----
@@ -34,10 +33,6 @@ namespace DoodleWorldNS {
         public Button retryButton; // 重玩本关
         public Button continueButton; // 继续游戏
         public Button showDeadBoardInPauseButton; // 查看死亡次数榜
-
-        public void Inject(IUIManager ui) {
-            this.ui = ui;
-        }
 
         public void Init() {
 

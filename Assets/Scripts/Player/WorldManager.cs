@@ -6,12 +6,12 @@ using JackUtil;
 
 namespace DoodleWorldNS {
 
-    public class WorldManager : MonoBehaviour, IWorldManager {
+    public class WorldManager : MonoBehaviour {
 
-        IUIManager ui;
-        IWebManager web;
-        IAudioManager audioPlayer;
-        IDataManager data;
+        public UIManager ui;
+        public WebManager web;
+        public AudioManager audioPlayer;
+        public DataManager data;
 
         public string newGameLevel;
 
@@ -42,8 +42,6 @@ namespace DoodleWorldNS {
 
             }
 
-            
-
         }
 
         void Update() {
@@ -64,17 +62,6 @@ namespace DoodleWorldNS {
         }
 
         public string GetNewGameLevel() => newGameLevel;
-
-        public void Inject(IUIManager ui, IWebManager web, IAudioManager audioPlayer, IDataManager data) {
-
-            this.ui = ui;
-            this.web = web;
-            this.audioPlayer = audioPlayer;
-            this.data = data;
-
-            player.Inject(ui, this, audioPlayer);
-
-        }
 
         public void Dead() {
 

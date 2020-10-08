@@ -48,7 +48,7 @@ MonoBehaviour:
   head: {fileID: 5476540022351222956}
   col: {fileID: 5476540022351222955}
   shooter: {fileID: 5476540021891329146}
-  shootSpeed: 3
+  shootSpeed: 2
 --- !u!1 &5476540021632647943
 GameObject:
   m_ObjectHideFlags: 0
