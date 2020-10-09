@@ -28,6 +28,8 @@ namespace DoodleWorldNS {
 
         public async Task<bool> PostRegister(string username) {
 
+            ui.WebConnecting("正在注册");
+
             string res = await http.PostAsync("/Register", new Dictionary<string, string>(){
                 {"username", username}
             }, errCode => {
@@ -40,8 +42,11 @@ namespace DoodleWorldNS {
                 msg = ""
             });
 
+            ui.WebConnectingOver();
+
             if (any == null) {
 
+                ui.RegisterFailed("无法连接服务器");
                 return false;
                 
             }
@@ -55,7 +60,7 @@ namespace DoodleWorldNS {
 
                 data.NewId(any.uid, username);
                 await PostLogin(any.uid);
-                ui.EnterTitle(username);
+                ui.EnterTitle();
                 return true;
 
             }
@@ -63,6 +68,8 @@ namespace DoodleWorldNS {
         }
 
         public async Task<bool> PostLogin(string uid) {
+
+            ui.WebConnecting("正在登录");
 
             string res = await http.PostAsync("/Login", new Dictionary<string, string>() {
                 {"uid", uid}
@@ -74,6 +81,8 @@ namespace DoodleWorldNS {
                 deadTimes = 0,
                 msg = ""
             });
+
+            ui.WebConnectingOver();
 
             if (any == null) {
 
@@ -90,6 +99,7 @@ namespace DoodleWorldNS {
             } else {
 
                 data.GetData().totalDeadTimes = any.deadTimes;
+                ui.LoginSuccess(any.username);
                 return true;
 
             }
@@ -97,6 +107,8 @@ namespace DoodleWorldNS {
         }
 
         public async Task PostFinalData() {
+
+            ui.WebConnecting("正在提交游戏数据");
 
             GameData gd = data.GetData();
 
@@ -107,10 +119,18 @@ namespace DoodleWorldNS {
                 {"deadTimes", gd.totalDeadTimes.ToString()}
             });
 
+            ui.WebConnectingOver();
+
             var any = JsonConvert.DeserializeAnonymousType(res, new {
                 status = false,
                 msg = ""
             });
+
+            if (any == null) {
+
+                return;
+
+            }
 
             if (any.status) {
 

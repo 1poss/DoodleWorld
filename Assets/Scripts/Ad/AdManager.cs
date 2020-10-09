@@ -9,7 +9,7 @@ namespace DoodleWorldNS {
 
     public class AdManager : MonoBehaviour, IUnityAdsListener {
 
-        UIManager ui;
+        public UIManager ui;
 
         string gameId = "3836325";
         string myPlacementId = "Dead";
@@ -20,10 +20,6 @@ namespace DoodleWorldNS {
             Advertisement.AddListener(this);
             Advertisement.Initialize(gameId, testMode);
 
-        }
-
-        public void Inject(UIManager ui) {
-            this.ui = ui;
         }
 
         public void ShowRewardedVideo() {
@@ -39,9 +35,11 @@ namespace DoodleWorldNS {
             // Define conditional logic for each ad completion status:
             if (showResult == ShowResult.Finished) {
                 // Reward the user for watching the ad to completion.
+                DebugUtil.Log("广告正常看完:" + placementId);
                 ui.AdFinished();
             } else if (showResult == ShowResult.Skipped) {
                 // Do not reward the user for skipping the ad.
+                DebugUtil.Log("广告跳过:" + placementId);
             } else if (showResult == ShowResult.Failed) {
                 Debug.LogWarning ("The ad did not finish due to an error.");
             }

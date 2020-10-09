@@ -22,6 +22,7 @@ namespace DoodleWorldNS {
         public LifePanel lifePanel;
         public InGameMenuWindow inGameMenuWindow;
         public InputNameWindow inputNameWindow;
+        NoticeWindow webConnectingWindow;
 
         public Text timerTxt;
 
@@ -91,7 +92,6 @@ namespace DoodleWorldNS {
             if (gameData.uid != "" && gameData.uid.Length >= 32) {
 
                 await web.PostLogin(gameData.uid);
-                EnterTitle(gameData.username);
 
             // 如果无存档, 显示注册窗
             } else {
@@ -119,7 +119,15 @@ namespace DoodleWorldNS {
 
         }
 
-        public void EnterTitle(string username) {
+        public void LoginSuccess(string username) {
+
+            print("登录成功: " + username);
+
+            EnterTitle();
+
+        }
+
+        public void EnterTitle() {
 
             // 进入标题时 读取用户数据(死亡次数)
             titlePanel.Show();
@@ -132,6 +140,25 @@ namespace DoodleWorldNS {
             audioPlayer.PlayBGM(false);
             isGaming = false;
             
+        }
+
+        public void WebConnecting(string msg) {
+
+            if (webConnectingWindow == null) {
+
+                webConnectingWindow = JUI.PopupNotice(JUI.Instance.uiCanvas);
+                
+            }
+
+            webConnectingWindow.SetNotice(msg);
+            webConnectingWindow.Show();
+
+        }
+
+        public void WebConnectingOver() {
+
+            webConnectingWindow?.Hide();
+
         }
 
         public void EnterGame(bool isNewGame = false) {
@@ -173,13 +200,15 @@ namespace DoodleWorldNS {
         public void ReduceLife(Player player, int number = 1) {
 
             lifePanel.ReduceLife(player, number);
-            data.AddDeadTimes(1);
+            data.AddDeadTimes(number);
 
         }
 
         public void GameOver() {
 
             inGameMenuWindow.PopupGameOver();
+
+            isGaming = false;
 
         }
 
@@ -195,6 +224,8 @@ namespace DoodleWorldNS {
         public void ShowAd() {
 
             ad.ShowRewardedVideo();
+
+            isGaming = false;
 
         }
 

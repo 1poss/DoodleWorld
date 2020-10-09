@@ -29,12 +29,6 @@ namespace DoodleWorldNS {
 
                     bool isSucc = await web.PostRegister(nameInputField.text);
 
-                    if (!isSucc) {
-
-                        wrongText.text = "网络连接不佳";
-
-                    }
-
                 } else {
 
                     wrongText.text = "名字包含非法关键词";
@@ -45,7 +39,7 @@ namespace DoodleWorldNS {
 
             noButton.onClick.AddListener(() => {
 
-                ui.EnterTitle("Guest");
+                ui.EnterTitle();
 
             });
 
