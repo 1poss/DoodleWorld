@@ -11,6 +11,7 @@ namespace DoodleWorldNS {
     public class InGameMenuWindow : MonoBehaviour {
 
         public UIManager ui;
+        public WebManager web;
 
         // 按钮
         // ---- Victory ----
@@ -41,11 +42,15 @@ namespace DoodleWorldNS {
                 ui.EnterGame(true);
             });
 
-            showTimeBoardButton.onClick.AddListener(() => {
+            showTimeBoardButton.onClick.AddListener(async () => {
+
+                await web.GetBestBoard();
 
             });
 
-            showDeadBoardButton.onClick.AddListener(() => {
+            showDeadBoardButton.onClick.AddListener(async () => {
+
+                await web.GetDeadBoard();
 
             });
 
@@ -56,8 +61,10 @@ namespace DoodleWorldNS {
                 ui.EnterGame(true);
             });
 
-            showDeadBoardInGameOverButton.onClick.AddListener(() => {
+            showDeadBoardInGameOverButton.onClick.AddListener(async () => {
                 
+                await web.GetDeadBoard();
+
             });
 
             // ---- Pause ----
@@ -65,7 +72,9 @@ namespace DoodleWorldNS {
 
             continueButton.onClick.AddListener(ui.RestorePauseGame);
 
-            showDeadBoardInPauseButton.onClick.AddListener(() => {
+            showDeadBoardInPauseButton.onClick.AddListener(async () => {
+
+                await web.GetDeadBoard();
 
             });
 

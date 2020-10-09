@@ -17,6 +17,7 @@ namespace DoodleWorldNS {
 
         public Button bestTimeBtn;
         public Button deadTimesBtn;
+        public Button closeBtn;
 
         public BoardLine meLine;
         List<BoardLine> worldLineList;
@@ -35,25 +36,30 @@ namespace DoodleWorldNS {
                 await ReqDead();
             });
 
+            closeBtn.onClick.AddListener(this.Hide);
+
+            this.Hide();
+
         }
 
         public async Task ReqBest() {
 
-            deadTimesBtn.gameObject.GetComponent<Image>().color = Color.gray;
-            bestTimeBtn.gameObject.GetComponent<Image>().color = Color.white;
             await web.GetBestBoard();
 
         }
 
         public async Task ReqDead() {
-
-            deadTimesBtn.gameObject.GetComponent<Image>().color = Color.white;
-            bestTimeBtn.gameObject.GetComponent<Image>().color = Color.gray;
+            
             await web.GetDeadBoard();
 
         }
 
         public void SwitchToBest(BoardInfo boardInfo) {
+
+            this.Show();
+
+            deadTimesBtn.gameObject.GetComponent<Image>().color = Color.gray;
+            bestTimeBtn.gameObject.GetComponent<Image>().color = Color.white;
 
             CleanList();
 
@@ -78,6 +84,11 @@ namespace DoodleWorldNS {
         }
 
         public void SwitchToDead(BoardInfo boardInfo) {
+
+            this.Show();
+
+            deadTimesBtn.gameObject.GetComponent<Image>().color = Color.white;
+            bestTimeBtn.gameObject.GetComponent<Image>().color = Color.gray;
 
             CleanList();
 
