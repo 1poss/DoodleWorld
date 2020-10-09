@@ -22,7 +22,51 @@ namespace DoodleWorldNS {
 
         }
 
-        public void GetBestBoard(string uid) {
+        public async Task GetBestBoard() {
+
+            ui.WebConnecting("正在获取速通榜");
+
+            string res = await http.PostAsync("/GetBestBoard", new Dictionary<string, string>(){
+                { "uid", data.GetData().uid }
+            });
+
+            ui.WebConnectingOver();
+
+            BoardInfo info = JsonConvert.DeserializeObject<BoardInfo>(res);
+
+            if (info == null) {
+
+                print("无数据");
+
+                return;
+
+            }
+
+            ui.ShowBestBoard(info);
+
+        }
+
+        public async Task GetDeadBoard() {
+
+            ui.WebConnecting("正在获取英灵榜");
+
+            string res = await http.PostAsync("/GetDeadBoard", new Dictionary<string, string>(){
+                { "uid", data.GetData().uid }
+            });
+
+            ui.WebConnectingOver();
+
+            BoardInfo info = JsonConvert.DeserializeObject<BoardInfo>(res);
+
+            if (info == null) {
+
+                print("无数据");
+
+                return;
+
+            }
+
+            ui.ShowDeadBoard(info);
 
         }
 

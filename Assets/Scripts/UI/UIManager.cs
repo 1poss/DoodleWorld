@@ -22,6 +22,7 @@ namespace DoodleWorldNS {
         public LifePanel lifePanel;
         public InGameMenuWindow inGameMenuWindow;
         public InputNameWindow inputNameWindow;
+        public BoardWindow boardWindow;
         NoticeWindow webConnectingWindow;
 
         public Text timerTxt;
@@ -182,6 +183,18 @@ namespace DoodleWorldNS {
             }
 
             isGaming = true;
+
+        }
+
+        public void ShowBestBoard(BoardInfo boardInfo) {
+
+            boardWindow.SwitchToBest(boardInfo);
+
+        }
+
+        public void ShowDeadBoard(BoardInfo boardInfo) {
+
+            boardWindow.SwitchToDead(boardInfo);
 
         }
 

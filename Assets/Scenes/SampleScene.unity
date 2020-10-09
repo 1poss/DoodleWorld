@@ -3493,6 +3493,7 @@ GameObject:
   - component: {fileID: 818822733}
   - component: {fileID: 818822735}
   - component: {fileID: 818822734}
+  - component: {fileID: 818822736}
   m_Layer: 5
   m_Name: BoardWindow
   m_TagString: Untagged
@@ -3557,6 +3558,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 818822732}
   m_CullTransparentMesh: 0
+--- !u!114 &818822736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818822732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78c5b6f9e39208a40a058cb32ef8ea23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ui: {fileID: 1138751366}
+  web: {fileID: 2028033778}
+  viewPortBD: {fileID: 1125965178}
+  bestTimeBtn: {fileID: 353145724}
+  deadTimesBtn: {fileID: 1057099441}
 --- !u!1 &868465163
 GameObject:
   m_ObjectHideFlags: 0
@@ -4193,6 +4211,8 @@ MonoBehaviour:
   rainPrefab: {fileID: 2826243139141471202, guid: a73c84daec7126443a65361866634dce,
     type: 3}
   bulletPrefab: {fileID: 8605549431658280124, guid: 59e70673c0fd9dd42a9dba0e0175160e,
+    type: 3}
+  boardLinePrefab: {fileID: -2863810014456143533, guid: bb5ca8453437b9a4a89a0670412a46a4,
     type: 3}
 --- !u!1 &1037966904
 GameObject:
