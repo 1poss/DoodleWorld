@@ -7,12 +7,18 @@ namespace DoodleWorldNS {
 
         public int rank { get; private set; }
         public string username { get; private set; }
-        public string result { get; private set; }
+        public string bestTime { get; private set; }
+        public string deadTimes { get; private set; }
 
-        public UserRank(int rank, string username, string result) {
+        public UserRank(int rank, string username, string bestTime, string deadTimes) {
             this.rank = rank;
             this.username = username;
-            this.result = result;
+            this.bestTime = bestTime;
+            this.deadTimes = deadTimes;
+        }
+        
+        public void SetRank(int rank) {
+            this.rank = rank;
         }
     }
 }

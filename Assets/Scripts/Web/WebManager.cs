@@ -32,11 +32,13 @@ namespace DoodleWorldNS {
 
             ui.WebConnectingOver();
 
+            print(res);
+
             BoardInfo info = JsonConvert.DeserializeObject<BoardInfo>(res);
 
             if (info == null) {
 
-                print("无数据");
+                ui.Alert("无数据");
 
                 return;
 
@@ -60,7 +62,7 @@ namespace DoodleWorldNS {
 
             if (info == null) {
 
-                print("无数据");
+                ui.Alert("无数据");
 
                 return;
 

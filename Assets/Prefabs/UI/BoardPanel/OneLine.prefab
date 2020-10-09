@@ -396,6 +396,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1859dff0e64e16409b20cf068f85cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rankText: {fileID: 8082553492177528124}
+  nameText: {fileID: 8082553491146246790}
+  resultText: {fileID: 8082553491608514653}
+  avatarImg: {fileID: 8082553491067143888}
 --- !u!1 &8082553492177528126
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,7 +412,7 @@ GameObject:
   - component: {fileID: 8082553492177528125}
   - component: {fileID: 8082553492177528124}
   m_Layer: 5
-  m_Name: NumberText
+  m_Name: RankText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

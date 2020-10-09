@@ -567,7 +567,7 @@ GameObject:
   - component: {fileID: 148871481}
   - component: {fileID: 148871480}
   m_Layer: 5
-  m_Name: NumberText
+  m_Name: RankText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3575,6 +3575,7 @@ MonoBehaviour:
   viewPortBD: {fileID: 1125965178}
   bestTimeBtn: {fileID: 353145724}
   deadTimesBtn: {fileID: 1057099441}
+  meLine: {fileID: 1864213798}
 --- !u!1 &868465163
 GameObject:
   m_ObjectHideFlags: 0
@@ -4753,6 +4754,7 @@ MonoBehaviour:
   lifePanel: {fileID: 19596117}
   inGameMenuWindow: {fileID: 1876642951}
   inputNameWindow: {fileID: 1397996945}
+  boardWindow: {fileID: 818822736}
   timerTxt: {fileID: 720766029}
   debugText: {fileID: 868465165}
 --- !u!1 &1183233654
@@ -5005,7 +5007,7 @@ GameObject:
   - component: {fileID: 1193787551}
   - component: {fileID: 1193787550}
   m_Layer: 5
-  m_Name: CurrentTitle
+  m_Name: MeTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6794,8 +6796,9 @@ GameObject:
   - component: {fileID: 1864213795}
   - component: {fileID: 1864213797}
   - component: {fileID: 1864213796}
+  - component: {fileID: 1864213798}
   m_Layer: 5
-  m_Name: CurrentLine
+  m_Name: MeLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6861,6 +6864,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1864213794}
   m_CullTransparentMesh: 0
+--- !u!114 &1864213798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1864213794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1859dff0e64e16409b20cf068f85cbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rankText: {fileID: 148871480}
+  nameText: {fileID: 308008248}
+  resultText: {fileID: 1037966906}
+  avatarImg: {fileID: 1973289650}
 --- !u!1 &1867789538
 GameObject:
   m_ObjectHideFlags: 0

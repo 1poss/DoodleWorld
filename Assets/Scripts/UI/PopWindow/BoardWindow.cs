@@ -18,19 +18,38 @@ namespace DoodleWorldNS {
         public Button bestTimeBtn;
         public Button deadTimesBtn;
 
-        BoardLine currentLine;
+        public BoardLine meLine;
         List<BoardLine> worldLineList;
 
         void Start() {
 
             worldLineList = new List<BoardLine>();
 
+            bestTimeBtn.gameObject.GetComponent<Image>().color = Color.white;
+            deadTimesBtn.gameObject.GetComponent<Image>().color = Color.gray;
+
             bestTimeBtn.onClick.AddListener(async () => {
-                await web.GetBestBoard();
+                await ReqBest();
             });
             deadTimesBtn.onClick.AddListener(async () => {
-                await web.GetDeadBoard();
+                await ReqDead();
             });
+
+        }
+
+        public async Task ReqBest() {
+
+            deadTimesBtn.gameObject.GetComponent<Image>().color = Color.gray;
+            bestTimeBtn.gameObject.GetComponent<Image>().color = Color.white;
+            await web.GetBestBoard();
+
+        }
+
+        public async Task ReqDead() {
+
+            deadTimesBtn.gameObject.GetComponent<Image>().color = Color.white;
+            bestTimeBtn.gameObject.GetComponent<Image>().color = Color.gray;
+            await web.GetDeadBoard();
 
         }
 
@@ -38,11 +57,47 @@ namespace DoodleWorldNS {
 
             CleanList();
 
+            meLine.LoadBest(boardInfo.me, false);
+
+            if (boardInfo.bestList != null) {
+
+                for (int i = 0; i < boardInfo.bestList.Count; i += 1) {
+
+                    UserRank rank = boardInfo.bestList[i];
+
+                    BoardLine line = Instantiate(PrefabCollection.Instance.boardLinePrefab, viewPortBD.transform);
+
+                    line.LoadBest(rank, false);
+
+                    worldLineList.Add(line);
+
+                }
+
+            }
+
         }
 
         public void SwitchToDead(BoardInfo boardInfo) {
 
             CleanList();
+
+            meLine.LoadBest(boardInfo.me, true);
+
+            if (boardInfo.bestList != null) {
+
+                for (int i = 0; i < boardInfo.bestList.Count; i += 1) {
+
+                    UserRank rank = boardInfo.bestList[i];
+
+                    BoardLine line = Instantiate(PrefabCollection.Instance.boardLinePrefab, viewPortBD.transform);
+
+                    line.LoadBest(rank, true);
+
+                    worldLineList.Add(line);
+
+                }
+
+            }
 
         }
 

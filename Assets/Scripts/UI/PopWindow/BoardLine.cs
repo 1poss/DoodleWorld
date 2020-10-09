@@ -16,17 +16,28 @@ namespace DoodleWorldNS {
 
         public void LoadBest(UserRank userRank, bool isShowAvatar) {
 
-            rankText.text = userRank.rank.ToString();
-            nameText.text = userRank.username;
-            resultText.text = userRank.result;
-            
-            if (isShowAvatar) {
+            if (userRank == null) {
 
-                avatarImg.Show();
+                rankText.text = "";
+                nameText.text = "";
+                resultText.text = "";
+                avatarImg.Hide();
 
             } else {
 
-                avatarImg.Hide();
+                rankText.text = userRank.rank.ToString();
+                nameText.text = userRank.username;
+                resultText.text = userRank.bestTime == "" ? userRank.deadTimes : userRank.bestTime;
+                
+                if (isShowAvatar) {
+
+                    avatarImg.Show();
+
+                } else {
+
+                    avatarImg.Hide();
+
+                }
 
             }
 

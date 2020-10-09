@@ -162,6 +162,13 @@ namespace DoodleWorldNS {
 
         }
 
+        public void Alert(string msg) {
+
+            AlertWindow alert = JUI.PopupAlert(JUI.Instance.uiCanvas);
+            alert.AddContent(msg, null, Color.white);
+
+        }
+
         public void EnterGame(bool isNewGame = false) {
 
             titlePanel.Hide();
