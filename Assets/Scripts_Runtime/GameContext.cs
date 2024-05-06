@@ -4,6 +4,10 @@ namespace DoodleWorldNS {
 
     public class GameContext {
 
+        // ==== Entities ====
+        public GameEntity gameEntity;
+
+        // ==== Infrastructure ====
         public AssetsManager assets;
         public UIManager ui;
 

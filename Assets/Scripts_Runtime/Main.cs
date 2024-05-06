@@ -40,7 +40,14 @@ namespace DoodleWorldNS {
         }
 
         void Update() {
-
+            float dt = Time.deltaTime;
+            var game = ctx.gameEntity;
+            var status = game.fsmCom.status;
+            if (status == GameFSMStatus.Login) {
+                Business_Login.Tick(ctx, dt);
+            } else if (status == GameFSMStatus.Gaming) {
+                Business_Game.Tick(ctx, dt);
+            }
         }
 
         void OnApplicationQuit() {
@@ -67,6 +74,7 @@ namespace DoodleWorldNS {
         }
 
         void BindingEvents() {
+
             var uiEvents = ctx.ui.Events;
             uiEvents.Login_OnNewGameHandle = () => {
                 Business_Login.Exit(ctx);
@@ -76,6 +84,7 @@ namespace DoodleWorldNS {
             uiEvents.Login_OnExitHandle = () => {
                 Application.Quit();
             };
+
         }
 
     }
