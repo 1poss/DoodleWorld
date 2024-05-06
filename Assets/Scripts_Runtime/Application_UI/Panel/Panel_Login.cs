@@ -7,16 +7,16 @@ namespace DoodleWorldNS {
 
     public class Panel_Login : MonoBehaviour {
 
-        [SerializeField] Button startGameButton;
+        [SerializeField] Button newGameButton;
         [SerializeField] Button exitGameButton;
 
-        public Action OnStartHandle;
+        public Action OnNewGameHandle;
         public Action OnExitHandle;
 
         public void Ctor() {
 
-            startGameButton.onClick.AddListener(() => {
-                OnStartHandle.Invoke();
+            newGameButton.onClick.AddListener(() => {
+                OnNewGameHandle.Invoke();
             });
 
             exitGameButton.onClick.AddListener(() => {
@@ -30,7 +30,7 @@ namespace DoodleWorldNS {
         }
 
         void OnDestroy() {
-            startGameButton.onClick.RemoveAllListeners();
+            newGameButton.onClick.RemoveAllListeners();
             exitGameButton.onClick.RemoveAllListeners();
         }
 

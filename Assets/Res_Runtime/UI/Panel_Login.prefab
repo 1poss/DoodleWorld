@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 3067128307929691288}
   - component: {fileID: 7155470282522239536}
   m_Layer: 5
-  m_Name: StartButton
+  m_Name: NewGameButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -482,5 +482,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2519d7362fcc83a49b563085bd6e4258, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startGameButton: {fileID: 7155470282522239536}
+  newGameButton: {fileID: 7155470282522239536}
   exitGameButton: {fileID: 8047562689574837444}

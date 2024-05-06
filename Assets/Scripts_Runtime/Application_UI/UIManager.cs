@@ -10,6 +10,8 @@ namespace DoodleWorldNS {
 
         UIContext ctx;
 
+        public UIEvents Events => ctx.events;
+
         public UIManager() {
             ctx = new UIContext();
         }
@@ -18,21 +20,17 @@ namespace DoodleWorldNS {
             ctx.Inject(assets, canvasOverlay);
         }
 
-        public void Init() {
-
-        }
-
         #region Panel_Login
         public void P_Login_Open() {
             var panel = ctx.panel_Login;
             if (panel == null) {
                 panel = Open<Panel_Login>();
                 panel.Ctor();
-                panel.OnStartHandle = () => {
-                    Debug.Log("Start Game");
+                panel.OnNewGameHandle = () => {
+                    ctx.events.Login_OnNewGame();
                 };
                 panel.OnExitHandle = () => {
-                    Debug.Log("Exit Game");
+                    ctx.events.Login_OnExit();
                 };
                 ctx.panel_Login = panel;
             }

@@ -27,6 +27,9 @@ namespace DoodleWorldNS {
             // ==== Inject ====
             ctx.Inject(canvasOverlay);
 
+            // ==== Binding ====
+            BindingEvents();
+
             // ==== Init ====
             ctx.assets.Load();
             Application.targetFrameRate = 120;
@@ -57,6 +60,22 @@ namespace DoodleWorldNS {
 
             ctx.assets.Unload();
 
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#endif
+
+        }
+
+        void BindingEvents() {
+            var uiEvents = ctx.ui.Events;
+            uiEvents.Login_OnNewGameHandle = () => {
+                Business_Login.Exit(ctx);
+                Business_Game.NewGame(ctx);
+            };
+
+            uiEvents.Login_OnExitHandle = () => {
+                Application.Quit();
+            };
         }
 
     }
