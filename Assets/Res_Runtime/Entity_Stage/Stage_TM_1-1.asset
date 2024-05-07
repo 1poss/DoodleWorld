@@ -14,5 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chapter: 1
   level: 1
-  roleSpawners: []
-  propSpawners: []
+  roleSpawners:
+  - pos: {x: 2, y: 6}
+    rot: 0
+    typeID: 100
+  propSpawners:
+  - pos: {x: 2, y: 2}
+    rot: 0
+    typeID: 100

@@ -25,6 +25,8 @@ namespace DoodleWorldNS.Editor {
             var sr = GetComponent<SpriteRenderer>();
             if (sr.sprite != tm.bodySpr) {
                 sr.sprite = tm.bodySpr;
+                this.name = tm.name;
+                EditorUtility.SetDirty(this);
             }
         }
 
