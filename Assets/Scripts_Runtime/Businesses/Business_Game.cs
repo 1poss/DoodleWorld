@@ -1,12 +1,14 @@
 using UnityEngine;
+using DoodleWorldNS.Domains;
 
 namespace DoodleWorldNS.Businesses {
 
     public static class Business_Game {
 
         public static void NewGame(GameContext ctx) {
-            Debug.Log("New Game");
-            ctx.gameEntity.FSM_Enter_Gaming();
+            const int newGameChapter = 1;
+            const int newGameLevel = 1;
+            GameDomain.EnterStage(ctx, newGameChapter, newGameLevel);
         }
 
         public static void Tick(GameContext ctx, float dt) {

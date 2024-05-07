@@ -53,7 +53,7 @@ namespace DoodleWorldNS {
             }
 
             {
-                var op = Addressables.LoadAssetsAsync<RoleTM>("RoleTM", null);
+                var op = Addressables.LoadAssetsAsync<RoleTM>("TM_Role", null);
                 var list = op.WaitForCompletion();
                 for (int i = 0; i < list.Count; i++) {
                     var tm = list[i];
@@ -63,7 +63,7 @@ namespace DoodleWorldNS {
             }
 
             {
-                var op = Addressables.LoadAssetsAsync<PropTM>("PropTM", null);
+                var op = Addressables.LoadAssetsAsync<PropTM>("TM_Prop", null);
                 var list = op.WaitForCompletion();
                 for (int i = 0; i < list.Count; i++) {
                     var tm = list[i];
@@ -73,7 +73,7 @@ namespace DoodleWorldNS {
             }
 
             {
-                var op = Addressables.LoadAssetsAsync<StageTM>("StageTM", null);
+                var op = Addressables.LoadAssetsAsync<StageTM>("TM_Stage", null);
                 var list = op.WaitForCompletion();
                 for (int i = 0; i < list.Count; i++) {
                     var tm = list[i];
@@ -127,15 +127,15 @@ namespace DoodleWorldNS {
         #endregion Entity
 
         #region TM
-        public bool TM_TryGetRole(int typeID, out RoleTM tm) {
+        public bool Role_TryGet(int typeID, out RoleTM tm) {
             return roleTMs.TryGetValue(typeID, out tm);
         }
 
-        public bool TM_TryGetProp(int typeID, out PropTM tm) {
+        public bool Prop_TryGet(int typeID, out PropTM tm) {
             return propTMs.TryGetValue(typeID, out tm);
         }
 
-        public bool TM_TryGetStage(int chapter, int level, out StageTM tm) {
+        public bool Stage_TryGet(int chapter, int level, out StageTM tm) {
             ulong key = GetStageKey(chapter, level);
             return stageTMs.TryGetValue(key, out tm);
         }
