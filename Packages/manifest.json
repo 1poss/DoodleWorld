@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "com.codewriter.triinspector": "ssh://git@github.com/codewriter-packages/Tri-Inspector.git",
+    "com.gamearki.gamefunctions": "ssh://git@github.com/gamearki/gamefunctions.git?path=Assets",
     "com.unity.2d.animation": "9.0.4",
     "com.unity.2d.pixel-perfect": "5.0.3",
     "com.unity.2d.psdimporter": "8.0.2",

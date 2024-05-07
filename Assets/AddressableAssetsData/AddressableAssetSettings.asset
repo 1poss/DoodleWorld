@@ -47,6 +47,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8630bf4a88c96254ba74c0a464b90f89, type: 2}
   - {fileID: 11400000, guid: e7de88fd601fb8c43b896f70962e3140, type: 2}
   - {fileID: 11400000, guid: 3c7ae280f93d3f24a8b32a33256e47b1, type: 2}
+  - {fileID: 11400000, guid: 2a732d9d4afd5b34891d699a211fc286, type: 2}
+  - {fileID: 11400000, guid: 08576e070b48ed94cbb178c85f908bc2, type: 2}
+  - {fileID: 11400000, guid: cabb10f7aef04134584bf38aedef4096, type: 2}
+  - {fileID: 11400000, guid: 4e69b6a83b5286042977d3774d531d89, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -89,6 +93,10 @@ MonoBehaviour:
     m_LabelNames:
     - default
     - UI
+    - Entity
+    - TM_Stage
+    - TM_Role
+    - TM_Prop
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: cdca0cdb095867b4b9b64841d89b1fd9, type: 2}

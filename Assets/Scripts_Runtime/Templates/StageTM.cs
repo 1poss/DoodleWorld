@@ -10,8 +10,10 @@ namespace DoodleWorldNS {
         public int level;
 
         // Roles
+        public StageRoleSpawnerTM[] roleSpawners;
 
         // Props
+        public StagePropSpawnerTM[] propSpawners;
 
     }
 

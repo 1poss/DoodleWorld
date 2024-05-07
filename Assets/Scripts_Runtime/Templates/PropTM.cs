@@ -8,6 +8,8 @@ namespace DoodleWorldNS {
 
         public int typeID;
 
+        public GameObject modPrefab;
+
     }
 
 }

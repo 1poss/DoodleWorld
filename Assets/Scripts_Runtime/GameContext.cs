@@ -12,6 +12,7 @@ namespace DoodleWorldNS {
         public UIManager ui;
 
         public GameContext() {
+            gameEntity = new GameEntity();
             assets = new AssetsManager();
             ui = new UIManager();
         }

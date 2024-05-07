@@ -45,7 +45,7 @@ namespace DoodleWorldNS {
 
         T Open<T>() where T : MonoBehaviour {
             string name = typeof(T).Name;
-            bool has = ctx.assets.TryGetUIPrefab(name, out var prefab);
+            bool has = ctx.assets.UI_TryGet(name, out var prefab);
             if (!has) {
                 Debug.LogError($"UI prefab not found: {name}");
                 return null;

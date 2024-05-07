@@ -8,14 +8,40 @@ namespace DoodleWorldNS {
 
     public class AssetsManager {
 
+        Dictionary<string, GameObject> entityPrefabs;
+        AsyncOperationHandle entityOp;
+
         Dictionary<string, GameObject> uiPrefabs;
         AsyncOperationHandle uiOp;
 
+        Dictionary<int, RoleTM> roleTMs;
+        AsyncOperationHandle roleTMOp;
+
+        Dictionary<int, PropTM> propTMs;
+        AsyncOperationHandle propTMOp;
+
+        Dictionary<ulong, StageTM> stageTMs;
+        AsyncOperationHandle stageTMOp;
+
         public AssetsManager() {
+            entityPrefabs = new Dictionary<string, GameObject>();
             uiPrefabs = new Dictionary<string, GameObject>();
+
+            roleTMs = new Dictionary<int, RoleTM>();
+            propTMs = new Dictionary<int, PropTM>();
+            stageTMs = new Dictionary<ulong, StageTM>();
         }
 
         public void Load() {
+            {
+                var op = Addressables.LoadAssetsAsync<GameObject>("Entity", null);
+                var list = op.WaitForCompletion();
+                for (int i = 0; i < list.Count; i++) {
+                    var prefab = list[i];
+                    entityPrefabs.Add(prefab.name, prefab);
+                }
+                this.entityOp = op;
+            }
             {
                 var op = Addressables.LoadAssetsAsync<GameObject>("UI", null);
                 var list = op.WaitForCompletion();
@@ -25,17 +51,99 @@ namespace DoodleWorldNS {
                 }
                 this.uiOp = op;
             }
-        }
 
-        public void Unload() {
-            if (uiOp.IsValid()) {
-                Addressables.Release(uiOp);
+            {
+                var op = Addressables.LoadAssetsAsync<RoleTM>("RoleTM", null);
+                var list = op.WaitForCompletion();
+                for (int i = 0; i < list.Count; i++) {
+                    var tm = list[i];
+                    roleTMs.Add(tm.typeID, tm);
+                }
+                this.roleTMOp = op;
+            }
+
+            {
+                var op = Addressables.LoadAssetsAsync<PropTM>("PropTM", null);
+                var list = op.WaitForCompletion();
+                for (int i = 0; i < list.Count; i++) {
+                    var tm = list[i];
+                    propTMs.Add(tm.typeID, tm);
+                }
+                this.propTMOp = op;
+            }
+
+            {
+                var op = Addressables.LoadAssetsAsync<StageTM>("StageTM", null);
+                var list = op.WaitForCompletion();
+                for (int i = 0; i < list.Count; i++) {
+                    var tm = list[i];
+                    ulong key = GetStageKey(tm.chapter, tm.level);
+                    stageTMs.Add(key, tm);
+                }
+                this.stageTMOp = op;
             }
         }
 
-        public bool TryGetUIPrefab(string name, out GameObject prefab) {
+        public void Unload() {
+            if (entityOp.IsValid()) {
+                Addressables.Release(entityOp);
+            }
+            if (uiOp.IsValid()) {
+                Addressables.Release(uiOp);
+            }
+            if (roleTMOp.IsValid()) {
+                Addressables.Release(roleTMOp);
+            }
+            if (propTMOp.IsValid()) {
+                Addressables.Release(propTMOp);
+            }
+            if (stageTMOp.IsValid()) {
+                Addressables.Release(stageTMOp);
+            }
+        }
+
+        #region UI
+        public bool UI_TryGet(string name, out GameObject prefab) {
             return uiPrefabs.TryGetValue(name, out prefab);
         }
+        #endregion UI
+
+        #region Entity
+        public bool Entity_TryGetRole(out GameObject prefab) {
+            return TryGetEntityPrefab("RoleEntity", out prefab);
+        }
+
+        public bool Entity_TryGetProp(out GameObject prefab) {
+            return TryGetEntityPrefab("PropEntity", out prefab);
+        }
+
+        public bool Entity_TryGetStage(out GameObject prefab) {
+            return TryGetEntityPrefab("StageEntity", out prefab);
+        }
+
+        bool TryGetEntityPrefab(string name, out GameObject prefab) {
+            return entityPrefabs.TryGetValue(name, out prefab);
+        }
+        #endregion Entity
+
+        #region TM
+        public bool TM_TryGetRole(int typeID, out RoleTM tm) {
+            return roleTMs.TryGetValue(typeID, out tm);
+        }
+
+        public bool TM_TryGetProp(int typeID, out PropTM tm) {
+            return propTMs.TryGetValue(typeID, out tm);
+        }
+
+        public bool TM_TryGetStage(int chapter, int level, out StageTM tm) {
+            ulong key = GetStageKey(chapter, level);
+            return stageTMs.TryGetValue(key, out tm);
+        }
+
+        ulong GetStageKey(int chapter, int level) {
+            return ((ulong)chapter << 32) | (uint)level;
+        }
+        #endregion TM
 
     }
 
