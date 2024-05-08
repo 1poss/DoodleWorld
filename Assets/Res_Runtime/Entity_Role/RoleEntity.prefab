@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2416384083051272969}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 1319309465082036356}
   - component: {fileID: 5489820401556763649}
   - component: {fileID: 508246346530938630}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RoleEntity
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -142,7 +142,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
+  rb: {fileID: 1319309465082036356}
   sr: {fileID: 4543725559836580685}
+  moveSpeed: 0
+  fallingSpeed: 0
+  fallingSpeedMax: 0
 --- !u!1 &6124597067248245023
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,7 +157,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3284193116123803413}
   - component: {fileID: 4543725559836580685}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SR
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -26,6 +26,10 @@ namespace DoodleWorldNS.Domains {
             entity.Ctor(mod);
             entity.id = ctx.idService.propIDRecord++;
 
+            entity.isBounce = tm.isBounce;
+            entity.bounceDir = tm.bounceDir;
+            entity.bounceForce = tm.bounceForce;
+
             ctx.propRepository.Add(entity);
 
             return entity;

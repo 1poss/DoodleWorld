@@ -8,6 +8,10 @@ namespace DoodleWorldNS {
 
         public int typeID;
 
+        public float moveSpeed;
+        public float fallingSpeed;
+        public float fallingSpeedMax;
+
         public Sprite bodySpr;
 
     }

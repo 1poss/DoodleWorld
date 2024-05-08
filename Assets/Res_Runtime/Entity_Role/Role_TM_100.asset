@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: Role_TM_100
   m_EditorClassIdentifier: 
   typeID: 100
+  moveSpeed: 5
+  fallingSpeed: 14
+  fallingSpeedMax: 30
   bodySpr: {fileID: 21300000, guid: d2c8cebcce724da448ac3e4151777674, type: 3}

@@ -24,12 +24,36 @@ namespace DoodleWorldNS.Domains {
             entity.Ctor();
             entity.id = ctx.idService.roleIDRecord++;
 
+            entity.moveSpeed = tm.moveSpeed;
+            entity.fallingSpeed = tm.fallingSpeed;
+            entity.fallingSpeedMax = tm.fallingSpeedMax;
+
+            entity.OnCollisionEnterHandle = (me, other) => {
+                var otherGo = other.gameObject;
+                if (otherGo.layer == LayerConst.PROP) {
+                    var prop = otherGo.GetComponentInParent<PropEntity>();
+                    Coll_Enter_Role_Prop(ctx, me, prop);
+                }
+            };
+
             entity.SR_Set(tm.bodySpr);
+
+            entity.fsmCom.Normal_Enter();
 
             ctx.roleRepository.Add(entity);
 
             return entity;
 
+        }
+
+        static void Coll_Enter_Role_Prop(GameContext ctx, RoleEntity role, PropEntity prop) {
+            if (prop.isBounce) {
+                Vector2 bounceDir = prop.bounceDir;
+                if (bounceDir == Vector2.zero) {
+                    bounceDir = role.transform.position - prop.transform.position;
+                }
+                role.Bounce(bounceDir * prop.bounceForce);
+            }
         }
 
     }

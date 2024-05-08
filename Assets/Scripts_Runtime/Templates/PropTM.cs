@@ -8,6 +8,10 @@ namespace DoodleWorldNS {
 
         public int typeID;
 
+        public bool isBounce;
+        public Vector2 bounceDir; // if dir is zero, then target - self
+        public float bounceForce;
+
         public GameObject modPrefab;
 
     }
