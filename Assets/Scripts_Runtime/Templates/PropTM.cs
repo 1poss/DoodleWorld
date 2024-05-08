@@ -7,6 +7,7 @@ namespace DoodleWorldNS {
     public class PropTM : ScriptableObject {
 
         public int typeID;
+        public string propName;
 
         public bool isBounce;
         public Vector2 bounceDir; // if dir is zero, then target - self

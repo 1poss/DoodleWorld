@@ -14,28 +14,61 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chapter: 1
   level: 1
-  size: {x: 40, y: 22.5}
+  size: {x: 40, y: 16.875}
   roleSpawners:
-  - pos: {x: 2, y: 6}
+  - pos: {x: 3, y: 13}
     rot: 0
     typeID: 100
     allyStatus: 1
   propSpawners:
-  - pos: {x: 6, y: 2}
+  - pos: {x: 6, y: 10.25}
     rot: 0
-    typeID: 100
+    typeID: 110
+  - pos: {x: 14, y: 10.25}
+    rot: 0
+    typeID: 104
+  - pos: {x: 19, y: 10.25}
+    rot: 0
+    typeID: 104
+  - pos: {x: 24.5, y: 10.25}
+    rot: 0
+    typeID: 104
+  - pos: {x: 30, y: 9.25}
+    rot: 0
+    typeID: 104
+  - pos: {x: 34.5, y: 5}
+    rot: 0
+    typeID: 110
+  - pos: {x: 24, y: 4.5}
+    rot: 0
+    typeID: 110
+  - pos: {x: 0, y: 5}
+    rot: 0
+    typeID: 210
+  - pos: {x: 0, y: 15}
+    rot: 0
+    typeID: 210
+  - pos: {x: 0, y: 25}
+    rot: 0
+    typeID: 210
+  - pos: {x: 40, y: 5}
+    rot: 0
+    typeID: 210
+  - pos: {x: 40, y: 15}
+    rot: 0
+    typeID: 210
+  - pos: {x: 40, y: 25}
+    rot: 0
+    typeID: 210
   - pos: {x: 12, y: 2}
     rot: 0
-    typeID: 200
-  - pos: {x: 18, y: 2}
+    typeID: 300
+  - pos: {x: 38.25, y: 6}
     rot: 0
-    typeID: 100
-  - pos: {x: 0.5, y: 6}
+    typeID: 400
+  - pos: {x: 36, y: 8}
     rot: 0
-    typeID: 101
-  - pos: {x: 30, y: 2}
+    typeID: 401
+  - pos: {x: 39, y: 9.25}
     rot: 0
-    typeID: 100
-  - pos: {x: 39.5, y: 6}
-    rot: 0
-    typeID: 101
+    typeID: 400

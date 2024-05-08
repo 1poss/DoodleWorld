@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Prop_TM_200
   m_EditorClassIdentifier: 
   typeID: 200
+  propName: "\u5899x1"
   isBounce: 1
-  bounceDir: {x: 0, y: 0}
-  bounceForce: 7
-  modPrefab: {fileID: 5104937133131657857, guid: d45ed1e2fa8ac9f469980a58b7b0017e,
+  bounceDir: {x: 0, y: 1}
+  bounceForce: 5
+  modPrefab: {fileID: 5104937133131657857, guid: 8413958a346a0fc42949c8824fea4cf1,
     type: 3}

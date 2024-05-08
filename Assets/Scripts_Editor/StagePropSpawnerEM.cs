@@ -26,7 +26,7 @@ namespace DoodleWorldNS.Editor {
             if (mod == null) {
                 var go = GameObject.Instantiate(tm.modPrefab, transform);
                 go.name = "Mod";
-                this.name = tm.name;
+                this.name = tm.propName;
                 EditorUtility.SetDirty(this);
             }
         }
