@@ -34,6 +34,10 @@ namespace DoodleWorldNS {
             }
         }
 
+        public PropEntity GetDoor() {
+            return all.Values.FirstOrDefault(entity => entity.isDoor);
+        }
+
         public int TakeAll(out PropEntity[] entities) {
             if (all.Count > temp.Length) {
                 temp = new PropEntity[all.Count];

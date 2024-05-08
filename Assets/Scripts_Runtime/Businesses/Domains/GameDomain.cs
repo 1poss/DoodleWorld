@@ -4,6 +4,16 @@ namespace DoodleWorldNS.Domains {
 
     public static class GameDomain {
 
+        public static void TryEnterNextStage(GameContext ctx) {
+            bool hasNext = ctx.Stage_GetNext(out var nextChapter, out var nextLevel);
+            if (hasNext) {
+                CleanStage(ctx);
+                EnterStage(ctx, nextChapter, nextLevel);
+            } else {
+                Debug.Log("Finish Game");
+            }
+        }
+
         public static void EnterStage(GameContext ctx, int chapter, int level) {
 
             var game = ctx.gameEntity;

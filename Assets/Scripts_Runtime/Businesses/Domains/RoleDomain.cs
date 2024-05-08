@@ -84,6 +84,26 @@ namespace DoodleWorldNS.Domains {
 
         // ==== Trigger ====
         static void Trig_Enter_Role_I_Prop(GameContext ctx, RoleEntity role, PropEntity prop) {
+            Role_I_Prop_Key(ctx, role, prop);
+            Role_I_Prop_Door(ctx, role, prop);
+        }
+
+        static void Role_I_Prop_Key(GameContext ctx, RoleEntity role, PropEntity prop) {
+            if (!prop.isKey) {
+                return;
+            }
+            // 找到门, 打开
+            var door = ctx.propRepository.GetDoor();
+            door.Door_Open();
+
+            prop.TearDown();
+        }
+
+        static void Role_I_Prop_Door(GameContext ctx, RoleEntity role, PropEntity prop) {
+            if (role.allyStatus == AllyStatus.Player && prop.isDoor && prop.isDoorOpen) {
+                // 进入下一关
+                GameDomain.TryEnterNextStage(ctx);
+            }
         }
 
     }

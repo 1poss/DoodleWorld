@@ -44,6 +44,11 @@ namespace DoodleWorldNS {
             return role;
         }
 
+        public bool Stage_GetNext(out int chapter, out int level) {
+            var stage = stageRepository.GetCurrent();
+            return assets.Stage_GetNext(stage.chapter, stage.level, out chapter, out level);
+        }
+
     }
 
 }

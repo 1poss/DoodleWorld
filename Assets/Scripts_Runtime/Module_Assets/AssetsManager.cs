@@ -140,6 +140,23 @@ namespace DoodleWorldNS {
             return stageTMs.TryGetValue(key, out tm);
         }
 
+        public bool Stage_GetNext(int curChapter, int curLevel, out int nextChapter, out int nextLevel) {
+            nextChapter = curChapter;
+            nextLevel = curLevel + 1;
+            ulong key = GetStageKey(nextChapter, nextLevel);
+            if (!stageTMs.ContainsKey(key)) {
+                nextChapter = curChapter + 1;
+                nextLevel = 1;
+                if (!stageTMs.ContainsKey(GetStageKey(nextChapter, nextLevel))) {
+                    return false;
+                } else {
+                    return true;
+                }
+            } else {
+                return true;
+            }
+        }
+
         ulong GetStageKey(int chapter, int level) {
             return ((ulong)chapter << 32) | (uint)level;
         }
