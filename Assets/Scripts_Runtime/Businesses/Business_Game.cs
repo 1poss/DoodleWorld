@@ -65,7 +65,9 @@ namespace DoodleWorldNS.Businesses {
         // ==== Events ====
         public static void OnUIMove(GameContext ctx, float moveAxis) {
             var input = ctx.input;
-            input.moveAxis = moveAxis;
+            if (moveAxis != 0) {
+                input.moveAxis = moveAxis;
+            }
         }
 
     }
