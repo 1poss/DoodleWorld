@@ -35,7 +35,6 @@ namespace DoodleWorldNS.Controllers {
                 fsm.bounce_isEntering = false;
             }
 
-            role.Loco_Move();
             role.Loco_Falling(fixdt);
 
             fsm.bounce_maintainTimer -= fixdt;

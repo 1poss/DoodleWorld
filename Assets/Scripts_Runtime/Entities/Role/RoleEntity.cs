@@ -60,7 +60,6 @@ namespace DoodleWorldNS {
             rb.velocity = velo;
 
             rb.AddForce(jumpForce, ForceMode2D.Impulse);
-            fsmCom.Bounce_Enter(0.5f);
 
         }
 

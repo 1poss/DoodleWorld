@@ -52,6 +52,7 @@ namespace DoodleWorldNS.Domains {
                 if (bounceDir == Vector2.zero) {
                     bounceDir = role.transform.position - prop.transform.position;
                 }
+                bounceDir.Normalize();
                 role.Bounce(bounceDir * prop.bounceForce);
             }
         }
