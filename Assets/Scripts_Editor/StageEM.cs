@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEditor;
-using TriInspector;
+using GameFunctions;
 
 namespace DoodleWorldNS.Editor {
 
@@ -12,8 +12,8 @@ namespace DoodleWorldNS.Editor {
 
         [SerializeField] Vector2 size;
 
-        [Button]
-        void Save() {
+        [GFButton("Save")]
+        public void Save() {
             {
                 tm.size = size;
             }

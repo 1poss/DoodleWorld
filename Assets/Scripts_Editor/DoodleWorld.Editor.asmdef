@@ -2,8 +2,8 @@
     "name": "DoodleWorld.Editor",
     "rootNamespace": "",
     "references": [
-        "GUID:2bdd450ad0ba2934a88c19323ea67a99",
-        "GUID:324caed91501a9c47a04ebfd87b68794"
+        "GUID:901bca7226512a04bb918d5fe752d06c",
+        "GUID:2bdd450ad0ba2934a88c19323ea67a99"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

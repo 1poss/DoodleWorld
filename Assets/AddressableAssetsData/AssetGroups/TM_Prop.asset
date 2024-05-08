@@ -1,5 +1,5 @@
 %YAML 1.1
-%TAG !u! tag:unity3d.com,2011:
+%TAG !u! tag:yousandi.cn,2023:
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19,6 +19,12 @@ MonoBehaviour:
   m_SerializeEntries:
   - m_GUID: 88d092f5c5ce13544b0bacde6dd20618
     m_Address: Prop_TM_100
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - TM_Prop
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8a0cf01c21978194296d394c7f217011
+    m_Address: Prop_TM_200
     m_ReadOnly: 0
     m_SerializedLabels:
     - TM_Prop

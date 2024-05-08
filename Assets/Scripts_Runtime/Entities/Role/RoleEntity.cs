@@ -10,7 +10,8 @@ namespace DoodleWorldNS {
         [SerializeField] Rigidbody2D rb;
         [SerializeField] SpriteRenderer sr;
 
-        public float moveSpeed;
+        public float moveAccelerateSpeed;
+        public float moveSpeedMax;
         public float fallingSpeed;
         public float fallingSpeedMax;
 
@@ -29,19 +30,26 @@ namespace DoodleWorldNS {
         }
 
         public void Loco_Move() {
-            float x = inputCom.moveAxis * moveSpeed;
+            float x = inputCom.moveAxis * moveAccelerateSpeed;
             Vector2 velo = rb.velocity;
             velo.x = x;
             rb.velocity = velo;
         }
 
-        public void Loco_MoveByInertia(float fixdt) {
-            Vector2 velo = rb.velocity;
-            float x = velo.x;
-            if (Math.Sign(x) != Math.Sign(inputCom.moveAxis)) {
-                x -= moveSpeed * fixdt * 2;
+        public void Loco_MoveMustInput(float fixdt) {
+            if (inputCom.moveAxis == 0) {
+                return;
             }
-            rb.velocity = new Vector2(x, velo.y);
+            float accelerateSpeed = moveAccelerateSpeed;
+            Vector2 velo = rb.velocity;
+            if (Mathf.Sign(velo.x) != Mathf.Sign(inputCom.moveAxis)) {
+                accelerateSpeed *= 2;
+            }
+            velo.x += inputCom.moveAxis * accelerateSpeed * fixdt;
+            velo.x = Mathf.Clamp(velo.x, -moveSpeedMax, moveSpeedMax);
+            rb.velocity = velo;
+
+            inputCom.moveAxis = 0;
         }
 
         public void Loco_Falling(float fixdt) {
@@ -60,6 +68,7 @@ namespace DoodleWorldNS {
             rb.velocity = velo;
 
             rb.AddForce(jumpForce, ForceMode2D.Impulse);
+            fsmCom.Bounce_Enter(0.3f);
 
         }
 

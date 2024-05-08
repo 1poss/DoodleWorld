@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:yousandi.cn,2023:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0389234bb63d27d4bb066a0d686e3884, type: 3}
+  m_Name: Prop_TM_200
+  m_EditorClassIdentifier: 
+  typeID: 200
+  isBounce: 1
+  bounceDir: {x: 0, y: 0}
+  bounceForce: 10
+  modPrefab: {fileID: 5104937133131657857, guid: d45ed1e2fa8ac9f469980a58b7b0017e,
+    type: 3}

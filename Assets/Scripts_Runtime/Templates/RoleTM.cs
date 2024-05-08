@@ -8,7 +8,8 @@ namespace DoodleWorldNS {
 
         public int typeID;
 
-        public float moveSpeed;
+        public float moveAccelerateSpeed;
+        public float moveSpeedMax;
         public float fallingSpeed;
         public float fallingSpeedMax;
 

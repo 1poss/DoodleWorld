@@ -24,7 +24,8 @@ namespace DoodleWorldNS.Domains {
             entity.Ctor();
             entity.id = ctx.idService.roleIDRecord++;
 
-            entity.moveSpeed = tm.moveSpeed;
+            entity.moveAccelerateSpeed = tm.moveAccelerateSpeed;
+            entity.moveSpeedMax = tm.moveSpeedMax;
             entity.fallingSpeed = tm.fallingSpeed;
             entity.fallingSpeedMax = tm.fallingSpeedMax;
 
