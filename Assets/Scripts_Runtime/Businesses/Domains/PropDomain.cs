@@ -30,6 +30,12 @@ namespace DoodleWorldNS.Domains {
             entity.bounceDir = tm.bounceDir;
             entity.bounceForce = tm.bounceForce;
 
+            entity.isKey = tm.isKey;
+
+            entity.isDoor = tm.isDoor;
+
+            entity.Init();
+
             ctx.propRepository.Add(entity);
 
             return entity;

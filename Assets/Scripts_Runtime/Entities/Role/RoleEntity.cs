@@ -20,10 +20,15 @@ namespace DoodleWorldNS {
         public RoleFSMComponent fsmCom;
 
         public Action<RoleEntity, Collision2D> OnCollisionEnterHandle;
+        public Action<RoleEntity, Collider2D> OnTriggerEnterHandle;
 
         public void Ctor() {
             inputCom = new RoleInputComponent();
             fsmCom = new RoleFSMComponent();
+        }
+
+        public void TearDown() {
+            Destroy(gameObject);
         }
 
         public void SR_Set(Sprite spr) {
@@ -79,6 +84,10 @@ namespace DoodleWorldNS {
 
         void OnCollisionEnter2D(Collision2D other) {
             OnCollisionEnterHandle.Invoke(this, other);
+        }
+
+        void OnTriggerEnter2D(Collider2D other) {
+            OnTriggerEnterHandle.Invoke(this, other);
         }
 
     }

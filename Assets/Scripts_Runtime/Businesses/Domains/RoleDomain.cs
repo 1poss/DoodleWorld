@@ -34,7 +34,15 @@ namespace DoodleWorldNS.Domains {
                 var otherGo = other.gameObject;
                 if (otherGo.layer == LayerConst.PROP) {
                     var prop = otherGo.GetComponentInParent<PropEntity>();
-                    Coll_Enter_Role_Prop(ctx, me, prop, other);
+                    Coll_Enter_Role_I_Prop(ctx, me, prop, other);
+                }
+            };
+
+            entity.OnTriggerEnterHandle = (me, other) => {
+                var otherGo = other.gameObject;
+                if (otherGo.layer == LayerConst.PROP) {
+                    var prop = otherGo.GetComponentInParent<PropEntity>();
+                    Trig_Enter_Role_I_Prop(ctx, me, prop);
                 }
             };
 
@@ -48,7 +56,12 @@ namespace DoodleWorldNS.Domains {
 
         }
 
-        static void Coll_Enter_Role_Prop(GameContext ctx, RoleEntity role, PropEntity prop, Collision2D collision) {
+        // ==== Collision ====
+        static void Coll_Enter_Role_I_Prop(GameContext ctx, RoleEntity role, PropEntity prop, Collision2D collision) {
+            Role_I_Prop_Bounce(role, prop, collision);
+        }
+
+        static void Role_I_Prop_Bounce(RoleEntity role, PropEntity prop, Collision2D collision) {
             if (prop.isBounce) {
                 if (collision.contacts.Length == 0) {
                     return;
@@ -67,6 +80,10 @@ namespace DoodleWorldNS.Domains {
                 bounceDir.Normalize();
                 role.Bounce(bounceDir * prop.bounceForce);
             }
+        }
+
+        // ==== Trigger ====
+        static void Trig_Enter_Role_I_Prop(GameContext ctx, RoleEntity role, PropEntity prop) {
         }
 
     }
