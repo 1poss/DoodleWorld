@@ -96,7 +96,7 @@ namespace DoodleWorldNS.Domains {
             var door = ctx.propRepository.GetDoor();
             door.Door_Open();
 
-            prop.TearDown();
+            PropDomain.Unspawn(ctx, prop);
         }
 
         static void Role_I_Prop_Door(GameContext ctx, RoleEntity role, PropEntity prop) {

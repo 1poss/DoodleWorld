@@ -41,5 +41,10 @@ namespace DoodleWorldNS.Domains {
             return entity;
 
         }
+
+        public static void Unspawn(GameContext ctx, PropEntity entity) {
+            ctx.propRepository.Remove(entity);
+            entity.TearDown();
+        }
     }
 }

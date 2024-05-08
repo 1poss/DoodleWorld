@@ -26,12 +26,13 @@ namespace DoodleWorldNS.Domains {
 
             // Stage
             var stage = StageDomain.Spawn(ctx, chapter, level);
+            Vector2 stagePos = stage.transform.position;
             ctx.stageRepository.SetCurrent(stage);
 
             // Roles
             for (int i = 0; i < stageTM.roleSpawners.Length; i++) {
                 var spawner = stageTM.roleSpawners[i];
-                RoleEntity role = RoleDomain.Spawn(ctx, spawner.typeID, spawner.allyStatus, spawner.pos, spawner.rot);
+                RoleEntity role = RoleDomain.Spawn(ctx, spawner.typeID, spawner.allyStatus, spawner.pos + stagePos, spawner.rot);
                 if (role.allyStatus == AllyStatus.Player) {
                     game.ownerRoleID = role.id;
                 }
@@ -40,7 +41,7 @@ namespace DoodleWorldNS.Domains {
             // Props
             for (int i = 0; i < stageTM.propSpawners.Length; i++) {
                 var spawner = stageTM.propSpawners[i];
-                PropDomain.Spawn(ctx, spawner.typeID, spawner.pos, spawner.rot);
+                PropDomain.Spawn(ctx, spawner.typeID, spawner.pos + stagePos, spawner.rot);
             }
 
             // UI

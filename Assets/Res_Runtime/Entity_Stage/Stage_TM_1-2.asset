@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:yousandi.cn,2023:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af24ad434f78f3b48addb4bac27f77d9, type: 3}
+  m_Name: Stage_TM_1-2
+  m_EditorClassIdentifier: 
+  chapter: 1
+  level: 2
+  size: {x: 40, y: 16.875}
+  roleSpawners:
+  - pos: {x: 3, y: 13}
+    rot: 0
+    typeID: 100
+    allyStatus: 1
+  propSpawners:
+  - pos: {x: 4, y: 11}
+    rot: 0
+    typeID: 106
+  - pos: {x: 14, y: 10}
+    rot: 0
+    typeID: 104
+  - pos: {x: 19, y: 10.25}
+    rot: 0
+    typeID: 104
+  - pos: {x: 24.5, y: 10.25}
+    rot: 0
+    typeID: 104
+  - pos: {x: 30, y: 9.25}
+    rot: 0
+    typeID: 104
+  - pos: {x: 34.5, y: 5}
+    rot: 0
+    typeID: 110
+  - pos: {x: 24, y: 4.5}
+    rot: 0
+    typeID: 110
+  - pos: {x: 0, y: 5}
+    rot: 0
+    typeID: 210
+  - pos: {x: 0, y: 15}
+    rot: 0
+    typeID: 210
+  - pos: {x: 0, y: 25}
+    rot: 0
+    typeID: 210
+  - pos: {x: 40, y: 5}
+    rot: 0
+    typeID: 210
+  - pos: {x: 40, y: 15}
+    rot: 0
+    typeID: 210
+  - pos: {x: 40, y: 25}
+    rot: 0
+    typeID: 210
+  - pos: {x: 8, y: 10}
+    rot: 0
+    typeID: 300
+  - pos: {x: 38, y: 6}
+    rot: 0
+    typeID: 400
+  - pos: {x: 35.464287, y: 8.074662}
+    rot: 0
+    typeID: 401
+  - pos: {x: 38.964287, y: 9.324662}
+    rot: 0
+    typeID: 400
+  - pos: {x: 34, y: 12}
+    rot: 0
+    typeID: 1000
+  - pos: {x: 22.5, y: 5.5}
+    rot: 0
+    typeID: 2000

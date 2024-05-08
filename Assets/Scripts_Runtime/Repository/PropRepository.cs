@@ -24,8 +24,8 @@ namespace DoodleWorldNS {
             return all.TryGetValue(id, out entity);
         }
 
-        public void Remove(int id) {
-            all.Remove(id);
+        public void Remove(PropEntity prop) {
+            all.Remove(prop.id);
         }
 
         public void Foreach(Action<PropEntity> action) {

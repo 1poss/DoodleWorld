@@ -11,7 +11,7 @@ namespace DoodleWorldNS.Editor {
         public PropTM tm;
 
         public Vector2 GetPos() {
-            return transform.position;
+            return transform.localPosition;
         }
 
         public float GetRot() {

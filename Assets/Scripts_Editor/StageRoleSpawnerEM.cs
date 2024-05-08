@@ -12,7 +12,7 @@ namespace DoodleWorldNS.Editor {
         public AllyStatus allyStatus;
 
         public Vector2 GetPos() {
-            return transform.position;
+            return transform.localPosition;
         }
 
         public float GetRot() {
