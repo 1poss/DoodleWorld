@@ -1,5 +1,6 @@
 using UnityEngine;
 using DoodleWorldNS.Domains;
+using GameFunctions;
 
 namespace DoodleWorldNS.Businesses {
 
@@ -40,7 +41,9 @@ namespace DoodleWorldNS.Businesses {
         }
 
         static void LateTick(GameContext ctx, float dt) {
-
+            var owner = ctx.Role_GetOwner();
+            var stage = ctx.stageRepository.GetCurrent();
+            ctx.cameraCore.Follow(owner.transform.position, stage.transform.position, stage.size);
         }
 
     }

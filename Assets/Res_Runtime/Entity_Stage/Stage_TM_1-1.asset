@@ -14,11 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chapter: 1
   level: 1
+  size: {x: 40, y: 22.5}
   roleSpawners:
   - pos: {x: 2, y: 6}
     rot: 0
     typeID: 100
   propSpawners:
   - pos: {x: 2, y: 2}
+    rot: 0
+    typeID: 100
+  - pos: {x: 5, y: 2}
     rot: 0
     typeID: 100

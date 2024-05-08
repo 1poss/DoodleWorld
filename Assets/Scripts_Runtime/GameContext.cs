@@ -6,6 +6,7 @@ namespace DoodleWorldNS {
 
         // ==== Entities ====
         public GameEntity gameEntity;
+        public StageRepository stageRepository;
         public RoleRepository roleRepository;
         public PropRepository propRepository;
 
@@ -15,9 +16,11 @@ namespace DoodleWorldNS {
         // ==== Infrastructure ====
         public AssetsManager assets;
         public UIManager ui;
+        public CameraCore cameraCore;
 
         public GameContext() {
             gameEntity = new GameEntity();
+            stageRepository = new StageRepository();
             roleRepository = new RoleRepository();
             propRepository = new PropRepository();
 
@@ -25,10 +28,18 @@ namespace DoodleWorldNS {
 
             assets = new AssetsManager();
             ui = new UIManager();
+            cameraCore = new CameraCore();
         }
 
-        public void Inject(Canvas canvasOverlay) {
+        public void Inject(Camera mainCamera, Canvas canvasOverlay) {
             ui.Inject(assets, canvasOverlay);
+            cameraCore.Inject(mainCamera);
+        }
+
+        public RoleEntity Role_GetOwner() {
+            RoleEntity role;
+            roleRepository.TryGet(gameEntity.ownerRoleID, out role);
+            return role;
         }
 
     }

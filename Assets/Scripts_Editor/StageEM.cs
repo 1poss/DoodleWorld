@@ -5,12 +5,18 @@ using TriInspector;
 
 namespace DoodleWorldNS.Editor {
 
+    [ExecuteInEditMode]
     public class StageEM : MonoBehaviour {
 
         [SerializeField] StageTM tm;
 
+        [SerializeField] Vector2 size;
+
         [Button]
         void Save() {
+            {
+                tm.size = size;
+            }
 
             {
                 var propSpawners = GetComponentsInChildren<StagePropSpawnerEM>();
@@ -38,6 +44,12 @@ namespace DoodleWorldNS.Editor {
 
             EditorUtility.SetDirty(tm);
 
+        }
+
+        void OnDrawGizmos() {
+            Gizmos.color = Color.red;
+            Vector3 halfSize = size / 2;
+            Gizmos.DrawWireCube(transform.position + halfSize, new Vector3(size.x, size.y));
         }
 
     }

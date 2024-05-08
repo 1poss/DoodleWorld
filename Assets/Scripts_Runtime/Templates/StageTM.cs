@@ -8,6 +8,7 @@ namespace DoodleWorldNS {
 
         public int chapter;
         public int level;
+        public Vector2 size;
 
         // Roles
         public StageRoleSpawnerTM[] roleSpawners;

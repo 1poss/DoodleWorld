@@ -9,6 +9,7 @@ namespace DoodleWorldNS {
 
     public sealed class Main : MonoBehaviour {
 
+        [SerializeField] Camera mainCamera;
         [SerializeField] Canvas canvasOverlay;
 
         GameContext ctx;
@@ -25,7 +26,7 @@ namespace DoodleWorldNS {
             ctx = new GameContext();
 
             // ==== Inject ====
-            ctx.Inject(canvasOverlay);
+            ctx.Inject(mainCamera, canvasOverlay);
 
             // ==== Binding ====
             BindingEvents();
@@ -83,6 +84,9 @@ namespace DoodleWorldNS {
 
             uiEvents.Login_OnExitHandle = () => {
                 Application.Quit();
+#if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+#endif
             };
 
         }
