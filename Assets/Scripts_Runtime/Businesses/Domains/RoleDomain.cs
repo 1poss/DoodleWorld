@@ -33,7 +33,7 @@ namespace DoodleWorldNS.Domains {
                 var otherGo = other.gameObject;
                 if (otherGo.layer == LayerConst.PROP) {
                     var prop = otherGo.GetComponentInParent<PropEntity>();
-                    Coll_Enter_Role_Prop(ctx, me, prop);
+                    Coll_Enter_Role_Prop(ctx, me, prop, other);
                 }
             };
 
@@ -47,8 +47,18 @@ namespace DoodleWorldNS.Domains {
 
         }
 
-        static void Coll_Enter_Role_Prop(GameContext ctx, RoleEntity role, PropEntity prop) {
+        static void Coll_Enter_Role_Prop(GameContext ctx, RoleEntity role, PropEntity prop, Collision2D collision) {
             if (prop.isBounce) {
+                if (collision.contacts.Length == 0) {
+                    return;
+                }
+                Vector2 normal = collision.contacts[0].normal;
+                if (normal.x == 1 || normal.x == -1) {
+                    return;
+                }
+                if (normal.y <= 0) {
+                    return;
+                }
                 Vector2 bounceDir = prop.bounceDir;
                 if (bounceDir == Vector2.zero) {
                     bounceDir = role.transform.position - prop.transform.position;
