@@ -16,7 +16,8 @@ namespace DoodleWorldNS {
         // ==== Infrastructure ====
         public AssetsManager assets;
         public UIManager ui;
-        public CameraCore cameraCore;
+        public CameraManager camera;
+        public InputManager input;
 
         public GameContext() {
             gameEntity = new GameEntity();
@@ -28,12 +29,13 @@ namespace DoodleWorldNS {
 
             assets = new AssetsManager();
             ui = new UIManager();
-            cameraCore = new CameraCore();
+            camera = new CameraManager();
+            input = new InputManager();
         }
 
         public void Inject(Camera mainCamera, Canvas canvasOverlay) {
             ui.Inject(assets, canvasOverlay);
-            cameraCore.Inject(mainCamera);
+            camera.Inject(mainCamera);
         }
 
         public RoleEntity Role_GetOwner() {

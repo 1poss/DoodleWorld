@@ -3,11 +3,11 @@ using GameFunctions;
 
 namespace DoodleWorldNS {
 
-    public class CameraCore {
+    public class CameraManager {
 
         Camera mainCam;
 
-        public CameraCore() { }
+        public CameraManager() { }
 
         public void Inject(Camera mainCam) {
             this.mainCam = mainCam;

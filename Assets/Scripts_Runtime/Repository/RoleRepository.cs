@@ -9,8 +9,11 @@ namespace DoodleWorldNS {
 
         Dictionary<int, RoleEntity> all;
 
+        RoleEntity[] temp;
+
         public RoleRepository() {
             all = new Dictionary<int, RoleEntity>();
+            temp = new RoleEntity[100];
         }
 
         public void Add(RoleEntity entity) {
@@ -29,6 +32,21 @@ namespace DoodleWorldNS {
             foreach (var entity in all.Values) {
                 action.Invoke(entity);
             }
+        }
+
+        public int TakeAll(out RoleEntity[] entities) {
+            int count = all.Count;
+            if (count == 0) {
+                entities = null;
+                return 0;
+            }
+            if (count > temp.Length) {
+                temp = new RoleEntity[count];
+            }
+
+            all.Values.CopyTo(temp, 0);
+            entities = temp;
+            return count;
         }
 
     }

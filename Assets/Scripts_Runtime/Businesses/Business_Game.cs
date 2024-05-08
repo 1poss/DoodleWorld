@@ -1,6 +1,6 @@
 using UnityEngine;
 using DoodleWorldNS.Domains;
-using GameFunctions;
+using DoodleWorldNS.Controllers;
 
 namespace DoodleWorldNS.Businesses {
 
@@ -15,6 +15,10 @@ namespace DoodleWorldNS.Businesses {
         public static void Tick(GameContext ctx, float dt) {
 
             // ==== Pre Logic ====
+            ctx.input.Tick(dt);
+
+            var owner = ctx.Role_GetOwner();
+            PlayerRoleDomain.BakeInput(ctx, owner);
 
             // ==== Fix Logic ====
             ref var fixRestTime = ref ctx.gameEntity.fixRestTime;
@@ -37,13 +41,20 @@ namespace DoodleWorldNS.Businesses {
 
         static void FixTick(GameContext ctx, float fixdt) {
 
+            int roleLen = ctx.roleRepository.TakeAll(out var roles);
+            for (int i = 0; i < roleLen; i++) {
+                var role = roles[i];
+                RoleFSMController.FixTick(ctx, role, fixdt);
+            }
+
             Physics2D.Simulate(fixdt);
+
         }
 
         static void LateTick(GameContext ctx, float dt) {
             var owner = ctx.Role_GetOwner();
             var stage = ctx.stageRepository.GetCurrent();
-            ctx.cameraCore.Follow(owner.transform.position, stage.transform.position, stage.size);
+            ctx.camera.Follow(owner.transform.position, stage.transform.position, stage.size);
         }
 
     }

@@ -9,8 +9,10 @@ namespace DoodleWorldNS {
 
         [SerializeField] SpriteRenderer sr;
 
-        public void Ctor() {
+        public RoleInputComponent inputCom;
 
+        public void Ctor() {
+            inputCom = new RoleInputComponent();
         }
 
         public void SR_Set(Sprite spr) {
