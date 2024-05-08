@@ -91,6 +91,12 @@ namespace DoodleWorldNS {
             };
             #endregion Panel_Login
 
+            #region Panel_Input
+            uiEvents.Input_OnMoveHandle = (moveAxis) => {
+                Business_Game.OnUIMove(ctx, moveAxis);
+            };
+            #endregion Panel_Input
+
             #region Panel_Lose
             uiEvents.Lose_OnSeeAdHandle = () => {
                 Debug.Log("See Ad");

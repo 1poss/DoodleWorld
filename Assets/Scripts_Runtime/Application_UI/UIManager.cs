@@ -43,6 +43,31 @@ namespace DoodleWorldNS {
         }
         #endregion Panel_Login
 
+        #region Panel_Input
+        public void P_Input_Open() {
+            var panel = ctx.panel_Input;
+            if (panel == null) {
+                panel = Open<Panel_Input>();
+                panel.Ctor();
+                panel.OnMoveHandle = (moveAxis) => {
+                    ctx.events.Input_OnMove(moveAxis);
+                };
+                ctx.panel_Input = panel;
+            }
+        }
+
+        public void P_Input_Tick(float dt) {
+            var panel = ctx.panel_Input;
+            panel?.Tick(dt);
+        }
+
+        public void P_Input_Close() {
+            var panel = ctx.panel_Input;
+            panel?.Destroy();
+            ctx.panel_Input = null;
+        }
+        #endregion Panel_Input
+
         #region Panel_Lose
         public void P_Lose_Open() {
             var panel = ctx.panel_Lose;

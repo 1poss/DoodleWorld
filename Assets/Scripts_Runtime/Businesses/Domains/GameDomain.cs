@@ -33,6 +33,9 @@ namespace DoodleWorldNS.Domains {
                 PropDomain.Spawn(ctx, spawner.typeID, spawner.pos, spawner.rot);
             }
 
+            // UI
+            UIDomain.Input_Open(ctx);
+
             game.FSM_Enter_Gaming();
 
         }
@@ -66,6 +69,7 @@ namespace DoodleWorldNS.Domains {
             }
 
             // UI
+            UIDomain.Input_Close(ctx);
             UIDomain.Lose_Close(ctx);
 
         }

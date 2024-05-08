@@ -20,6 +20,7 @@ namespace DoodleWorldNS.Businesses {
 
             // ==== Pre Logic ====
             ctx.input.Tick(dt);
+            UIDomain.Input_Tick(ctx, dt);
 
             var owner = ctx.Role_GetOwner();
             PlayerRoleDomain.BakeInput(ctx, owner);
@@ -59,6 +60,12 @@ namespace DoodleWorldNS.Businesses {
             var owner = ctx.Role_GetOwner();
             var stage = ctx.stageRepository.GetCurrent();
             ctx.camera.Follow(owner.transform.position, stage.transform.position, stage.size);
+        }
+
+        // ==== Events ====
+        public static void OnUIMove(GameContext ctx, float moveAxis) {
+            var input = ctx.input;
+            input.moveAxis = moveAxis;
         }
 
     }

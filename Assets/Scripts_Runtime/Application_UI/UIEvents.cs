@@ -13,6 +13,11 @@ namespace DoodleWorldNS.UIApplication {
         public void Login_OnExit() => Login_OnExitHandle.Invoke();
         #endregion Panel_Login
 
+        #region Panel_Input
+        public Action<float> Input_OnMoveHandle;
+        public void Input_OnMove(float moveAxis) => Input_OnMoveHandle.Invoke(moveAxis);
+        #endregion Panel_Input
+
         #region Panel_Lose
         public Action Lose_OnSeeAdHandle;
         public void Lose_OnSeeAd() => Lose_OnSeeAdHandle.Invoke();
