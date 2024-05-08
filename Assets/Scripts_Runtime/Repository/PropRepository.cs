@@ -43,6 +43,10 @@ namespace DoodleWorldNS {
             return all.Count;
         }
 
+        public void Clear() {
+            all.Clear();
+        }
+
     }
 
 }

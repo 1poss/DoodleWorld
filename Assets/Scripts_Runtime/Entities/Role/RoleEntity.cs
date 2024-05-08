@@ -6,6 +6,7 @@ namespace DoodleWorldNS {
     public class RoleEntity : MonoBehaviour {
 
         public int id;
+        public AllyStatus allyStatus;
 
         [SerializeField] Rigidbody2D rb;
         [SerializeField] SpriteRenderer sr;
@@ -59,6 +60,10 @@ namespace DoodleWorldNS {
                 velo.y = -fallingSpeedMax;
             }
             rb.velocity = velo;
+        }
+
+        public void Loco_Stop() {
+            rb.velocity = Vector2.zero;
         }
 
         public void Bounce(Vector2 jumpForce) {

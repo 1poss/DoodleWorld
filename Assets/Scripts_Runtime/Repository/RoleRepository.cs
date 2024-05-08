@@ -49,6 +49,10 @@ namespace DoodleWorldNS {
             return count;
         }
 
+        public void Clear() {
+            all.Clear();
+        }
+
     }
 
 }

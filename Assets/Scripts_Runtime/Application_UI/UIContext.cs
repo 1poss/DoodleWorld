@@ -7,6 +7,7 @@ namespace DoodleWorldNS.UIApplication {
     public class UIContext {
 
         public Panel_Login panel_Login;
+        public Panel_Lose panel_Lose;
 
         public UIEvents events;
 

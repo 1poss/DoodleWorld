@@ -16,6 +16,20 @@ namespace DoodleWorldNS.Controllers {
                 case RoleFSMStatus.Bounce:
                     Bounce(ctx, role, fixdt);
                     break;
+                case RoleFSMStatus.Die:
+                    Die(ctx, role, fixdt);
+                    break;
+            }
+            Any(ctx, role, fixdt);
+        }
+
+        static void Any(GameContext ctx, RoleEntity role, float fixdt) {
+            var fsm = role.fsmCom;
+            var stage = ctx.stageRepository.GetCurrent();
+            if (stage.IsOutofStage(role.transform.position)) {
+                if (fsm.status != RoleFSMStatus.Die) {
+                    fsm.Die_Enter();
+                }
             }
         }
 
@@ -42,6 +56,19 @@ namespace DoodleWorldNS.Controllers {
             fsm.bounce_maintainTimer -= fixdt;
             if (fsm.bounce_maintainTimer <= 0) {
                 fsm.Normal_Enter();
+            }
+        }
+
+        static void Die(GameContext ctx, RoleEntity role, float fixdt) {
+            var fsm = role.fsmCom;
+            if (fsm.die_isEntering) {
+                fsm.die_isEntering = false;
+                role.Loco_Stop();
+
+                if (role.allyStatus == AllyStatus.Player) {
+                    GameDomain.Lose(ctx);
+                }
+
             }
         }
 

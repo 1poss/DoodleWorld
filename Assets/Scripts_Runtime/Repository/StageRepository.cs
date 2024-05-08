@@ -33,5 +33,9 @@ namespace DoodleWorldNS {
             return all.TryGetValue(id, out entity);
         }
 
+        public void Clear() {
+            all.Clear();
+        }
+
     }
 }

@@ -43,6 +43,29 @@ namespace DoodleWorldNS {
         }
         #endregion Panel_Login
 
+        #region Panel_Lose
+        public void P_Lose_Open() {
+            var panel = ctx.panel_Lose;
+            if (panel == null) {
+                panel = Open<Panel_Lose>();
+                panel.Ctor();
+                panel.OnSeeAdHandle = () => {
+                    ctx.events.Lose_OnSeeAd();
+                };
+                panel.OnRestartHandle = () => {
+                    ctx.events.Lose_OnRestart();
+                };
+                ctx.panel_Lose = panel;
+            }
+        }
+
+        public void P_Lose_Close() {
+            var panel = ctx.panel_Lose;
+            panel?.Destroy();
+            ctx.panel_Lose = null;
+        }
+        #endregion Panel_Lose
+
         T Open<T>() where T : MonoBehaviour {
             string name = typeof(T).Name;
             bool has = ctx.assets.UI_TryGet(name, out var prefab);

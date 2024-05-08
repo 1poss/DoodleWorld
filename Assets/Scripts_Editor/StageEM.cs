@@ -25,7 +25,7 @@ namespace DoodleWorldNS.Editor {
                     tm.propSpawners[i] = new StagePropSpawnerTM {
                         pos = propSpawners[i].GetPos(),
                         rot = propSpawners[i].GetRot(),
-                        typeID = propSpawners[i].tm.typeID
+                        typeID = propSpawners[i].tm.typeID,
                     };
                 }
             }
@@ -37,7 +37,8 @@ namespace DoodleWorldNS.Editor {
                     tm.roleSpawners[i] = new StageRoleSpawnerTM {
                         pos = roleSpawners[i].GetPos(),
                         rot = roleSpawners[i].GetRot(),
-                        typeID = roleSpawners[i].tm.typeID
+                        typeID = roleSpawners[i].tm.typeID,
+                        allyStatus = roleSpawners[i].allyStatus,
                     };
                 }
             }

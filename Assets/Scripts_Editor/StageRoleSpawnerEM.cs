@@ -9,6 +9,7 @@ namespace DoodleWorldNS.Editor {
     public class StageRoleSpawnerEM : MonoBehaviour {
 
         public RoleTM tm;
+        public AllyStatus allyStatus;
 
         public Vector2 GetPos() {
             return transform.position;

@@ -12,6 +12,10 @@ namespace DoodleWorldNS.Businesses {
             GameDomain.EnterStage(ctx, newGameChapter, newGameLevel);
         }
 
+        public static void ExitGame(GameContext ctx) {
+            GameDomain.CleanStage(ctx);
+        }
+
         public static void Tick(GameContext ctx, float dt) {
 
             // ==== Pre Logic ====

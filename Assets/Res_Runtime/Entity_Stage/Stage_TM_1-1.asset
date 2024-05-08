@@ -19,6 +19,7 @@ MonoBehaviour:
   - pos: {x: 2, y: 6}
     rot: 0
     typeID: 100
+    allyStatus: 1
   propSpawners:
   - pos: {x: 6, y: 2}
     rot: 0

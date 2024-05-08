@@ -994,6 +994,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tm: {fileID: 11400000, guid: 82a0f31949caa704fb9d5b6448b5901b, type: 2}
+  allyStatus: 1
 --- !u!212 &891027793
 SpriteRenderer:
   m_ObjectHideFlags: 0

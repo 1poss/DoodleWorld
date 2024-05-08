@@ -5,11 +5,21 @@ namespace DoodleWorldNS.UIApplication {
 
     public class UIEvents {
 
+        #region Panel_Login
         public Action Login_OnNewGameHandle;
         public void Login_OnNewGame() => Login_OnNewGameHandle.Invoke();
 
         public Action Login_OnExitHandle;
         public void Login_OnExit() => Login_OnExitHandle.Invoke();
+        #endregion Panel_Login
+
+        #region Panel_Lose
+        public Action Lose_OnSeeAdHandle;
+        public void Lose_OnSeeAd() => Lose_OnSeeAdHandle.Invoke();
+
+        public Action Lose_OnRestartHandle;
+        public void Lose_OnRestart() => Lose_OnRestartHandle.Invoke();
+        #endregion Panel_Lose
 
         public UIEvents() { }
 

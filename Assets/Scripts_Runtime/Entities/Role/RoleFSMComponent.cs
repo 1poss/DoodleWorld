@@ -9,6 +9,8 @@ namespace DoodleWorldNS {
         public bool bounce_isEntering;
         public float bounce_maintainTimer;
 
+        public bool die_isEntering;
+
         public RoleFSMComponent() { }
 
         public void Normal_Enter() {
@@ -20,6 +22,11 @@ namespace DoodleWorldNS {
             status = RoleFSMStatus.Bounce;
             bounce_isEntering = true;
             bounce_maintainTimer = maintainSec;
+        }
+
+        public void Die_Enter() {
+            status = RoleFSMStatus.Die;
+            die_isEntering = true;
         }
 
     }

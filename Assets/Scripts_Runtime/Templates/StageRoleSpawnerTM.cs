@@ -9,6 +9,7 @@ namespace DoodleWorldNS {
         public Vector2 pos;
         public float rot;
         public int typeID;
+        public AllyStatus allyStatus;
 
     }
 

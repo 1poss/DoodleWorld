@@ -16,6 +16,12 @@ namespace DoodleWorldNS {
 
         }
 
+        public bool IsOutofStage(Vector2 pos) {
+            Vector2 min = (Vector2)transform.position - Vector2.up * 2;
+            Vector2 max = min + size;
+            return pos.x < min.x || pos.x > max.x || pos.y < min.y || pos.y > max.y;
+        }
+
     }
 
 }

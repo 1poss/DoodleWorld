@@ -77,6 +77,7 @@ namespace DoodleWorldNS {
         void BindingEvents() {
 
             var uiEvents = ctx.ui.Events;
+            #region Panel_Login
             uiEvents.Login_OnNewGameHandle = () => {
                 Business_Login.Exit(ctx);
                 Business_Game.NewGame(ctx);
@@ -88,6 +89,18 @@ namespace DoodleWorldNS {
                 UnityEditor.EditorApplication.isPlaying = false;
 #endif
             };
+            #endregion Panel_Login
+
+            #region Panel_Lose
+            uiEvents.Lose_OnSeeAdHandle = () => {
+                Debug.Log("See Ad");
+            };
+
+            uiEvents.Lose_OnRestartHandle = () => {
+                Business_Game.ExitGame(ctx);
+                Business_Game.NewGame(ctx);
+            };
+            #endregion Panel_Lose
 
         }
 

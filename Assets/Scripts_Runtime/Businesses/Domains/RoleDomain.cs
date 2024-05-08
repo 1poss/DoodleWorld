@@ -5,7 +5,7 @@ namespace DoodleWorldNS.Domains {
 
     public static class RoleDomain {
 
-        public static RoleEntity Spawn(GameContext ctx, int typeID, Vector2 pos, float rot) {
+        public static RoleEntity Spawn(GameContext ctx, int typeID, AllyStatus allyStatus, Vector2 pos, float rot) {
 
             bool has = ctx.assets.Role_TryGet(typeID, out var tm);
             if (!has) {
@@ -23,6 +23,7 @@ namespace DoodleWorldNS.Domains {
             var entity = go.GetComponent<RoleEntity>();
             entity.Ctor();
             entity.id = ctx.idService.roleIDRecord++;
+            entity.allyStatus = allyStatus;
 
             entity.moveAccelerateSpeed = tm.moveAccelerateSpeed;
             entity.moveSpeedMax = tm.moveSpeedMax;
