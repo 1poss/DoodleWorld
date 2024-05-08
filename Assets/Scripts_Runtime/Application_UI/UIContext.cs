@@ -9,6 +9,7 @@ namespace DoodleWorldNS.UIApplication {
         public Panel_Login panel_Login;
         public Panel_Lose panel_Lose;
         public Panel_Input panel_Input;
+        public Panel_GameStatus panel_GameStatus;
 
         public UIEvents events;
 

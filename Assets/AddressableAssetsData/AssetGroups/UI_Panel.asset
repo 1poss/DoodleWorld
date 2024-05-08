@@ -35,6 +35,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - UI
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1fbc3f65002c1574686a793413480a83
+    m_Address: Panel_GameStatus
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8334c734eef2a3e4eac3800c11a10309, type: 2}
   m_SchemaSet:

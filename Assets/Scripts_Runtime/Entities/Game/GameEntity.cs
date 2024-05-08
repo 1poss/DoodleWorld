@@ -5,6 +5,7 @@ namespace DoodleWorldNS {
         public GameFSMComponent fsmCom;
 
         public int ownerRoleID;
+        public int playerHp;
 
         public float fixRestTime;
 

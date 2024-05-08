@@ -26,7 +26,7 @@ namespace DoodleWorldNS.UIApplication {
             OnMoveHandle.Invoke(moveAxis);
         }
 
-        public void Destroy() {
+        public void TearDown() {
             GameObject.Destroy(gameObject);
         }
 

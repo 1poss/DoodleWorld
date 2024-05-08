@@ -21,7 +21,7 @@ namespace DoodleWorldNS.UIApplication {
             });
         }
 
-        public void Destroy() {
+        public void TearDown() {
             btnSeeAd.onClick.RemoveAllListeners();
             btnRestart.onClick.RemoveAllListeners();
             GameObject.Destroy(gameObject);

@@ -38,7 +38,7 @@ namespace DoodleWorldNS {
 
         public void P_Login_Close() {
             var panel = ctx.panel_Login;
-            panel?.Destory();
+            panel?.TearDown();
             ctx.panel_Login = null;
         }
         #endregion Panel_Login
@@ -63,10 +63,32 @@ namespace DoodleWorldNS {
 
         public void P_Input_Close() {
             var panel = ctx.panel_Input;
-            panel?.Destroy();
+            panel?.TearDown();
             ctx.panel_Input = null;
         }
         #endregion Panel_Input
+
+        #region Panel_GameStatus
+        public void P_GameStatus_Open() {
+            var panel = ctx.panel_GameStatus;
+            if (panel == null) {
+                panel = Open<Panel_GameStatus>();
+                panel.Ctor();
+                ctx.panel_GameStatus = panel;
+            }
+        }
+
+        public void P_GameStatus_SetHp(int hp) {
+            var panel = ctx.panel_GameStatus;
+            panel?.SetHp(hp);
+        }
+
+        public void P_GameStatus_Close() {
+            var panel = ctx.panel_GameStatus;
+            panel?.TearDown();
+            ctx.panel_GameStatus = null;
+        }
+        #endregion Panel_GameStatus
 
         #region Panel_Lose
         public void P_Lose_Open() {
@@ -86,7 +108,7 @@ namespace DoodleWorldNS {
 
         public void P_Lose_Close() {
             var panel = ctx.panel_Lose;
-            panel?.Destroy();
+            panel?.TearDown();
             ctx.panel_Lose = null;
         }
         #endregion Panel_Lose

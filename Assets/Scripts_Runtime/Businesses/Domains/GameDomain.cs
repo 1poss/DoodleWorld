@@ -46,6 +46,7 @@ namespace DoodleWorldNS.Domains {
 
             // UI
             UIDomain.Input_Open(ctx);
+            UIDomain.GameStatus_Open(ctx);
 
             game.FSM_Enter_Gaming();
 
@@ -82,10 +83,12 @@ namespace DoodleWorldNS.Domains {
             // UI
             UIDomain.Input_Close(ctx);
             UIDomain.Lose_Close(ctx);
+            UIDomain.GameStatus_Close(ctx);
 
         }
 
         public static void Lose(GameContext ctx) {
+            ctx.playerEntity.hp--;
             UIDomain.Lose_Open(ctx);
         }
 

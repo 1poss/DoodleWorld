@@ -12,6 +12,18 @@ namespace DoodleWorldNS.Domains {
         }
         #endregion Panel_Lose
 
+        #region Panel_GameStatus
+        public static void GameStatus_Open(GameContext ctx) {
+            ctx.ui.P_GameStatus_Open();
+            var player = ctx.playerEntity;
+            ctx.ui.P_GameStatus_SetHp(player.hp);
+        }
+
+        public static void GameStatus_Close(GameContext ctx) {
+            ctx.ui.P_GameStatus_Close();
+        }
+        #endregion Panel_GameStatus
+
         #region Panel_Input
         public static void Input_Open(GameContext ctx) {
             ctx.ui.P_Input_Open();

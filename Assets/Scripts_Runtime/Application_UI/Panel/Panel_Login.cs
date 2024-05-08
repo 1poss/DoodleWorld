@@ -25,7 +25,7 @@ namespace DoodleWorldNS {
 
         }
 
-        public void Destory() {
+        public void TearDown() {
             GameObject.Destroy(gameObject);
         }
 

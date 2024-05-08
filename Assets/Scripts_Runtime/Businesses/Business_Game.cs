@@ -9,6 +9,7 @@ namespace DoodleWorldNS.Businesses {
         public static void NewGame(GameContext ctx) {
             const int newGameChapter = 1;
             const int newGameLevel = 1;
+            ctx.playerEntity.hp = 3;
             GameDomain.EnterStage(ctx, newGameChapter, newGameLevel);
         }
 
