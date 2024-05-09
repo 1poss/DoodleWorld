@@ -44,7 +44,7 @@ MonoBehaviour:
     UseFriendRelation: 0
     UseCompressedTexture: 0
     UseMiniGameChat: 0
-    PreloadWXFont: 1
+    PreloadWXFont: 0
   CompileOptions:
     DevelopBuild: 1
     AutoProfile: 0

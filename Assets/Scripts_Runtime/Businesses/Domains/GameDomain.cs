@@ -10,7 +10,7 @@ namespace DoodleWorldNS.Domains {
                 CleanStage(ctx);
                 EnterStage(ctx, nextChapter, nextLevel);
             } else {
-                Debug.Log("Finish Game");
+                Win(ctx);
             }
         }
 
@@ -92,7 +92,13 @@ namespace DoodleWorldNS.Domains {
             UIDomain.Input_Close(ctx);
             UIDomain.Lose_Close(ctx);
             UIDomain.GameStatus_Close(ctx);
+            UIDomain.Win_Close(ctx);
 
+        }
+
+        public static void Win(GameContext ctx) {
+            UIDomain.Win_Open(ctx);
+            ctx.gameEntity.FSM_Enter_GameWin();
         }
 
         public static void Lose(GameContext ctx) {
@@ -101,7 +107,7 @@ namespace DoodleWorldNS.Domains {
                 RestartStage(ctx);
             } else {
                 UIDomain.Lose_Open(ctx);
-                ctx.gameEntity.FSM_Enter_GameOver();
+                ctx.gameEntity.FSM_Enter_GameLose();
             }
         }
 

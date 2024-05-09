@@ -22,8 +22,12 @@ namespace DoodleWorldNS {
             fsmCom.status = GameFSMStatus.Gaming;
         }
 
-        public void FSM_Enter_GameOver() {
-            fsmCom.status = GameFSMStatus.GameOver;
+        public void FSM_Enter_GameLose() {
+            fsmCom.status = GameFSMStatus.GameLose;
+        }
+
+        public void FSM_Enter_GameWin() {
+            fsmCom.status = GameFSMStatus.GameWin;
         }
 
     }

@@ -1,14 +1,16 @@
+using DoodleWorldNS.Domains;
+
 namespace DoodleWorldNS.Businesses {
 
     public static class Business_Login {
 
         public static void Enter(GameContext ctx) {
-            ctx.ui.P_Login_Open();
+            UIDomain.Login_Open(ctx);
             ctx.gameEntity.FSM_Enter_Login();
         }
 
         public static void Exit(GameContext ctx) {
-            ctx.ui.P_Login_Close();
+            UIDomain.Login_Close(ctx);
         }
 
         public static void Tick(GameContext ctx, float dt) {

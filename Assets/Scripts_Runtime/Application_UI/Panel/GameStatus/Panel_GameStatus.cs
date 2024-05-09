@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using GameFunctions;
 
 namespace DoodleWorldNS.UIApplication {
 
@@ -26,34 +27,8 @@ namespace DoodleWorldNS.UIApplication {
         }
 
         public void SetTime(float time) {
-            // No GC
-            // Format: ss.xxx
-            int len = 0;
-
-            int sec = (int)time;
-            int ms = (int)((time - sec) * 1000);
-
-            int digit = 1;
-            while (sec > 0) {
-                timeCharArray[len++] = (char)(sec % 10 + '0');
-                sec /= 10;
-                digit++;
-            }
-
-            if (digit == 1) {
-                timeCharArray[len++] = '0';
-            }
-
-            // Reverse
-            Array.Reverse(timeCharArray, 0, len);
-
-            timeCharArray[len++] = '.';
-            timeCharArray[len++] = (char)(ms / 100 + '0');
-            timeCharArray[len++] = (char)(ms / 10 % 10 + '0');
-            timeCharArray[len++] = (char)(ms % 10 + '0');
-
+            int len = GFTime.SecTo_SS_XXX(time, ref timeCharArray);
             timeTxt.SetCharArray(timeCharArray, 0, len);
-
         }
 
     }

@@ -2,6 +2,27 @@ namespace DoodleWorldNS.Domains {
 
     public static class UIDomain {
 
+        #region Panel_Login
+        public static void Login_Open(GameContext ctx) {
+            ctx.ui.P_Login_Open();
+        }
+
+        public static void Login_Close(GameContext ctx) {
+            ctx.ui.P_Login_Close();
+        }
+        #endregion Panel_Login
+
+        #region Panel_Win
+        public static void Win_Open(GameContext ctx) {
+            ctx.ui.P_Win_Open();
+            ctx.ui.P_Win_SetTime(ctx.playerEntity.gameTime);
+        }
+
+        public static void Win_Close(GameContext ctx) {
+            ctx.ui.P_Win_Close();
+        }
+        #endregion Panel_Win
+
         #region Panel_Lose
         public static void Lose_Open(GameContext ctx) {
             ctx.ui.P_Lose_Open();

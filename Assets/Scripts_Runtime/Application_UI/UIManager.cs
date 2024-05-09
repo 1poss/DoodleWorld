@@ -95,6 +95,31 @@ namespace DoodleWorldNS {
         }
         #endregion Panel_GameStatus
 
+        #region Panel_Win
+        public void P_Win_Open() {
+            var panel = ctx.panel_Win;
+            if (panel == null) {
+                panel = Open<Panel_Win>();
+                panel.Ctor();
+                panel.OnWinConfirmHandle = () => {
+                    ctx.events.Win_OnConfirm();
+                };
+                ctx.panel_Win = panel;
+            }
+        }
+
+        public void P_Win_SetTime(float time) {
+            var panel = ctx.panel_Win;
+            panel?.SetTime(time);
+        }
+
+        public void P_Win_Close() {
+            var panel = ctx.panel_Win;
+            panel?.TearDown();
+            ctx.panel_Win = null;
+        }
+        #endregion Panel_Win
+
         #region Panel_Lose
         public void P_Lose_Open() {
             var panel = ctx.panel_Lose;

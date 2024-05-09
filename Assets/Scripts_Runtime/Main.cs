@@ -59,8 +59,10 @@ namespace DoodleWorldNS {
                 Business_Login.Tick(ctx, dt);
             } else if (status == GameFSMStatus.Gaming) {
                 Business_Game.Tick(ctx, dt);
-            } else if (status == GameFSMStatus.GameOver) {
-                Business_GameOver.Tick(ctx, dt);
+            } else if (status == GameFSMStatus.GameLose) {
+                Business_GameLose.Tick(ctx, dt);
+            } else if (status == GameFSMStatus.GameWin) {
+                Business_GameWin.Tick(ctx, dt);
             }
         }
 
@@ -109,6 +111,14 @@ namespace DoodleWorldNS {
                 Business_Game.OnUIMove(ctx, moveAxis);
             };
             #endregion Panel_Input
+
+            #region Panel_Win
+            uiEvents.Win_OnConfirmHandle = () => {
+                Debug.LogWarning("TODO: 提交分数");
+                Business_Login.Enter(ctx);
+                Business_Game.ExitGame(ctx);
+            };
+            #endregion Panel_Win
 
             #region Panel_Lose
             uiEvents.Lose_OnSeeAdHandle = () => {

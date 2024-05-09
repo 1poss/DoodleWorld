@@ -11,6 +11,8 @@ namespace DoodleWorldNS {
         public const string P_Lose_Btn_SeeAd = "看广告复活";
         public const string P_Lose_Btn_Restart = "重头开始";
 
+        public const string P_Win_Btn_Win = "通关撒花！";
+
     }
 
 }

@@ -18,6 +18,11 @@ namespace DoodleWorldNS.UIApplication {
         public void Input_OnMove(float moveAxis) => Input_OnMoveHandle.Invoke(moveAxis);
         #endregion Panel_Input
 
+        #region Panel_Win
+        public Action Win_OnConfirmHandle;
+        public void Win_OnConfirm() => Win_OnConfirmHandle.Invoke();
+        #endregion Panel_Win
+
         #region Panel_Lose
         public Action Lose_OnSeeAdHandle;
         public void Lose_OnSeeAd() => Lose_OnSeeAdHandle.Invoke();
