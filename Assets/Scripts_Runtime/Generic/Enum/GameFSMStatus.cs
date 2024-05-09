@@ -4,6 +4,8 @@ namespace DoodleWorldNS {
         None,
         Login,
         Gaming,
+        GameOver,
+        GameWin,
         Pause,
     }
 

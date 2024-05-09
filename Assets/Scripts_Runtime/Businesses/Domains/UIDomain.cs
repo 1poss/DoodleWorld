@@ -19,6 +19,11 @@ namespace DoodleWorldNS.Domains {
             ctx.ui.P_GameStatus_SetHp(player.hp);
         }
 
+        public static void GameStatus_SetTime(GameContext ctx) {
+            var player = ctx.playerEntity;
+            ctx.ui.P_GameStatus_SetTime(player.gameTime);
+        }
+
         public static void GameStatus_Close(GameContext ctx) {
             ctx.ui.P_GameStatus_Close();
         }

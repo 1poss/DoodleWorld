@@ -7,9 +7,10 @@ namespace DoodleWorldNS.Businesses {
     public static class Business_Game {
 
         public static void NewGame(GameContext ctx) {
+            PlayerDomain.Spawn(ctx);
+
             const int newGameChapter = 1;
             const int newGameLevel = 1;
-            ctx.playerEntity.hp = 3;
             GameDomain.EnterStage(ctx, newGameChapter, newGameLevel);
         }
 
@@ -55,6 +56,9 @@ namespace DoodleWorldNS.Businesses {
 
         static void FixTick(GameContext ctx, float fixdt) {
 
+            var player = ctx.playerEntity;
+            player.gameTime += fixdt;
+
             int roleLen = ctx.roleRepository.TakeAll(out var roles);
             for (int i = 0; i < roleLen; i++) {
                 var role = roles[i];
@@ -69,6 +73,8 @@ namespace DoodleWorldNS.Businesses {
             var owner = ctx.Role_GetOwner();
             var stage = ctx.stageRepository.GetCurrent();
             ctx.camera.Follow(owner.transform.position, stage.transform.position, stage.size);
+
+            UIDomain.GameStatus_SetTime(ctx);
         }
 
         // ==== Events ====

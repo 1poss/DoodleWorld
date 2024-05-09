@@ -48,6 +48,8 @@ namespace DoodleWorldNS {
                 Business_Login.Tick(ctx, dt);
             } else if (status == GameFSMStatus.Gaming) {
                 Business_Game.Tick(ctx, dt);
+            } else if (status == GameFSMStatus.GameOver) {
+                Business_GameOver.Tick(ctx, dt);
             }
         }
 

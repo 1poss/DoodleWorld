@@ -90,6 +90,7 @@ namespace DoodleWorldNS.Domains {
         public static void Lose(GameContext ctx) {
             ctx.playerEntity.hp--;
             UIDomain.Lose_Open(ctx);
+            ctx.gameEntity.FSM_Enter_GameOver();
         }
 
     }

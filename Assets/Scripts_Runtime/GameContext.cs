@@ -22,7 +22,6 @@ namespace DoodleWorldNS {
 
         public GameContext() {
             gameEntity = new GameEntity();
-            playerEntity = new PlayerEntity();
             stageRepository = new StageRepository();
             roleRepository = new RoleRepository();
             propRepository = new PropRepository();

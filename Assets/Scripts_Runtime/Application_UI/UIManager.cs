@@ -83,6 +83,11 @@ namespace DoodleWorldNS {
             panel?.SetHp(hp);
         }
 
+        public void P_GameStatus_SetTime(float time) {
+            var panel = ctx.panel_GameStatus;
+            panel?.SetTime(time);
+        }
+
         public void P_GameStatus_Close() {
             var panel = ctx.panel_GameStatus;
             panel?.TearDown();
