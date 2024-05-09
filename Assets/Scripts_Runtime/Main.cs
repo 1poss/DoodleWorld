@@ -112,7 +112,7 @@ namespace DoodleWorldNS {
 
             #region Panel_Lose
             uiEvents.Lose_OnSeeAdHandle = () => {
-                Business_Game.RestartStage(ctx);
+                Business_Game.SeeAdRevive(ctx);
             };
 
             uiEvents.Lose_OnRestartHandle = () => {

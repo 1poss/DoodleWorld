@@ -14,12 +14,9 @@ namespace DoodleWorldNS.Businesses {
             GameDomain.EnterStage(ctx, newGameChapter, newGameLevel);
         }
 
-        public static void RestartStage(GameContext ctx) {
-            var stage = ctx.stageRepository.GetCurrent();
-            int chapter = stage.chapter;
-            int level = stage.level;
-            GameDomain.CleanStage(ctx);
-            GameDomain.EnterStage(ctx, chapter, level);
+        public static void SeeAdRevive(GameContext ctx) {
+            ctx.playerEntity.hp = ctx.playerEntity.hpMax;
+            GameDomain.RestartStage(ctx);
         }
 
         public static void ExitGame(GameContext ctx) {

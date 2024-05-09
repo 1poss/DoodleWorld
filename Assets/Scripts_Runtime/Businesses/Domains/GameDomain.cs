@@ -14,6 +14,14 @@ namespace DoodleWorldNS.Domains {
             }
         }
 
+        public static void RestartStage(GameContext ctx) {
+            var stage = ctx.stageRepository.GetCurrent();
+            int chapter = stage.chapter;
+            int level = stage.level;
+            GameDomain.CleanStage(ctx);
+            GameDomain.EnterStage(ctx, chapter, level);
+        }
+
         public static void EnterStage(GameContext ctx, int chapter, int level) {
 
             var game = ctx.gameEntity;
@@ -89,8 +97,12 @@ namespace DoodleWorldNS.Domains {
 
         public static void Lose(GameContext ctx) {
             ctx.playerEntity.hp--;
-            UIDomain.Lose_Open(ctx);
-            ctx.gameEntity.FSM_Enter_GameOver();
+            if (ctx.playerEntity.hp >= 0) {
+                RestartStage(ctx);
+            } else {
+                UIDomain.Lose_Open(ctx);
+                ctx.gameEntity.FSM_Enter_GameOver();
+            }
         }
 
     }
