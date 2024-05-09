@@ -10,11 +10,18 @@
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 /Win/
-/data/
-
+/Assets/data/
+/Assets/Lang/
+/Assets/settingdata
+/NinjaMing
+/Assets/SaveData
+/Bin/
+link.xml
+link.xml.meta
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
+/Screenshots/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
@@ -66,8 +73,17 @@ crashlytics-build.properties
 
 # Packed Addressables
 /[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
+/CustomCloudAssets
+/TextToolDatas
 
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
+!omnisharp.json
+/[Aa]ssets/OutSprite
+
+# MacOS
+**/.DS_Store
+.DS_Store?
+.DS_Store

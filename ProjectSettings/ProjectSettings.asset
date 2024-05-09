@@ -81,7 +81,7 @@ PlayerSettings:
   androidEnableSensors: 0
   defaultIsNativeResolution: 1
   macRetinaSupport: 1
-  runInBackground: 1
+  runInBackground: 0
   captureSingleScreen: 0
   muteOtherAudioSources: 0
   Prepare IOS For Recording: 0
@@ -90,13 +90,13 @@ PlayerSettings:
   hideHomeButton: 0
   submitAnalytics: 1
   usePlayerLog: 1
-  autoStreaming: 0
-  useFontStreaming: 0
+  autoStreaming: 1
+  useFontStreaming: 1
   cacheASTextureAB: 0
   maxCacheSize: 0
   maxConcurrentLoad: 0
-  autoStreamingId: 
-  instantGameAppId: 
+  autoStreamingId: /v1/buckets/ed3f39f2-0cec-4d1f-a467-8afc499cf8e6/release_by_badge/latest/content
+  instantGameAppId: 5a7406b4-89ca-44e3-b76c-050fd603002d
   bakeCollisionMeshes: 0
   forceSingleInstance: 0
   useFlipModelSwapchain: 1
@@ -433,6 +433,9 @@ PlayerSettings:
   - m_BuildTarget: iOSSupport
     m_APIs: 10000000
     m_Automatic: 1
+  - m_BuildTarget: WeixinMiniGameSupport
+    m_APIs: 08000000
+    m_Automatic: 0
   m_BuildTargetVRSettings: []
   m_DefaultShaderChunkSizeInMB: 16
   m_DefaultShaderChunkCount: 0
@@ -709,12 +712,19 @@ PlayerSettings:
   webGLMemoryGeometricGrowthStep: 0.2
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Android: UNITY_UOS_SECURITY
+    Server: UNITY_UOS_SECURITY
+    Standalone: UNITY_UOS_SECURITY
+    WebGL: UNITY_UOS_SECURITY
+    iPhone: UNITY_UOS_SECURITY
   additionalCompilerArguments: {}
   platformArchitecture: {}
-  scriptingBackend: {}
+  scriptingBackend:
+    WeixinMiniGame: 1
   il2cppCompilerConfiguration: {}
-  il2cppCodeGeneration: {}
+  il2cppCodeGeneration:
+    WeixinMiniGame: 0
   managedStrippingLevel:
     ArmLinux: 1
     EmbeddedLinux: 1
@@ -735,7 +745,7 @@ PlayerSettings:
   suppressCommonWarnings: 1
   allowUnsafeCode: 0
   useDeterministicCompilation: 1
-  selectedPlatform: 2
+  selectedPlatform: 3
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 1
   monoAOTCompilation: 0
@@ -838,14 +848,15 @@ PlayerSettings:
   weixinMiniGameExceptionOnlyEnableForUserCodes: 0
   weixinMiniGameNameFilesAsHashes: 0
   weixinMiniGameShowDiagnostics: 0
-  weixinMiniGameDataCaching: 1
-  weixinMiniGameDebugSymbols: 0
-  weixinMiniGameEmscriptenArgs: 
+  weixinMiniGameDataCaching: 0
+  weixinMiniGameDebugSymbols: 1
+  weixinMiniGameEmscriptenArgs: ' -s EXPORTED_FUNCTIONS=_sbrk,_emscripten_stack_get_base,_emscripten_stack_get_end
+    -s ERROR_ON_UNDEFINED_SYMBOLS=0 -s TOTAL_MEMORY=256MB --profiling-funcs '
   weixinMiniGameModulesDirectory: 
-  weixinMiniGameTemplate: APPLICATION:Minimal
+  weixinMiniGameTemplate: PATH:D:\doodleworld\Library\PackageCache\com.qq.weixin.minigame@55fd892f10\WebGLTemplates\WXTemplate2022TJ
   weixinMiniGameAnalyzeBuildSize: 0
   weixinMiniGameUseEmbeddedResources: 0
-  weixinMiniGameCompressionFormat: 0
+  weixinMiniGameCompressionFormat: 2
   weixinMiniGameWasmArithmeticExceptions: 0
   weixinMiniGameLinkerTarget: 1
   weixinMiniGameThreadsSupport: 0

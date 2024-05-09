@@ -1,5 +1,5 @@
 %YAML 1.1
-%TAG !u! tag:unity3d.com,2011:
+%TAG !u! tag:yousandi.cn,2023:
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38,7 +38,7 @@ MonoBehaviour:
     m_Id: 
   m_RemoteCatalogLoadPath:
     m_Id: 
-  m_ContentStateBuildPathProfileVariableName: 
+  m_ContentStateBuildPathProfileVariableName: <default settings path>
   m_CustomContentStateBuildPath: 
   m_ContentStateBuildPath: 
   m_BuildAddressablesWithPlayerBuild: 0
@@ -71,7 +71,7 @@ MonoBehaviour:
       - m_Id: 681d5725c9a9bf44d92d05ff2050d19f
         m_Value: ServerData/[BuildTarget]
       - m_Id: 781ad5dc03bb5e64cb6ce0bb0b9b028d
-        m_Value: http://[PrivateIpAddress]:[HostingServicePort]
+        m_Value: '{UOS.cdn_url}/?path='
     m_ProfileEntryNames:
     - m_Id: edbc0c99ad483a1408590203d7288400
       m_Name: BuildTarget

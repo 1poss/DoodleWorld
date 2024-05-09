@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -32,10 +33,10 @@ namespace DoodleWorldNS {
             stageTMs = new Dictionary<ulong, StageTM>();
         }
 
-        public void Load() {
+        public async Task Load() {
             {
                 var op = Addressables.LoadAssetsAsync<GameObject>("Entity", null);
-                var list = op.WaitForCompletion();
+                var list = await op.Task;
                 for (int i = 0; i < list.Count; i++) {
                     var prefab = list[i];
                     entityPrefabs.Add(prefab.name, prefab);
@@ -44,7 +45,7 @@ namespace DoodleWorldNS {
             }
             {
                 var op = Addressables.LoadAssetsAsync<GameObject>("UI", null);
-                var list = op.WaitForCompletion();
+                var list = await op.Task;
                 for (int i = 0; i < list.Count; i++) {
                     var prefab = list[i];
                     uiPrefabs.Add(prefab.name, prefab);
@@ -54,7 +55,7 @@ namespace DoodleWorldNS {
 
             {
                 var op = Addressables.LoadAssetsAsync<RoleTM>("TM_Role", null);
-                var list = op.WaitForCompletion();
+                var list = await op.Task;
                 for (int i = 0; i < list.Count; i++) {
                     var tm = list[i];
                     roleTMs.Add(tm.typeID, tm);
@@ -64,7 +65,7 @@ namespace DoodleWorldNS {
 
             {
                 var op = Addressables.LoadAssetsAsync<PropTM>("TM_Prop", null);
-                var list = op.WaitForCompletion();
+                var list = await op.Task;
                 for (int i = 0; i < list.Count; i++) {
                     var tm = list[i];
                     propTMs.Add(tm.typeID, tm);
@@ -74,7 +75,7 @@ namespace DoodleWorldNS {
 
             {
                 var op = Addressables.LoadAssetsAsync<StageTM>("TM_Stage", null);
-                var list = op.WaitForCompletion();
+                var list = await op.Task;
                 for (int i = 0; i < list.Count; i++) {
                     var tm = list[i];
                     ulong key = GetStageKey(tm.chapter, tm.level);

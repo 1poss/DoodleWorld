@@ -14,6 +14,7 @@ namespace DoodleWorldNS {
 
         GameContext ctx;
 
+        bool isInit;
         bool isTearDown;
 
         void Awake() {
@@ -32,15 +33,25 @@ namespace DoodleWorldNS {
             BindingEvents();
 
             // ==== Init ====
-            ctx.assets.Load();
-            Application.targetFrameRate = 120;
+            Action action = async () => {
 
-            // ==== Enter ====
-            Business_Login.Enter(ctx);
+                await ctx.assets.Load();
+                Application.targetFrameRate = 120;
+
+                // ==== Enter ====
+                Business_Login.Enter(ctx);
+                isInit = true;
+
+            };
+
+            action.Invoke();
 
         }
 
         void Update() {
+            if (!isInit) {
+                return;
+            }
             float dt = Time.deltaTime;
             var game = ctx.gameEntity;
             var status = game.fsmCom.status;

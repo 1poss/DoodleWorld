@@ -1,0 +1,1 @@
+class UOS { public static string cdn_url = "https://a.unity.cn/client_api/v1/buckets/ed3f39f2-0cec-4d1f-a467-8afc499cf8e6/release_by_badge/latest/entry_by_path/content?path=webgl"; }
