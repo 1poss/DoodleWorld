@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using GameFunctions;
+using WeChatWASM;
 
 namespace DoodleWorldNS.UIApplication {
 
