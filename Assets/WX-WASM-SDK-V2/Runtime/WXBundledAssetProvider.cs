@@ -44,7 +44,7 @@ namespace UnityEngine.ResourceManagement
     }
 
 
-    internal static class WebRequestQueue
+    internal static class WXWebRequestQueue
     {
         internal static int s_MaxRequest = 500;
         internal static Queue<WXWebRequestQueueOperation> s_QueuedOperations = new Queue<WXWebRequestQueueOperation>();
@@ -570,7 +570,7 @@ namespace UnityEngine.ResourceManagement.ResourceProviders
                 if (m_WebRequestQueueOperation == null)
                     return false;
                 else
-                    WebRequestQueue.WaitForRequestToBeActive(m_WebRequestQueueOperation, k_WaitForWebRequestMainThreadSleep);
+                   WXWebRequestQueue.WaitForRequestToBeActive(m_WebRequestQueueOperation, k_WaitForWebRequestMainThreadSleep);
             }
 
             //We don't want to wait for request op to complete if it's a LoadFromFileAsync. Only UWR will complete in a tight loop like this.
@@ -663,7 +663,7 @@ namespace UnityEngine.ResourceManagement.ResourceProviders
 #endif
                 req.disposeDownloadHandlerOnDispose = false;
 
-                m_WebRequestQueueOperation = WebRequestQueue.QueueRequest(req);
+                m_WebRequestQueueOperation = WXWebRequestQueue.QueueRequest(req);
                 if (m_WebRequestQueueOperation.IsDone)
                     BeginWebRequestOperation(m_WebRequestQueueOperation.Result);
                 else
