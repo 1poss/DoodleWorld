@@ -34,6 +34,8 @@ namespace DoodleWorldNS.Domains {
 
             entity.isDoor = tm.isDoor;
 
+            entity.isSpike = tm.isSpike;
+
             entity.Init();
 
             ctx.propRepository.Add(entity);

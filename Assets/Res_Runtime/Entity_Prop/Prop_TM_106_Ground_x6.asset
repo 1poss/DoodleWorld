@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0389234bb63d27d4bb066a0d686e3884, type: 3}
-  m_Name: Prop_TM_202
+  m_Name: Prop_TM_106_Ground_x6
   m_EditorClassIdentifier: 
-  typeID: 202
-  propName: "\u5899x2"
+  typeID: 106
+  propName: "\u5730x6"
   isBounce: 1
   bounceDir: {x: 0, y: 1}
   bounceForce: 5
-  modPrefab: {fileID: 5104937133131657857, guid: a184516c993fe3442814c95095d1a046,
+  modPrefab: {fileID: 5104937133131657857, guid: cf7ea2f99df5eed4d992696addf034a7,
     type: 3}

@@ -66,9 +66,8 @@ namespace DoodleWorldNS.Domains {
                 int roleLen = ctx.roleRepository.TakeAll(out var roles);
                 for (int i = 0; i < roleLen; i++) {
                     var role = roles[i];
-                    role.TearDown();
+                    RoleDomain.Unspawn(ctx, role);
                 }
-                ctx.roleRepository.Clear();
             }
 
             // Clean Props
@@ -76,9 +75,8 @@ namespace DoodleWorldNS.Domains {
                 int propLen = ctx.propRepository.TakeAll(out var props);
                 for (int i = 0; i < propLen; i++) {
                     var prop = props[i];
-                    prop.TearDown();
+                    PropDomain.Unspawn(ctx, prop);
                 }
-                ctx.propRepository.Clear();
             }
 
             // Clean Stage

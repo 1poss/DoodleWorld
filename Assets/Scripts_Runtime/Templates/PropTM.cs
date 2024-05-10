@@ -17,6 +17,8 @@ namespace DoodleWorldNS {
 
         public bool isDoor;
 
+        public bool isSpike;
+
         public GameObject modPrefab;
 
     }

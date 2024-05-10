@@ -16,6 +16,8 @@ namespace DoodleWorldNS {
         public bool isDoor;
         public bool isDoorOpen;
 
+        public bool isSpike;
+
         PropMod mod;
 
         public void Ctor(PropMod mod) {

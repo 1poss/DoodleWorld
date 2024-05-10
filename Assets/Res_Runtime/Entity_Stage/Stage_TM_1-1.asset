@@ -78,3 +78,9 @@ MonoBehaviour:
   - pos: {x: 22.5, y: 5.5}
     rot: 0
     typeID: 2000
+  - pos: {x: 21.75, y: 9.75}
+    rot: 0
+    typeID: 500
+  - pos: {x: 31.5, y: 10.75}
+    rot: 0
+    typeID: 500

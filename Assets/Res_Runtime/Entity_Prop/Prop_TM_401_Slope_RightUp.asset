@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0389234bb63d27d4bb066a0d686e3884, type: 3}
-  m_Name: Prop_TM_102
+  m_Name: Prop_TM_401_Slope_RightUp
   m_EditorClassIdentifier: 
-  typeID: 102
-  propName: "\u5730x2"
+  typeID: 401
+  propName: "\u659C-\u53F3\u4E0A"
   isBounce: 1
-  bounceDir: {x: 0, y: 1}
-  bounceForce: 5
-  modPrefab: {fileID: 5104937133131657857, guid: 74440ce89db82d340b4129e93051eb8d,
+  bounceDir: {x: 1, y: 3}
+  bounceForce: 10
+  modPrefab: {fileID: 5104937133131657857, guid: 7c6268f136990ce43bbe56502946532e,
     type: 3}

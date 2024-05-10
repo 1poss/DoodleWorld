@@ -56,12 +56,22 @@ namespace DoodleWorldNS.Domains {
 
         }
 
-        // ==== Collision ====
-        static void Coll_Enter_Role_I_Prop(GameContext ctx, RoleEntity role, PropEntity prop, Collision2D collision) {
-            Role_I_Prop_Bounce(role, prop, collision);
+        public static void Unspawn(GameContext ctx, RoleEntity entity) {
+            ctx.roleRepository.Remove(entity);
+            entity.TearDown();
         }
 
-        static void Role_I_Prop_Bounce(RoleEntity role, PropEntity prop, Collision2D collision) {
+        public static void Die(GameContext ctx, RoleEntity role) {
+            role.fsmCom.Die_Enter();
+        }
+
+        // ==== Collision ====
+        static void Coll_Enter_Role_I_Prop(GameContext ctx, RoleEntity role, PropEntity prop, Collision2D collision) {
+            Role_I_Prop_Bounce(ctx, role, prop, collision);
+            Role_I_Prop_Spike(ctx, role, prop);
+        }
+
+        static void Role_I_Prop_Bounce(GameContext ctx, RoleEntity role, PropEntity prop, Collision2D collision) {
             if (prop.isBounce) {
                 if (collision.contacts.Length == 0) {
                     return;
@@ -79,6 +89,12 @@ namespace DoodleWorldNS.Domains {
                 }
                 bounceDir.Normalize();
                 role.Bounce(bounceDir * prop.bounceForce);
+            }
+        }
+
+        static void Role_I_Prop_Spike(GameContext ctx, RoleEntity role, PropEntity prop) {
+            if (prop.isSpike) {
+                Die(ctx, role);
             }
         }
 

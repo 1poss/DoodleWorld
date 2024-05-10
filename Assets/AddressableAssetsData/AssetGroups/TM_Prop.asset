@@ -107,6 +107,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - TM_Prop
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 970ea6d94baa30a4a8c424493ab49a43
+    m_Address: Prop_TM_500_Spike
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - TM_Prop
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8334c734eef2a3e4eac3800c11a10309, type: 2}
   m_SchemaSet:

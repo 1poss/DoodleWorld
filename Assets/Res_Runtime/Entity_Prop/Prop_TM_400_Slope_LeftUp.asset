@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0389234bb63d27d4bb066a0d686e3884, type: 3}
-  m_Name: Prop_TM_400
+  m_Name: Prop_TM_400_Slope_LeftUp
   m_EditorClassIdentifier: 
   typeID: 400
   propName: "\u659C-\u5DE6\u4E0A"

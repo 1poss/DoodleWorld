@@ -28,7 +28,7 @@ namespace DoodleWorldNS.Controllers {
             var stage = ctx.stageRepository.GetCurrent();
             if (stage.IsOutofStage(role.transform.position)) {
                 if (fsm.status != RoleFSMStatus.Die) {
-                    fsm.Die_Enter();
+                    RoleDomain.Die(ctx, role);
                 }
             }
         }
