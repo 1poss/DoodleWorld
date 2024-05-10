@@ -119,6 +119,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - TM_Prop
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 701ec1845f955b44896a434015fa6e69
+    m_Address: Prop_TM_600_Trampoline
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - TM_Prop
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8334c734eef2a3e4eac3800c11a10309, type: 2}
   m_SchemaSet:

@@ -10,30 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af24ad434f78f3b48addb4bac27f77d9, type: 3}
-  m_Name: Stage_TM_1-2
+  m_Name: Stage_TM_1-3
   m_EditorClassIdentifier: 
   chapter: 1
-  level: 2
+  level: 3
   size: {x: 40, y: 16.875}
   roleSpawners:
-  - pos: {x: 3, y: 13}
+  - pos: {x: 3, y: 4}
     rot: 0
     typeID: 100
     allyStatus: 1
   propSpawners:
-  - pos: {x: 4, y: 11}
-    rot: 0
-    typeID: 106
-  - pos: {x: 14, y: 10}
+  - pos: {x: 4, y: 2}
     rot: 0
     typeID: 104
-  - pos: {x: 23, y: 9}
+  - pos: {x: 21, y: 6}
     rot: 0
     typeID: 104
-  - pos: {x: 30, y: 9}
-    rot: 0
-    typeID: 104
-  - pos: {x: 32, y: 3}
+  - pos: {x: 28, y: 3}
     rot: 0
     typeID: 104
   - pos: {x: 0, y: 5}
@@ -54,15 +48,27 @@ MonoBehaviour:
   - pos: {x: 40, y: 25}
     rot: 0
     typeID: 210
-  - pos: {x: 8, y: 10}
+  - pos: {x: 7, y: 2}
+    rot: 0
+    typeID: 600
+  - pos: {x: 14, y: 8}
     rot: 0
     typeID: 302
-  - pos: {x: 17, y: 9}
+  - pos: {x: 9, y: 3}
     rot: 0
-    typeID: 302
-  - pos: {x: 31, y: 11}
+    typeID: 600
+  - pos: {x: 12, y: 5}
+    rot: 0
+    typeID: 600
+  - pos: {x: 10, y: 8}
+    rot: 0
+    typeID: 600
+  - pos: {x: 7, y: 11}
+    rot: 0
+    typeID: 600
+  - pos: {x: 9, y: 14}
     rot: 0
     typeID: 1000
-  - pos: {x: 31, y: 4}
+  - pos: {x: 28, y: 4}
     rot: 0
     typeID: 2000

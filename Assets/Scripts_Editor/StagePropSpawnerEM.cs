@@ -9,7 +9,6 @@ namespace DoodleWorldNS.Editor {
     public class StagePropSpawnerEM : MonoBehaviour {
 
         public PropTM tm;
-        int lastTypeID;
 
         public Vector2 GetPos() {
             return transform.localPosition;
@@ -23,9 +22,6 @@ namespace DoodleWorldNS.Editor {
             if (tm == null || tm.modPrefab == null) {
                 return;
             }
-            if (lastTypeID == tm.typeID) {
-                return;
-            }
             var mod = transform.Find("Mod");
             if (mod == null) {
                 var go = GameObject.Instantiate(tm.modPrefab, transform);
@@ -36,7 +32,6 @@ namespace DoodleWorldNS.Editor {
                 this.name = tm.propName;
                 EditorUtility.SetDirty(this);
             }
-            lastTypeID = tm.typeID;
         }
 
     }
