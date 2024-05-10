@@ -2,9 +2,9 @@ using DoodleWorldServer.Businesses;
 
 namespace DoodleWorldServer.Entry {
 
-    public static class ServerMain {
+    static class ServerMain {
 
-        public static void Main(string[] args) {
+        static void Main(string[] args) {
 
             // ==== Instantiate ====
             ServerContext ctx = new ServerContext();
