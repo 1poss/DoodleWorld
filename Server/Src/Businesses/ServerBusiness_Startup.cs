@@ -10,14 +10,22 @@ namespace DoodleWorldServer.Businesses {
         }
 
         static void Startup_Random(ServerContext ctx) {
+            // ==== A practice for hackers ====
+            // if you cracked the salt, send me the answer, I will check it for you.
+            // chenwansal1@163.com
             string path = Path.Combine(Environment.CurrentDirectory, PathConst.SALT);
             string salt = File.ReadAllText(path);
-            bool has = int.TryParse(salt, out int res);
-            if (!has) {
-                SDebug.Error($"Failed to parse salt: {salt}");
-                return;
+
+            Guid gid = new Guid(salt);
+            byte[] guidBytes = gid.ToByteArray();
+            char[] chars = salt.ToCharArray();
+            int seed = 0;
+            for (int i = 0, step = 0; i < 4; i += 1, step += 8) {
+                int index = (int)chars[i] % 9;
+                seed |= guidBytes[index] << step;
             }
-            ctx.randomService.Init(res);
+            ctx.randomService.Init(seed);
+            GC.Collect();
         }
 
         static void StartUpWebApp(ServerContext ctx) {

@@ -13,7 +13,6 @@ namespace DoodleWorldServer {
                 seed = rdrd.Next();
             }
             rd = new Random(seed);
-            SDebug.Log($"RandomService seed: {seed}");
         }
 
         public int Next() {
