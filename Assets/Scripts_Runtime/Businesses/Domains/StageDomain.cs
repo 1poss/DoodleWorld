@@ -29,5 +29,10 @@ namespace DoodleWorldNS.Domains {
             ctx.stageRepository.Add(entity);
             return entity;
         }
+
+        public static void Unspawn(GameContext ctx, StageEntity entity) {
+            ctx.stageRepository.Remove(entity);
+            GameObject.Destroy(entity.gameObject);
+        }
     }
 }

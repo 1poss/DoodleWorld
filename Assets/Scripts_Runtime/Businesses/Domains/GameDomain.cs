@@ -82,8 +82,7 @@ namespace DoodleWorldNS.Domains {
             // Clean Stage
             {
                 var stage = ctx.stageRepository.GetCurrent();
-                GameObject.Destroy(stage.gameObject);
-                ctx.stageRepository.Clear();
+                StageDomain.Unspawn(ctx, stage);
             }
 
             // UI
