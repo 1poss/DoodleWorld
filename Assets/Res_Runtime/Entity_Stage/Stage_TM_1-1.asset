@@ -60,9 +60,9 @@ MonoBehaviour:
   - pos: {x: 40, y: 25}
     rot: 0
     typeID: 210
-  - pos: {x: 11.964287, y: 2.0746622}
+  - pos: {x: 14, y: 11.25}
     rot: 0
-    typeID: 300
+    typeID: 301
   - pos: {x: 38, y: 6}
     rot: 0
     typeID: 400
@@ -72,6 +72,9 @@ MonoBehaviour:
   - pos: {x: 38.964287, y: 9.324662}
     rot: 0
     typeID: 400
+  - pos: {x: 1.5, y: 11.25}
+    rot: 0
+    typeID: 301
   - pos: {x: 34, y: 12}
     rot: 0
     typeID: 1000

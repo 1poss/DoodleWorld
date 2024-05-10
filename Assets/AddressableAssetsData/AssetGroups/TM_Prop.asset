@@ -113,6 +113,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - TM_Prop
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 09d27cec4c042114584c5d696a6fb1ff
+    m_Address: Prop_TM_301_Ball_Half
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - TM_Prop
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8334c734eef2a3e4eac3800c11a10309, type: 2}
   m_SchemaSet:

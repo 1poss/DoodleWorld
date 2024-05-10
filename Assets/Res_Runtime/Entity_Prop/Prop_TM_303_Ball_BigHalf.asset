@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0389234bb63d27d4bb066a0d686e3884, type: 3}
-  m_Name: Prop_TM_300_Ball
+  m_Name: Prop_TM_303_Ball_BigHalf
   m_EditorClassIdentifier: 
-  typeID: 300
-  propName: "\u7403"
+  typeID: 303
+  propName: "\u7403_BigHalf"
   isBounce: 1
   bounceDir: {x: 0, y: 0}
   bounceForce: 7
   isKey: 0
   isDoor: 0
   isSpike: 0
-  modPrefab: {fileID: 5104937133131657857, guid: d45ed1e2fa8ac9f469980a58b7b0017e,
+  modPrefab: {fileID: 5104937133131657857, guid: fe964edd2c4a82d46a479e9d81993220,
     type: 3}

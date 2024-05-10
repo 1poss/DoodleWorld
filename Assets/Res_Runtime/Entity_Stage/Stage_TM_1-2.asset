@@ -62,7 +62,7 @@ MonoBehaviour:
     typeID: 210
   - pos: {x: 8, y: 10}
     rot: 0
-    typeID: 300
+    typeID: 302
   - pos: {x: 38, y: 6}
     rot: 0
     typeID: 400

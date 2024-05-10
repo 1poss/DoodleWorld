@@ -1,5 +1,5 @@
 %YAML 1.1
-%TAG !u! tag:unity3d.com,2011:
+%TAG !u! tag:yousandi.cn,2023:
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22,6 +22,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - TM_Role
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 26171fc105536374db936785ea8988d3
+    m_Address: Prop_TM_302_Ball_Big
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - TM_Prop
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: df56c82f4adb32046ad6a0781f30486f
+    m_Address: Prop_TM_303_Ball_BigHalf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - TM_Prop
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8334c734eef2a3e4eac3800c11a10309, type: 2}
